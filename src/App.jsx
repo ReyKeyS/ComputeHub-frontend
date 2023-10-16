@@ -1,11 +1,23 @@
-import { Button, ButtonGroup } from '@chakra-ui/react'
+import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
+
+// Pages
+import HomePage from './pages/HomePage'
+import LoginPage from './pages/LoginPage'
 
 function App() {
-  
+  // Router
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+      </>
+    )
+  )
+
   return (
     <>
-      <p className="text-center text-3xl font-bold">ComputeHub</p>
-      <Button colorScheme='blue' size='lg' height='3rem'>Button</Button>
+      <RouterProvider router={router} />
     </>
   )
 }
