@@ -8,7 +8,7 @@ function RegisterPage() {
             <div className='w-1/2 m-auto'>
                 <div className='bg-abu-super-gelap text-white rounded-lg text-6xl p-5 w-1/2 m-auto flex justify-center'><ComputerIcon fontSize=''/>Compute<a className='bg-oranye rounded-lg font-bold text-abu-super-gelap'>HUB</a></div>
                 <div className='bg-abu-super-gelap py-5 px-16 mt-2 w-full m-auto flex flex-col border rounded-3xl place-content-center'>
-                    <h1 className='text-center font-bold text-6xl text-oranye'>REGISTER</h1>
+                    <h1 className='text-center font-bold text-4xl text-oranye'>REGISTER</h1>
                     <div className='text-white text-xl mb-1'>Name</div>
                     <input type="text" placeholder='Enter your name' className='mb-3 px-3 py-2 border shadow rounded-lg w-full h-14 text-xl focus:ring-2 focus:ring-blue-500 focus:outline-none' />
                     <div className='text-white text-xl mb-1'>Email</div>
