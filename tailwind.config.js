@@ -5,7 +5,11 @@ export default {
   theme: {
     extend: {
       colors:{
-        'oranye':"#ffa31a"
+        'oranye':"#ffa31a",
+        "abu-abu":"#808080",
+        "abu-gelap":"#292929",
+        "abu-super-gelap":"#1b1b1b",
+        "putih":"#ffffff"
       }
     },
   },
