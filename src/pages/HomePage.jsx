@@ -1,13 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Header from '../component/Header'
 
 function HomePage() {
   return (
     <>
-        <div className='text-3xl'>HomePage</div>
-        <Link to="/login">
-            <button className='w-24 h-10 border rounded-lg m-5'>Login</button>
-        </Link>
+        <Header></Header>
         {/* <NavLink digunakan ketika ingin styling Navbar (active) /> */}
         {/* <NavLink
             className={({ isActive, isPending }) =>
