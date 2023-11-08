@@ -9,19 +9,20 @@ import ComputerIcon from '@mui/icons-material/Computer';
 
 function LoginPage() {
   const schema = Joi.object({
-    email: Joi.string().email({ tlds: { allow: false } }).required().messages({
-        "string.empty":"Username tidak boleh kosong",
-        "string.email":"Invalid email address",
+    email: Joi.string().email({ tlds: { allow: false } }).required().label("Email").messages({ 
+      "any.required": "{{label}} is required",
+      "string.email": "{{#label}} is not a valid email"
     }),
-    password: Joi.string().required().messages({
-        "string.empty":"Password tidak boleh kosong"
+    password: Joi.string().min(6).required().label("Password").messages({
+      "any.required": "{{label}} is required",
+      "string.min": "{{#label}} must be at least 6 characters",
     }),
   })
   const { register, handleSubmit, reset, formState: { errors } } = useForm({resolver: joiResolver(schema)})
 
   function login(data){
     const login = client.post("/users/login", data).then((res)=>{
-      
+      console.log(res);
     }).catch((err)=>{console.log(err);})
   }
 
@@ -39,9 +40,9 @@ function LoginPage() {
             <form onSubmit={handleSubmit(login)}>
             <h1 className='text-center font-bold text-4xl text-oranye'>LOGIN</h1>
             <div className='text-white text-xl mb-1'>Email</div>
-            <input type="email" placeholder='Enter your email' className='mb-3 px-3 py-2 border shadow rounded-lg w-full h-14 text-xl focus:ring-2 focus:ring-blue-500 focus:outline-none' {...register('email')} />
+            <input type="email" placeholder='Enter your email' {...register('email')} className='mb-3 px-3 py-2 border shadow rounded-lg w-full h-14 text-xl focus:ring-2 focus:ring-blue-500 focus:outline-none'/>
             <div className="text-white text-xl mb-1">Password</div>
-            <input type="password" name="pass" placeholder="Enter your password" className="px-3 py-2 border rounded-xl w-full h-14 text-xl shadow focus:ring-2 focus:ring-blue-500 focus:outline-none" {...register('password')} />
+            <input type="password" name="pass" placeholder="Enter your password" {...register('password')} className="px-3 py-2 border rounded-xl w-full h-14 text-xl shadow focus:ring-2 focus:ring-blue-500 focus:outline-none"/>
             {/* <div class="text-xl text-center mt-3">Doesn't have an account? &nbsp;<a class="font-semibold text-blue-400 duration-500 hover:text-purple-600 hover:duration-500">Register Now!</a></div> */}
             <div className="text-white text-xl text-center mt-3">Doesn't have an account? &nbsp;<Link to="/register"><a className="font-semibold text-oranye">Register Now!</a></Link></div>
             <div className="flex">
