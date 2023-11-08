@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import Joi from "joi"
 import { joiResolver } from "@hookform/resolvers/joi"
@@ -8,6 +8,8 @@ import client from "../services/client"
 import ComputerIcon from '@mui/icons-material/Computer';
 
 function RegisterPage() {
+    const navigate = useNavigate();
+
     const schema = Joi.object({
         name: Joi.string().min(3).required().label("Display_Name").messages({
             "any.required": "{{label}} is required",
@@ -36,7 +38,9 @@ function RegisterPage() {
 
     function registered(data){
         const registering = client.post("/users/register", data).then((res)=>{
-            console.log(res);
+            console.log(res)
+            if (res.status === 201)
+                navigate("/login")
         }).catch((err)=>{console.log(err);})
     }
     
