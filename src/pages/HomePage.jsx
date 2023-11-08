@@ -8,19 +8,21 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import StarIcon from '@mui/icons-material/Star';
 import { yellow } from '@mui/material/colors';
 import AddIcon from '@mui/icons-material/Add';
+import Footer from '../components/Footer';
 
 function HomePage() {
   return (
     <>
       <Header />
       {/* <div className='h-[768px] flex flex-col-reverse bg-cover bg-no-repeat bg-fixed bg-[url(https://source.unsplash.com/1920x768/?tech)]'> */}
-      <div className='h-[768px] grid grid-cols-2 bg-cover bg-no-repeat bg-fixed bg-[url("/img/banner_home_non_tulis.png")]'>
-        <div className='grid grid-rows-4'>
-          <span className='row-start-2 text-white text-7xl font-bold'>One Stop Store for Computer Section</span>
-        </div>
-        {/* <div className='w-1/4 h-10 mx-auto bg-white text-center rounded-t-lg font-bold text-3xl'>
+      <div className='h-[768px] grid grid-cols-2 px-20 bg-cover bg-no-repeat bg-fixed bg-[url("/img/banner_home_non_tulis.png")]'>
+        {/* <div className='grid grid-rows-5 m-20'> */}
+        <span className='row-start-3 text-white text-8xl font-bold'>One Stop Store for Computer Section</span>
+        <span className='row-start-4 text-white font-semibold text-xl'>Browse, buy and Maintain everything your pc needs in one convenient place</span>
+        {/* </div> */}
+        <span className='row-start-5 col-span-2 w-1/4 h-10 mt-auto mx-auto bg-white text-center rounded-t-lg font-bold text-3xl'>
           Scroll Down
-        </div> */}
+        </span>
       </div>
       <div className='font-black text-4xl mt-10 mx-20'>
         Category <WorkspacePremiumIcon fontSize='large' />
@@ -49,11 +51,12 @@ function HomePage() {
         Best Deals for you
       </div>
       <div className='flex mx-20'>
+        {/* BUAT KOMPONEN */}
         <div className='bg-abu-gelap w-60 h-80 rounded-xl flex flex-col border-2 '>
           <div className='h-2/3 flex flex-col-reverse bg-white bg-[url("/img/graphic_card.png")]'>
             <div className='grid grid-cols-3 gap-1'>
               <div className='bg-oranye font-bold m-1 text-abu-super-gelap text-center rounded-lg'>PROMO!</div>
-              <div className='col-start-3 font-black'>5<StarIcon sx={{color: yellow[500]}}/></div>
+              <div className='col-start-3 font-black'>5<StarIcon sx={{ color: yellow[500] }} /></div>
             </div>
           </div>
           <div className='h-1/3 grid grid-cols-3'>
@@ -64,22 +67,14 @@ function HomePage() {
             </div>
             <div className='grid place-content-center'>
               <div className='bg-oranye w-10 h-10 grid place-content-center rounded-lg'>
-                <AddIcon color='text-oranye'/>
+                <AddIcon color='text-oranye' />
 
               </div>
             </div>
           </div>
         </div>
       </div>
-      <footer className='bg-abu-super-gelap text-white flex flex-col p-5 gap-8'>
-        <div className='text-6xl text-center'>Compute<a className='font-bold bg-oranye text-abu-super-gelap rounded-lg'>HUB</a></div>
-        <div className='text-center text-3xl'>Contact us!</div>
-        <div className='text-3xl text-center'>
-          <EmailIcon sx={{fontSize:50}}/>
-          <InstagramIcon sx={{fontSize:50}}/>
-          <WhatsAppIcon sx={{fontSize:50}}/>
-        </div>
-      </footer>
+      <Footer/>
       {/* <NavLink digunakan ketika ingin styling Navbar (active) /> */}
       {/* <NavLink
             className={({ isActive, isPending }) =>

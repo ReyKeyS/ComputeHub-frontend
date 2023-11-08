@@ -10,6 +10,9 @@ export default {
         "abu-gelap":"#292929",
         "abu-super-gelap":"#1b1b1b",
         "putih":"#ffffff"
+      },
+      fontFamily:{
+        'sans':['Calibri','sans']
       }
     },
   },
