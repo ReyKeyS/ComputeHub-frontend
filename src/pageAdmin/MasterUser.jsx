@@ -13,15 +13,40 @@ function MasterUser() {
                 <a className='bg-oranye rounded-lg font-bold text-abu-super-gelap pb-1'>HUB</a>
               </div>
               
-              <div className="listbutton">
-                <div className="dashboard">
-                  
+              <div className="listbutton text-white mt-3">
+                <div className="dashboard h-16 flex hover:bg-abu-gelap">
+                  <img></img>
+                  <h2>Dashboard</h2>
                 </div>
-                <div className="dashboard">
 
+                <div className="customer h-16 flex hover:bg-abu-gelap">
+                  <img></img>
+                  <h2>Customers</h2>
                 </div>
-                <div className="dashboard">
+                <div className="Master h-16 flex hover:bg-abu-gelap">
+                   <img></img>
+                  <h2>Master Barang</h2>
+                </div>
+                <div className="Report h-16 flex hover:bg-abu-gelap">
+                  <img></img>
+                  <h2>Report</h2>
+                </div>
+                <div className="Promo h-16 flex hover:bg-abu-gelap">
+                  <img></img>
+                  <h2>Promo</h2>
+                </div>
 
+                <div className="Confirm h-16 flex hover:bg-abu-gelap">
+                  <img></img>
+                  <h2>Confirm</h2>
+                </div>
+                <div className="Settings h-16 flex hover:bg-abu-gelap">
+                  <img></img>
+                  <h2>Settings</h2>
+                </div>
+                <div className="Logout h-16 flex hover:bg-abu-gelap">
+                  <img></img>
+                  <h2>Log Out</h2>
                 </div>
 
               </div>
@@ -29,7 +54,7 @@ function MasterUser() {
 
             </div>
             <div className="kanan w-3/4 h-screen bg-abu-gelap">
-              <div className='bg-abu-gelap border border-oranye shadow-lg w-full h-32 text-white text-4xl p-5 flex  m-auto justify-center'>
+              <div className='bg-abu-gelap border border-oranye shadow-lg w-full  text-white text-4xl p-5 flex  m-auto justify-center'>
                 <ComputerIcon fontSize=''/>
                 <div className='mx-2'>Compute</div>
                 <a className='bg-oranye rounded-lg font-bold text-abu-super-gelap pb-1'>HUB</a>
