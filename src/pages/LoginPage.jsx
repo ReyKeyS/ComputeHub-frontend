@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import Joi from "joi"
 import { joiResolver } from "@hookform/resolvers/joi"
@@ -8,6 +8,8 @@ import client from "../services/client"
 import ComputerIcon from '@mui/icons-material/Computer';
 
 function LoginPage() {
+  const navigate = useNavigate();
+
   const schema = Joi.object({
     email: Joi.string().email({ tlds: { allow: false } }).required().label("Email").messages({ 
       "any.required": "{{label}} is required",
@@ -22,7 +24,11 @@ function LoginPage() {
 
   function login(data){
     const login = client.post("/users/login", data).then((res)=>{
-      console.log(res);
+      if (res.data.data.role == 0){
+        navigate("/masteruser")
+      }else{
+        navigate("/")
+      }
     }).catch((err)=>{console.log(err);})
   }
 
