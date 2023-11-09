@@ -1,5 +1,6 @@
 import React from 'react'
 import ComputerIcon from '@mui/icons-material/Computer';
+import kiriadmin from '../components/kiriadmin';
 
 
 function MasterUser() {
@@ -53,6 +54,8 @@ function MasterUser() {
               
 
             </div>
+
+
             <div className="kanan w-3/4 h-screen bg-abu-gelap">
               <div className='bg-abu-gelap border border-oranye shadow-lg w-full  text-white text-4xl p-5 flex  m-auto justify-center'>
                 <ComputerIcon fontSize=''/>
