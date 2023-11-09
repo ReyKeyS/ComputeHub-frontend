@@ -60,10 +60,10 @@ function MasterUser() {
                 <a className='bg-oranye rounded-lg font-bold text-abu-super-gelap pb-1'>HUB</a>
               </div>
               <div className="kananbawah">
-                <div className="judul text-white text-4xl">
+                <div className="judul text-white text-4xl ms-9">
                   <h1>Customers</h1>
                 </div>
-                <div className="tabel w-3/4 mx-auto h-80 bg-oranye">
+                <div className="tabel rounded w-11/12 mt-4 mx-auto h-80 bg-oranye">
                   <div className="header flex w-max text-white text-2xl">
                     <div className="tulis1 ml-4">No</div>
                     <div className="tulis2 ml-6">ID</div>
