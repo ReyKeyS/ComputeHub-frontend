@@ -12,18 +12,17 @@ function Shop(params) {
             <div className="p-20 grid grid-cols-3">
                 <span className="font-bold text-5xl">All Product</span>
                 <span className="col-start-3 ml-auto text-abu-abu font-bold text-2xl">Sort By : Price (Up)</span>
-                <div className="w-1/2 h-96 bg-abu-super-gelap rounded-xl grid justify-center">
+                <div className="w-1/2 h-96 bg-abu-gelap rounded-xl grid justify-center">
                     <span className="text-putih text-3xl font-bold text-center">Filter</span>
                     <span className="text-putih text-lg font-bold">Harga (Rp)</span>
                     <input type="text" placeholder="Harga Minimum" className="border rounded-lg w-3/4 h-1/2" />
                     <input type="text" placeholder="Harga Maximum" className="border rounded-lg mt-5 w-3/4 h-1/2" />
                     <span className="text-putih">Rating</span>
-                    <div className="flex">
-                        <input type="checkbox" />
-                    <Stack spacing={1}>
-                        <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
-                    </Stack>
-
+                    <div className="flex justify-between place-items-center">
+                        <input type="checkbox" className="w-5 h-5"/>
+                        <Stack spacing={1} className="bg-white h-max rounded-xl p-1">
+                            <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
+                        </Stack>
                     </div>
                 </div>
                 <div className="col-span-2 grid grid-cols-4">
