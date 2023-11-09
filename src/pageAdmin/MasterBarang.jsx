@@ -18,3 +18,5 @@ function MasterBarang() {
         </>
     )
 }
+
+export default MasterBarang
