@@ -1,6 +1,6 @@
 import React from 'react'
 import ComputerIcon from '@mui/icons-material/Computer';
-import kiriadmin from '../components/kiriadmin';
+import kiriadmin from '../../components/kiriadmin';
 
 
 function MasterUser() {

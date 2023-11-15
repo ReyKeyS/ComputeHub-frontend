@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Header from '../components/Header'
+import Header from '../../components/Header'
 import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
 import EmailIcon from '@mui/icons-material/Email';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -8,7 +8,7 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import StarIcon from '@mui/icons-material/Star';
 import { yellow } from '@mui/material/colors';
 import AddIcon from '@mui/icons-material/Add';
-import Footer from '../components/Footer';
+import Footer from '../../components/Footer';
 
 function HomePage() {
   return (

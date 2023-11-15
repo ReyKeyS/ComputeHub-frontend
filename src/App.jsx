@@ -1,13 +1,13 @@
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 
 // Pages
-import HomePage from './pages/HomePage'
-import LoginPage from './pages/LoginPage'
-import RegisterPage from './pages/RegisterPage'
-import Shop from './pages/Shop'
+import HomePage from './pages/user/HomePage'
+import LoginPage from './pages/user/LoginPage'
+import RegisterPage from './pages/user/RegisterPage'
+import Shop from './pages/user/Shop'
 
 //page admin
-import MasterUser from './pageAdmin/MasterUser'
+import MasterUser from './pages/admin/MasterUser'
 
 
 function App() {

@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import Joi from "joi"
 import { joiResolver } from "@hookform/resolvers/joi"
-import client from "../services/client"
+import client from "../../services/client"
 
 import ComputerIcon from '@mui/icons-material/Computer';
 
