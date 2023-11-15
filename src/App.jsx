@@ -12,6 +12,8 @@ import MasterBarang from './pages/admin/MasterBarang'
 import Promo from './pages/admin/AddPromo'
 import Report from './pages/admin/Report'
 import LihatBarang from './pages/user/LihatBarang'
+import Dashboard from './pages/admin/Dashboard'
+
 
 
 function App() {
@@ -28,6 +30,7 @@ function App() {
         <Route path='/masterbarang' element={<MasterBarang/> }/>
         <Route path='/report' element={<Report/> }/>
         <Route path='/promo' element={<Promo/> }/>
+        <Route path='/dashboard' element={<Dashboard/> }/>
       </>
     )
   )
