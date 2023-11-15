@@ -30,7 +30,7 @@ function LihatBarang() {
                         <span>Gaming Mode-1860 MHz (Boost Clock)</span>
                         <span>CUDA Core</span>
                         <div className="flex gap-3 justify-center">
-                            <span className="text-oranye">Amount:</span>
+                            <span className="text-lg text-oranye place-self-center">Amount:</span>
                             <input type="text" className="rounded-lg" />
                             <button className="bg-oranye text-abu-super-gelap px-3 py-2 font-bold rounded-lg">Add to Cart</button>
                         </div>
