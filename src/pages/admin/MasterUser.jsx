@@ -1,13 +1,13 @@
 import React from 'react'
 import ComputerIcon from '@mui/icons-material/Computer';
-import kiriadmin from '../../components/kiriadmin';
+import Navbaradmin from '../../components/Navbaradmin';
 
 
 function MasterUser() {
   return (
     <>
-        <div className="container flex">
-            <div className="kiri w-1/4 h-screen bg-abu-super-gelap">
+        <div className="grid grid-cols-4 flex">
+            <div className="kiri w-full h-screen bg-abu-super-gelap">
               <div className='bg-abu-super-gelap text-white shadow-lg rounded-lg text-4xl p-5 w-1/2 m-auto flex justify-center'>
                 <ComputerIcon fontSize=''/>
                 <div className='mx-2'>Compute</div>
@@ -77,7 +77,7 @@ function MasterUser() {
             </div>
 
 
-            <div className="kanan w-3/4 h-screen bg-abu-gelap">
+            <div className="col-span-3 w-full h-screen bg-abu-gelap">
               <div className='bg-abu-gelap border border-oranye shadow-lg w-full  text-white text-4xl p-5 flex  m-auto justify-center'>
                 <ComputerIcon fontSize=''/>
                 <div className='mx-2'>Compute</div>
