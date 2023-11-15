@@ -11,7 +11,7 @@ function MasterUser() {
         <NavbarAdmin />
         <div className="col-span-3 w-full h-screen bg-abu-gelap">
           <HeaderAdmin/>
-          <div className="kananbawah">
+          <div className="h-fit">
             <div className="judul text-white text-4xl ms-9 mt-5">
               <h1>Customers</h1>
             </div>

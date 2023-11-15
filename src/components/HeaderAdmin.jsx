@@ -9,9 +9,6 @@ function HeaderAdmin(params) {
                     <img src="/img/istts_bg.png" alt="" className='w-10 h-10'/>
                     <span className='font-bold'>Admin</span>
                 </div>
-            {/* <ComputerIcon fontSize='' />
-            <div className='mx-2'>Compute</div>
-            <a className='bg-oranye rounded-lg font-bold text-abu-super-gelap pb-1'>HUB</a> */}
           </div>
         </>
     )

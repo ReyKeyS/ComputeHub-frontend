@@ -12,7 +12,9 @@ function AddPromo() {
         <div className="col-span-3 w-full h-screen bg-abu-gelap">
           <HeaderAdmin/>
           <div className="kananbawah">
-            
+            <div className="judul text-white text-4xl ms-9 mt-5">
+              <h1>Add New Promo</h1>
+            </div>
           </div>
         </div>
       </div>

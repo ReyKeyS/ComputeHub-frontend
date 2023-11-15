@@ -10,7 +10,6 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 
-
 function NavbarAdmin() {
     return (
         <div className="kiri w-full h-screen bg-abu-super-gelap">
