@@ -19,7 +19,7 @@ function MasterBarang() {
                 <div className="text-white text-2xl place-items-center  mr-12 text-right">
                     Name:
                 </div>
-                <div className="col-span-3 ">
+                <div className="col-span-3 text-white">
                     <input type="text" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-1' 
                     name="" id="nama" />
                 </div>
@@ -27,7 +27,7 @@ function MasterBarang() {
                 <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">
                     Description:
                 </div>
-                <div className="col-span-3 ">
+                <div className="col-span-3 text-white ">
                     <textarea className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-5' 
                     name="" id="desc" cols="30" rows="5"></textarea>
                 </div>
@@ -35,7 +35,7 @@ function MasterBarang() {
                 <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">
                     Price:
                 </div>
-                <div className="col-span-3 ">
+                <div className="col-span-3 text-white">
                     <input type="number" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-5' 
                     name="" id="harga" />
                 </div>
@@ -43,7 +43,7 @@ function MasterBarang() {
                 <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">
                     Stock:
                 </div>
-                <div className="col-span-3 ">
+                <div className="col-span-3 text-white">
                     <input type="number" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-5'
                      name="" id="stok" />
                 </div>
@@ -51,7 +51,7 @@ function MasterBarang() {
                 <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">
                     Brand:
                 </div>
-                <div className="col-span-3 ">
+                <div className="col-span-3 text-white">
                     <input type="text" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-5' 
                     name="" id="brand" />
                 </div>
@@ -59,7 +59,7 @@ function MasterBarang() {
                 <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">
                     Category:
                 </div>
-                <div className="col-span-3 ">
+                <div className="col-span-3 text-white">
                     <input type="text" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-5' 
                     name="" id="category" />
                 </div>
