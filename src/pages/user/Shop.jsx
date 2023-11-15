@@ -1,5 +1,6 @@
 import Footer from "../../components/Footer"
 import Header from "../../components/Header"
+import { Link } from 'react-router-dom'
 import * as React from 'react';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
@@ -27,6 +28,7 @@ function Shop(params) {
                 </div>
                 <div className="col-span-2 grid grid-cols-4">
                     {/* BUAT KOMPONEN */}
+                    <Link to='/barang'>
                     <div className='bg-abu-gelap w-48 h-60 rounded-xl flex flex-col border-2 '>
                         <div className='h-2/3 flex flex-col-reverse rounded-xl bg-white bg-[url("/img/graphic_card.png")] bg-center'>
                             <div className='grid grid-cols-3 gap-1'>
@@ -40,6 +42,7 @@ function Shop(params) {
                             </div>
                         </div>
                     </div>
+                    </Link>
                     {/* INI BERULANG */}
                     <div className='bg-abu-gelap w-48 h-60 rounded-xl flex flex-col border-2 '>
                         <div className='h-2/3 flex flex-col-reverse rounded-xl bg-white bg-[url("/img/graphic_card.png")] bg-center'>

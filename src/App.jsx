@@ -8,6 +8,7 @@ import Shop from './pages/user/Shop'
 
 //page admin
 import MasterUser from './pages/admin/MasterUser'
+import LihatBarang from './pages/user/LihatBarang'
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path='/register' element={<RegisterPage/>}/>
         <Route path='/shop' element={<Shop/> }/>
         <Route path='/masteruser' element={<MasterUser/> }/>
+        <Route path='/barang' element={<LihatBarang/>}/>
       </>
     )
   )

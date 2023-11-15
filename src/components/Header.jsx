@@ -15,7 +15,7 @@ function Header(){
             <div className="text-white text-xl col-span-2 ml-auto"><SearchIcon fontSize='large'/></div>
             <div className="text-white text-xl"><ShoppingCartIcon/>Cart</div>
             <Link to="/login">
-                <div className="font-bold text-white text-xl">Sign in</div>
+                <div className="font-bold text-white text-xl">Log in</div>
             </Link>
         </nav>
     )
