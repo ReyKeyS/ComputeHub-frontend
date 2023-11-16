@@ -1,18 +1,18 @@
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 
 // Pages
-import HomePage from './pages/user/HomePage'
-import LoginPage from './pages/user/LoginPage'
-import RegisterPage from './pages/user/RegisterPage'
-import Shop from './pages/user/Shop'
+import HomePage from './pages/User/HomePage'
+import LoginPage from './pages/User/LoginPage'
+import RegisterPage from './pages/User/RegisterPage'
+import Shop from './pages/User/Shop'
 
 //page admin
-import MasterUser from './pages/admin/MasterUser'
-import MasterBarang from './pages/admin/MasterBarang'
-import Promo from './pages/admin/AddPromo'
-import Report from './pages/admin/Report'
-import LihatBarang from './pages/user/LihatBarang'
-import Dashboard from './pages/admin/Dashboard'
+import MasterUser from './pages/Admin/MasterUser'
+import MasterBarang from './pages/Admin/MasterBarang'
+import Promo from './pages/Admin/AddPromo'
+import Report from './pages/Admin/Report'
+import LihatBarang from './pages/User/LihatBarang'
+import Dashboard from './pages/Admin/Dashboard'
 
 
 
@@ -26,11 +26,11 @@ function App() {
         <Route path='/register' element={<RegisterPage/>}/>
         <Route path='/shop' element={<Shop/> }/>
         <Route path='/barang' element={<LihatBarang/>}/>
-        <Route path='/masteruser' element={<MasterUser/> }/>
-        <Route path='/masterbarang' element={<MasterBarang/> }/>
-        <Route path='/report' element={<Report/> }/>
-        <Route path='/promo' element={<Promo/> }/>
-        <Route path='/dashboard' element={<Dashboard/> }/>
+        <Route path='/admin/masteruser' element={<MasterUser/> }/>
+        <Route path='/admin/masterbarang' element={<MasterBarang/> }/>
+        <Route path='/admin/report' element={<Report/> }/>
+        <Route path='/admin/promo' element={<Promo/> }/>
+        <Route path='/admin/' element={<Dashboard/> }/>
       </>
     )
   )

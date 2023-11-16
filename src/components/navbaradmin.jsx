@@ -13,7 +13,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 function NavbarAdmin() {
     return (
         <div className="kiri w-full h-screen bg-abu-super-gelap">
-            <div className='bg-abu-super-gelap text-white shadow-xl shadow-slate-800 rounded-lg text-4xl p-5 w-80 m-auto flex justify-center'>
+            <div className='bg-abu-super-gelap text-white shadow-xl shadow-abu-gelap rounded-lg text-4xl p-5 w-80 m-auto flex justify-center'>
                 <ComputerIcon fontSize='' />
                 <div className='mx-2'>Compute</div>
                 <a className='bg-oranye rounded-lg font-bold text-abu-super-gelap pb-1'>HUB</a>

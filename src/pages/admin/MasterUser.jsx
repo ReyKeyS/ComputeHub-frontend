@@ -9,13 +9,13 @@ function MasterUser() {
     <>
       <div className="grid grid-cols-4">
         <NavbarAdmin />
-        <div className="col-span-3 w-full h-screen bg-abu-gelap">
+        <div className="col-span-3 w-full h-screen bg-abu-gelap inline-block">
           <HeaderAdmin/>
           <div className="h-fit">
             <div className="judul text-white text-4xl ms-9 mt-5">
               <h1>Customers</h1>
             </div>
-            <div className="tabel rounded rounded-lg w-11/12 mt-4 mx-auto h-fit  border border-oranye bg-abu-gelap">
+            <div className="tabel rounded-lg w-11/12 mt-4 mx-auto h-fit  border border-oranye bg-abu-gelap">
               <div className="header flex w-max text-oranye text-2xl">
                 <div className=" w-10 ml-3">No</div>
                 <div className=" w-20 ml-3">ID</div>
@@ -25,7 +25,7 @@ function MasterUser() {
                 <div className=" w-16 ml-3">Action</div>
               </div>
 
-              <hr className="bg-oranye"></hr>
+              <hr className="border border-oranye"></hr>
               <div className="listdata flex  text-white h-16 place-items-center text-lg font-bold">
                 <div className="text-align-center w-10 ml-3">1</div>
                 <div className="text-align-center w-20 ml-3">CST001</div>
