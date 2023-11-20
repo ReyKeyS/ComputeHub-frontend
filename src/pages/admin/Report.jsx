@@ -15,6 +15,11 @@ function Report() {
             <div className="judul text-white text-4xl ms-9 mt-5">
               <h1>Report</h1>
             </div>
+            <div className="flex">
+                <div className="col-span-3 ">
+                    <button className='rounded bg-oranye text-black mt-5 w-48 h-10 text-xl'>Choose File</button>
+                </div>
+            </div>
           </div>
         </div>
       </div>
