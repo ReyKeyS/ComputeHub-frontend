@@ -7,20 +7,21 @@ import HeaderAdmin from '../../components/HeaderAdmin';
 function Dashboard() {
     return (
         <>
-      <div className="grid grid-cols-4">
+      <div className="grid grid-cols-4 overflow-hidden">
         <NavbarAdmin />
         <div className="col-span-3 w-full h-screen bg-abu-gelap">
           <HeaderAdmin/>
-          <div className="kananbawah">
-            <div className="judul text-white text-4xl ms-9 mt-5">
+          <div className="kananbawah h-screen overflow-scroll">
+            <div className="judul text-white text-4xl ms-9 mt-5 ">
               <div className='flex'>
                 <h1>Welcome Back, </h1>
                 <h1 className='text-oranye'> Admin</h1>
                </div>
             </div>
-            <div className="headline text-white">
+            <div className="headline text-white text-xl ml-9 mt-2">
                 <p> Here's What happening with your store today</p>
             </div>
+
             <br />
           </div>
         </div>

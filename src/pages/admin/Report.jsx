@@ -7,11 +7,11 @@ import HeaderAdmin from '../../components/HeaderAdmin';
 function Report() {
     return (
         <>
-      <div className="grid grid-cols-4">
+      <div className="grid grid-cols-4 overflow-hidden">
         <NavbarAdmin />
         <div className="col-span-3 w-full h-screen bg-abu-gelap">
           <HeaderAdmin/>
-          <div className="kananbawah">
+          <div className="kananbawah h-screen overflow-scroll">
             <div className="judul text-white text-4xl ms-9 mt-5">
               <h1>Report</h1>
             </div>
