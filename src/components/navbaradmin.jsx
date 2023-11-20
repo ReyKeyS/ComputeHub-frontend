@@ -9,6 +9,12 @@ import CheckIcon from '@mui/icons-material/Check';
 import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
 
+import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
+
+//jika ada chat baru (pake usestate)
+import MarkChatUnreadIcon from '@mui/icons-material/MarkChatUnread';
+
+
 
 function NavbarAdmin() {
     return (
@@ -82,9 +88,9 @@ function NavbarAdmin() {
                 <div className="h-16 grid place-items-center justify-items-center hover:border-l-4 border-oranye">
                     <div className="h-16 w-full grid place-items-center justify-items-center hover:bg-abu-gelap  ">
                         <div className='flex'>
-                            <SettingsIcon className="w-8 h-8 mr-2" />
+                            <ChatBubbleIcon className="w-8 h-8 mr-2" />
                             <img></img>
-                            <h2>Settings</h2>
+                            <h2>Chat</h2>
                         </div>
                     </div>
                 </div>

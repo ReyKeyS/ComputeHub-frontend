@@ -11,6 +11,8 @@ import MasterUser from './pages/Admin/MasterUser'
 import MasterBarang from './pages/Admin/MasterBarang'
 import Promo from './pages/Admin/AddPromo'
 import Report from './pages/Admin/Report'
+import ChatAdmin from './pages/Admin/Chat'
+import Confirmation from './pages/Admin/Confirmation'
 import LihatBarang from './pages/User/LihatBarang'
 import Dashboard from './pages/Admin/Dashboard'
 
@@ -26,9 +28,12 @@ function App() {
         <Route path='/register' element={<RegisterPage/>}/>
         <Route path='/shop' element={<Shop/> }/>
         <Route path='/barang' element={<LihatBarang/>}/>
+
         <Route path='/admin/masteruser' element={<MasterUser/> }/>
         <Route path='/admin/masterbarang' element={<MasterBarang/> }/>
         <Route path='/admin/report' element={<Report/> }/>
+        <Route path='/admin/confirmation' element={<Confirmation/> }/>
+        <Route path='/admin/chat' element={<ChatAdmin/> }/>
         <Route path='/admin/promo' element={<Promo/> }/>
         <Route path='/admin/' element={<Dashboard/> }/>
       </>

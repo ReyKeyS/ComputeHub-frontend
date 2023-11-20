@@ -32,13 +32,13 @@ function AddPromo() {
                     name="" id="nama" />
                 </div>
 
-                <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">
+                {/* <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">
                     Tipe:
                 </div>
                 <div className="col-span-3 text-white">
                     <input type="text" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-5' 
                     name="" id="tipe" />
-                </div>
+                </div> */}
 
                 <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">
                     Discount:
@@ -90,7 +90,7 @@ function AddPromo() {
                     <div className="text-align-center w-10 ml-3">1</div>
                     <div className="text-align-center w-20 ml-3">MEGA01</div>
                     <div className="text-align-center w-32 ml-3">Mega Sale</div>
-                    <div className="text-align-center w-48 ml-3">50 %</div>
+                    <div className="text-align-center w-48 ml-3">Rp 50.000</div>
                     <div className="text-align-center w-52 ml-3">GTX 3080</div>
                     <div className="text-align-center w-80 ml-3">10 Oktober 2022-10 November 2022</div>
                     <div className="text-align-center w-16 ml-3">...</div>
