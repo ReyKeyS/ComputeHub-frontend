@@ -25,7 +25,7 @@ function LoginPage() {
   function login(data){
     const login = client.post("/users/login", data).then((res)=>{
       if (res.data.data.role == 0){
-        navigate("/masteruser")
+        navigate("/admin")
       }else{
         navigate("/")
       }
