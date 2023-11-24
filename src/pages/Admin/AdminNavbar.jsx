@@ -4,7 +4,6 @@ import { useLoaderData, Outlet, Link } from "react-router-dom";
 import NavbarAdmin from '../../components/NavbarAdmin';
 import HeaderAdmin from '../../components/HeaderAdmin';
 
-
 function Dashboard() {
     return (
         <>

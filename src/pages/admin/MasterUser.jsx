@@ -3,7 +3,6 @@ import ComputerIcon from '@mui/icons-material/Computer';
 import NavbarAdmin from '../../components/NavbarAdmin';
 import HeaderAdmin from '../../components/HeaderAdmin';
 
-
 function MasterUser() {
   return (
     <>

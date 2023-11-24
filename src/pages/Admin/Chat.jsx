@@ -4,7 +4,6 @@ import NavbarAdmin from '../../components/NavbarAdmin';
 import HeaderAdmin from '../../components/HeaderAdmin';
 import SearchIcon from '@mui/icons-material/Search';
 
-
 function Confirmation() {
     return (
         <>
@@ -26,7 +25,7 @@ function Confirmation() {
             <div className="mt-7 h-16 grid place-items-center justify-items-center hover:border-l-4 border-oranye">
                 <div className="h-16 w-full grid place-items-center justify-items-center hover:bg-abu-gelap  ">
                     <div className='flex'>
-                        <img className="bg-white w-14 h-14 mr-16 rounded rounded-full"></img>
+                        <img className="bg-white w-14 h-14 mr-16 rounded-full"></img>
                         <div className="text-white mr-10">
                             <h2 className="text-xl">My Son</h2>
                             <p>Cocok buat oek hantam</p>
@@ -38,7 +37,7 @@ function Confirmation() {
             <div className="mt-7 h-16 grid place-items-center justify-items-center hover:border-l-4 border-oranye">
                 <div className="h-16 w-full grid place-items-center justify-items-center hover:bg-abu-gelap  ">
                     <div className='flex'>
-                        <img className="bg-white w-14 h-14 mr-16 rounded rounded-full"></img>
+                        <img className="bg-white w-14 h-14 mr-16 rounded-full"></img>
                         <div className="text-white mr-10">
                             <h2 className="text-xl">My Son</h2>
                             <p>Cocok buat oek hantam</p>
@@ -49,7 +48,7 @@ function Confirmation() {
             <div className="mt-7 h-16 grid place-items-center justify-items-center hover:border-l-4 border-oranye">
                 <div className="h-16 w-full grid place-items-center justify-items-center hover:bg-abu-gelap  ">
                     <div className='flex'>
-                        <img className="bg-white w-14 h-14 mr-16 rounded rounded-full"></img>
+                        <img className="bg-white w-14 h-14 mr-16 rounded-full"></img>
                         <div className="text-white mr-10">
                             <h2 className="text-xl">My Son</h2>
                             <p>Cocok buat oek hantam</p>

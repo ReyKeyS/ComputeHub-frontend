@@ -3,7 +3,6 @@ import Header from '../../components/Header';
 import NavbarAdmin from '../../components/NavbarAdmin';
 import HeaderAdmin from '../../components/HeaderAdmin';
 
-
 function MasterBarang() {
     return (
         <>
@@ -76,7 +75,7 @@ function MasterBarang() {
             <h1>List Products</h1>
         </div> <br />
 
-        <div className="tabel rounded rounded-lg w-11/12 mt-4 mx-auto h-fit  border border-oranye bg-abu-gelap">
+        <div className="tabel rounded-lg w-11/12 mt-4 mx-auto h-fit  border border-oranye bg-abu-gelap">
             <div className="header flex w-max text-oranye text-2xl">
                 <div className=" w-10 ml-3">No</div>
                 <div className=" w-20 ml-3">ID</div>

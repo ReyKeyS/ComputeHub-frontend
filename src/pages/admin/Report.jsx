@@ -4,7 +4,6 @@ import NavbarAdmin from '../../components/NavbarAdmin';
 import HeaderAdmin from '../../components/HeaderAdmin';
 import SearchIcon from '@mui/icons-material/Search';
 
-
 function Report() {
     return (
         <>
@@ -42,7 +41,7 @@ function Report() {
           </div>
 
 
-          <div className="tabel rounded rounded-lg w-11/12 mt-4 ml-9 h-80 text-white border border-oranye bg-abu-gelap">
+          <div className="tabel rounded-lg w-11/12 mt-4 ml-9 h-80 text-white border border-oranye bg-abu-gelap">
               <div className="header flex w-max e text-2xl">
                   <div className=" w-48 ml-3 text-oranye">Dalam Pengiriman</div>
                   <div className=" w-32 ml-3 text-oranye">INV003</div>
@@ -88,7 +87,7 @@ function Report() {
           </div>
 
 
-          <div className="tabel rounded rounded-lg w-11/12 mt-4 ml-9 h-80 text-white border border-oranye bg-abu-gelap">
+          <div className="tabel rounded-lg w-11/12 mt-4 ml-9 h-80 text-white border border-oranye bg-abu-gelap">
               <div className="header flex w-max e text-2xl">
                   <div className=" w-48 ml-3 text-red-600">Pesanan Batal</div>
                   <div className=" w-32 ml-3 text-oranye">INV003</div>
@@ -134,7 +133,7 @@ function Report() {
           </div>
 
 
-          <div className="tabel rounded rounded-lg w-11/12 mt-4 ml-9 h-80 text-white border border-oranye bg-abu-gelap">
+          <div className="tabel rounded-lg w-11/12 mt-4 ml-9 h-80 text-white border border-oranye bg-abu-gelap">
               <div className="header flex w-max e text-2xl">
                   <div className=" w-48 ml-3 text-green-500">Pesanan Selesai</div>
                   <div className=" w-32 ml-3 text-oranye">INV003</div>
