@@ -24,12 +24,16 @@ function LoginPage() {
 
   function login(data){
     const login = client.post("/users/login", data).then((res)=>{
+      localStorage.setItem("user_token", res.data.data.token)
       if (res.data.data.role == 0){
         navigate("/admin")
       }else{
         navigate("/")
       }
-    }).catch((err)=>{console.log(err);})
+    }).catch((err)=>{
+      console.log(err);
+      alert(err.response.data.message)
+    })
   }
 
   return (
