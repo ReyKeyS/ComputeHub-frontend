@@ -18,7 +18,7 @@ import MarkChatUnreadIcon from '@mui/icons-material/MarkChatUnread';
 
 function NavbarAdmin() {
     return (
-        <div className='h-screen flex items-center bg-abu-super-gelap'>
+        <div className='h-screen flex bg-abu-super-gelap'>
             <div className="kiri w-full h-auto">
                 <div className='bg-abu-super-gelap text-white shadow-lg border border-neutral-800 shadow-abu-gelap rounded-lg text-5xl p-5 w-5/6 h-auto m-auto flex justify-center'>
                     <ComputerIcon fontSize='' />
