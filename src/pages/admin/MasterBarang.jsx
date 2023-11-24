@@ -104,6 +104,7 @@ function MasterBarang() {
     const { register, handleSubmit, reset, formState: { errors } } = useForm({resolver: joiResolver(schema)})
 
     const addItem = (data) => {
+        console.log(newPicture);
         const formData = new FormData()
         formData.append("name", data.name)
         formData.append("description", data.description)
@@ -112,14 +113,14 @@ function MasterBarang() {
         formData.append("category", data.category)
         formData.append("brand", data.brand)
         formData.append("picture", newPicture[0])
-        const addingItem = client.post('/items/add', formData, {
-            headers: {"Authorization": "Bearer " + localStorage.getItem("user_token")},
-            body: "form/data"
-        }).then((res) => {
-            console.log(res.data);
-        }).catch((err) => {
-            console.log(err);
-        })
+        // const addingItem = client.post('/items/add', formData, {
+        //     headers: {"Authorization": "Bearer " + localStorage.getItem("user_token")},
+        //     body: "form/data"
+        // }).then((res) => {
+        //     console.log(res.data);
+        // }).catch((err) => {
+        //     console.log(err);
+        // })
     }
 
     return (<>
@@ -159,11 +160,12 @@ function MasterBarang() {
                 </div>
 
                 <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">Image :</div>
-                <div className="col-span-3 pt-3">
+                <div className="col-span-3 pt-3 flex">
                     <ColorButton component="label" variant="contained" startIcon={<CloudUploadIcon />} >
                         <p className='font-bold'>Choose file</p>
                         <VisuallyHiddenInput type="file" onChange={(e)=>{setNewPicture(e.target.files)}}/>
                     </ColorButton>
+                    {newPicture && <div className='mt-1 ms-4 text-white text-lg'>{newPicture[0].name.substr(0, 10)}{newPicture[0].name.length>10 && <span>...</span>}</div>}
                 </div>
                 <br />
 
