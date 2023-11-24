@@ -1,146 +1,217 @@
-import * as React from 'react';
-import Header from '../../components/Header';
-import NavbarAdmin from '../../components/NavbarAdmin';
-import HeaderAdmin from '../../components/HeaderAdmin';
+import React from 'react'
+import { useState, useEffect } from 'react'
+import { useForm } from "react-hook-form";
+import Joi from "joi"
+import { joiResolver } from "@hookform/resolvers/joi"
+import client from '../../services/client'
+
+// Material UI
+import { styled } from '@mui/material/styles';
+import Button from '@mui/material/Button';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+
+// Customized Button Upload
+const VisuallyHiddenInput = styled('input')({
+    clip: 'rect(0 0 0 0)',
+    clipPath: 'inset(50%)',
+    height: 1,
+    overflow: 'hidden',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    whiteSpace: 'nowrap',
+    width: 1,
+});
+
+const ColorButton = styled(Button)(({ theme }) => ({
+    color: "#ffffff",
+    backgroundColor: "#ffa31a",
+    '&:hover': {
+        backgroundColor: "#d17e00",
+    },
+}));
+
+// Customized Table
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+        backgroundColor: "#292929",
+        color: "#ffa31a",
+        fontSize: 16,
+        fontWeight: "bold"
+    },
+    [`&.${tableCellClasses.body}`]: {
+        fontSize: 14,
+        color: "white"
+    },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    '&:nth-of-type(odd)': {
+        backgroundColor: "#1b1b1b",
+    },
+    '&:nth-of-type(even)': {
+        backgroundColor: "#292929",
+    },
+    // hide last border
+    '&:last-child td, &:last-child th': {
+        border: 0,
+    },
+}));
+
 
 function MasterBarang() {
-    return (
-        <>
-        <div className="judul text-white text-4xl ms-9 mt-5">
-            <h1>Add New Barang</h1>
-        </div> <br />
-        <div className="grid grid-cols-4">
-            <div className="text-white text-2xl place-items-center  mr-12 text-right">
-                Name:
-            </div>
-            <div className="col-span-3 text-white">
-                <input type="text" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-1'
-                    name="" id="nama" />
-            </div>
+    const [listItems, setListItems] = useState([])
+    const [newPicture, setNewPicture] = useState()
 
-            <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">
-                Description:
-            </div>
-            <div className="col-span-3 text-white ">
-                <textarea className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-5'
-                    name="" id="desc" cols="30" rows="5"></textarea>
-            </div>
+    useEffect(() => {
+        client.get("/items").then((res) => {
+            console.log(res.data);
+            setListItems(res.data)
+        }).catch((err) => {
+            console.log(err.response.data.message);
+        })
+    }, [])
 
-            <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">
-                Price:
-            </div>
-            <div className="col-span-3 text-white">
-                <input type="number" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-5'
-                    name="" id="harga" />
-            </div>
+    const schema = Joi.object({
+        name: Joi.string().required().messages({
+            "string.empty": "Name is required",
+        }),
+        description: Joi.string().required().messages({
+            "string.empty": "Description is required",
+        }),
+        price: Joi.number().required().messages({
+            "number.base": "Price must be number",
+            "number.empty": "Price is required",
+        }),
+        stock: Joi.number().required().messages({
+            "number.base": "Stock must be number",
+            "number.empty": "Stock is required",
+        }),
+        category: Joi.string().required().messages({
+            "string.empty": "Category is required",
+        }),
+        brand: Joi.string().required().messages({
+            "string.empty": "Brand is required",
+        })
+    })
+    
+    const { register, handleSubmit, reset, formState: { errors } } = useForm({resolver: joiResolver(schema)})
 
-            <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">
-                Stock:
-            </div>
-            <div className="col-span-3 text-white">
-                <input type="number" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-5'
-                    name="" id="stok" />
-            </div>
+    const addItem = (data) => {
+        const formData = new FormData()
+        formData.append("name", data.name)
+        formData.append("description", data.description)
+        formData.append("price", data.price)
+        formData.append("stock", data.stock)
+        formData.append("category", data.category)
+        formData.append("brand", data.brand)
+        formData.append("picture", newPicture[0])
+        const addingItem = client.post('/items/add', formData, {
+            headers: {"Authorization": "Bearer " + localStorage.getItem("user_token")},
+            body: "form/data"
+        }).then((res) => {
+            console.log(res.data);
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
 
-            <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">
-                Brand:
-            </div>
-            <div className="col-span-3 text-white">
-                <input type="text" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-5'
-                    name="" id="brand" />
-            </div>
-
-            <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">
-                Category:
-            </div>
-            <div className="col-span-3 text-white">
-                <input type="text" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-5'
-                    name="" id="category" />
-            </div>
-
-            <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">
-                Image:
-            </div>
-            <div className="col-span-3 ">
-                <button className='rounded bg-oranye text-black mt-5 w-48 h-10 text-xl'>Choose File</button>
-            </div>
-            <br />
-
-            <div className="col-span-4 text-right mr-12">
-                <button className='rounded bg-oranye text-black mt-5 w-48 h-10 text-xl '>Add Item</button>
-            </div>
-
+    return (<>
+        <div className="judul text-white text-5xl font-bold ms-10 my-7">
+            <h1>Master Barang</h1>
         </div>
-        <div className="judul text-white text-4xl ms-9 mt-5">
-            <h1>List Products</h1>
-        </div> <br />
+        <form onSubmit={handleSubmit(addItem)}>
+            <div className="grid grid-cols-4">
+                <div className="text-white text-2xl place-items-center mr-12 text-right">Name :</div>
+                <div className="col-span-3 text-white">
+                    <input type="text" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-1 px-3 py-1' placeholder={errors.name?errors.name.message:""} {...register('name')}/>
+                </div>
 
-        <div className="tabel rounded-lg w-11/12 mt-4 mx-auto h-fit  border border-oranye bg-abu-gelap">
-            <div className="header flex w-max text-oranye text-2xl">
-                <div className=" w-10 ml-3">No</div>
-                <div className=" w-20 ml-3">ID</div>
-                <div className=" w-48 ml-3">Name</div>
-                <div className=" w-56 ml-3">Price</div>
-                <div className=" w-60 ml-3">Category</div>
-                <div className=" w-48 ml-3">Amount</div>
-                <div className=" w-16 ml-3">Action</div>
+                <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">Description :</div>
+                <div className="col-span-3 text-white ">
+                    <textarea className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-3 px-3 py-1' cols="30" rows="5" placeholder={errors.description?errors.description.message:""} {...register('description')}></textarea>
+                </div>
+
+                <div className="text-white text-2xl place-items-center mt-4 mr-12 text-right">Price :</div>
+                <div className="col-span-3 text-white">
+                    <input type="number" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-4 px-3 py-1' placeholder={errors.price?errors.price.message:""} {...register('price')}/>
+                </div>
+
+                <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">Stock :</div>
+                <div className="col-span-3 text-white">
+                    <input type="number" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-3 px-3 py-1' placeholder={errors.stock?errors.stock.message:""} {...register('stock')}/>
+                </div>
+
+                <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">Brand :</div>
+                <div className="col-span-3 text-white">
+                    <input type="text" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-3 px-3 py-1' placeholder={errors.brand?errors.brand.message:""} {...register('brand')}/>
+                </div>
+
+                <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">Category :</div>
+                <div className="col-span-3 text-white">
+                    <input type="text" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-4 px-3 py-1' placeholder={errors.category?errors.category.message:""} {...register('category')}/>
+                </div>
+
+                <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">Image :</div>
+                <div className="col-span-3 pt-3">
+                    <ColorButton component="label" variant="contained" startIcon={<CloudUploadIcon />} >
+                        <p className='font-bold'>Choose file</p>
+                        <VisuallyHiddenInput type="file" onChange={(e)=>{setNewPicture(e.target.files)}}/>
+                    </ColorButton>
+                </div>
+                <br />
+
+                <div className="col-span-4 text-right me-24">
+                    <button type='submit' className='rounded-xl bg-oranye font-bold mt-5 w-48 h-10 text-xl hover:bg-hover-oranye transition duration-300'>Add Item</button>
+                </div>
             </div>
-
-            <hr className="bg-oranye"></hr>
-            <div className="listdata flex  text-white h-16 place-items-center text-lg font-bold">
-                <div className="text-align-center w-10 ml-3">1</div>
-                <div className="text-align-center w-20 ml-3">BRO001</div>
-                <div className="text-align-center w-48 ml-3">INTIL</div>
-                <div className="text-align-center w-56 ml-3">Rp 40.000</div>
-                <div className="text-align-center w-60 ml-3">Processor</div>
-                <div className="text-align-center w-48 ml-3">7</div>
-                <div className="text-align-center w-16 ml-3">...</div>
-                {/* kurang onclick */}
-            </div>
-            <hr className="border border-oranye w-11/12 mx-auto"></hr>
-
-            <div className="listdata flex text-white h-16 place-items-center text-lg font-bold">
-                <div className="text-align-center w-10 ml-3">2</div>
-                <div className="text-align-center w-20 ml-3">BRO002</div>
-                <div className="text-align-center w-48 ml-3">APASE</div>
-                <div className="text-align-center w-56 ml-3">Rp 500.000</div>
-                <div className="text-align-center w-60 ml-3">VGA</div>
-                <div className="text-align-center w-48 ml-3">11</div>
-                <div className="text-align-center w-16 ml-3">...</div>
-                {/* kurang onclick */}
-            </div>
-            <hr className="border border-oranye w-11/12 mx-auto"></hr>
-
-
-            <div className="listdata flex text-white h-16 place-items-center text-lg font-bold">
-                <div className="text-align-center w-10 ml-3">3</div>
-                <div className="text-align-center w-20 ml-3">BRO003</div>
-                <div className="text-align-center w-48 ml-3">PRODUK3</div>
-                <div className="text-align-center w-56 ml-3">Rp 1.240.000</div>
-                <div className="text-align-center w-60 ml-3">HDD</div>
-                <div className="text-align-center w-48 ml-3">80</div>
-                <div className="text-align-center w-16 ml-3">...</div>
-                {/* kurang onclick */}
-            </div>
-            <hr className="border border-oranye w-11/12 mx-auto"></hr>
-
-            <div className="listdata flex text-white h-16 place-items-center text-lg font-bold">
-                <div className="text-align-center w-10 ml-3">4</div>
-                <div className="text-align-center w-20 ml-3">BRO004</div>
-                <div className="text-align-center w-48 ml-3">Produk4</div>
-                <div className="text-align-center w-56 ml-3">Rp 10.400.000</div>
-                <div className="text-align-center w-60 ml-3">VGA</div>
-                <div className="text-align-center w-48 ml-3">2</div>
-                <div className="text-align-center w-16 ml-3">...</div>
-                {/* kurang onclick */}
-            </div>
-            <hr className="border border-oranye w-11/12 mx-auto"></hr>
-
-
+        </form>
+        <div className="judul text-white text-5xl font-bold ms-10 my-7">
+            <h1>List Product</h1>
         </div>
 
-        </>
-    )
+        <div className="flex justify-center">
+            <div className='w-5/6'>
+                <TableContainer className='border-2 border-oranye rounded-2xl mb-36'>
+                    <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                        <TableHead className='border-b-2 border-oranye'>
+                            <TableRow>
+                                <StyledTableCell align='center'>No</StyledTableCell>
+                                <StyledTableCell align="center">Name</StyledTableCell>
+                                <StyledTableCell align="center">Price</StyledTableCell>
+                                <StyledTableCell align="center">Stock</StyledTableCell>
+                                <StyledTableCell align="center">Brand</StyledTableCell>
+                                <StyledTableCell align="center">Category</StyledTableCell>
+                                <StyledTableCell align="center">Actions</StyledTableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {listItems?.map((row, index) => (
+                                <StyledTableRow key={index}>
+                                    <StyledTableCell component="th" scope="row" align='center'>{index + 1}</StyledTableCell>
+                                    <StyledTableCell align="center">{row.name}</StyledTableCell>
+                                    <StyledTableCell align="center">{row.price}</StyledTableCell>
+                                    <StyledTableCell align="center">{row.stock}</StyledTableCell>
+                                    <StyledTableCell align="center">{row.category}</StyledTableCell>
+                                    <StyledTableCell align="center">{row.brand}</StyledTableCell>
+                                    <StyledTableCell align="center" width={"20%"}>
+                                        <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye me-5'>Edit</button>
+                                        <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye'>Delete</button>
+                                    </StyledTableCell>
+                                </StyledTableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </div>
+        </div>
+    </>)
 }
 
 export default MasterBarang

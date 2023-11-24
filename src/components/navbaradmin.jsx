@@ -18,112 +18,112 @@ import MarkChatUnreadIcon from '@mui/icons-material/MarkChatUnread';
 
 function NavbarAdmin() {
     return (
-        <div className="kiri w-full h-screen bg-abu-super-gelap">
-            <div className='bg-abu-super-gelap text-white shadow-xl shadow-abu-gelap rounded-lg text-4xl p-5 w-80 m-auto flex justify-center'>
-                <ComputerIcon fontSize='' />
-                <div className='mx-2'>Compute</div>
-                <a className='bg-oranye rounded-lg font-bold text-abu-super-gelap pb-1'>HUB</a>
+        <div className='h-screen flex items-center bg-abu-super-gelap'>
+            <div className="kiri w-full h-auto">
+                <div className='bg-abu-super-gelap text-white shadow-lg border border-neutral-800 shadow-abu-gelap rounded-lg text-5xl p-5 w-5/6 h-auto m-auto flex justify-center'>
+                    <ComputerIcon fontSize='' />
+                    <div className='mx-2'>Compute</div>
+                    <a className='bg-oranye rounded-lg font-bold text-abu-super-gelap pb-1 px-2'>HUB</a>
+                </div>
+
+                <div className="listbutton text-white mt-14">
+                    <Link to="/admin">
+                        <div className="h-24 grid place-items-center justify-items-center hover:border-s-4 hover:border-e-4 border-oranye">
+                            <div className="h-24 w-full grid place-items-center justify-items-center hover:bg-abu-gelap  ">
+                                <div className='flex'>
+                                    <HomeIcon fontSize='large' className="me-3"/>
+                                    <img></img>
+                                    <p className='text-3xl'>Dashboard</p>
+                                </div>
+                            </div>
+                        </div>
+                    </Link>
+
+                    <Link to="/admin/masteruser">
+                        <div className="h-24 grid place-items-center justify-items-center hover:border-l-4 hover:border-e-4 border-oranye">
+                            <div className="h-24 w-full grid place-items-center justify-items-center hover:bg-abu-gelap  ">
+                                <div className='flex'>
+                                    <AccountCircleIcon fontSize='large' className="me-3"/>
+                                    <img></img>
+                                    <p className='text-3xl'>Customers</p>
+                                </div>
+                            </div>
+                        </div>
+                    </Link>
+
+                    <Link to="/admin/masterbarang">
+                        <div className="h-24 grid place-items-center justify-items-center hover:border-l-4 hover:border-e-4 border-oranye">
+                            <div className="h-24 w-full grid place-items-center justify-items-center hover:bg-abu-gelap  ">
+                                <div className='flex'>
+                                    <InventoryIcon fontSize='large' className="me-3"/>
+                                    <img></img>
+                                    <p className='text-3xl'>Master Barang</p>
+                                </div>
+                            </div>
+                        </div>
+                    </Link>
+
+                    <Link to="/admin/report">
+                        <div className="h-24 grid place-items-center justify-items-center hover:border-l-4 hover:border-e-4 border-oranye">
+                            <div className="h-24 w-full grid place-items-center justify-items-center hover:bg-abu-gelap  ">
+                                <div className='flex'>
+                                    <SummarizeIcon fontSize='large' className="me-3"/>
+                                    <img></img>
+                                    <p className='text-3xl'>Report</p>
+                                </div>
+                            </div>
+                        </div>
+                    </Link>
+
+                    <Link to="/admin/promo">
+                        <div className="h-24 grid place-items-center justify-items-center hover:border-l-4 hover:border-e-4 border-oranye">
+                            <div className="h-24 w-full grid place-items-center justify-items-center hover:bg-abu-gelap  ">
+                                <div className='flex'>
+                                    <DiscountIcon fontSize='large' className="me-3"/>
+                                    <img></img>
+                                    <p className='text-3xl'>Promo</p>
+                                </div>
+                            </div>
+                        </div>
+                    </Link>
+
+                    <Link to="/admin/confirmation">
+                        <div className="h-24 grid place-items-center justify-items-center hover:border-l-4 hover:border-e-4 border-oranye">
+                            <div className="h-24 w-full grid place-items-center justify-items-center hover:bg-abu-gelap  ">
+                                <div className='flex'>
+                                    <CheckIcon fontSize='large' className="me-3"/>
+                                    <img></img>
+                                    <p className='text-3xl'>Confirm </p>
+                                </div>
+                            </div>
+                        </div>
+                    </Link>
+
+                    <Link to="/admin/chat">
+                        <div className="h-24 grid place-items-center justify-items-center hover:border-l-4 hover:border-e-4 border-oranye">
+                            <div className="h-24 w-full grid place-items-center justify-items-center hover:bg-abu-gelap  ">
+                                <div className='flex'>
+                                    <ChatBubbleIcon fontSize='large' className="me-3" />
+                                    <img></img>
+                                    <p className='text-3xl'>Chat</p>
+                                </div>
+                            </div>
+                        </div>
+                    </Link>
+
+                    <Link to="/login" onClick={()=>{localStorage.removeItem('user_token')}}>
+                        <div className="h-24 grid place-items-center justify-items-center hover:border-l-4 hover:border-e-4 border-oranye">
+                            <div className="h-24 w-full grid place-items-center justify-items-center hover:bg-abu-gelap  ">
+                                <div className='flex'>
+                                    <LogoutIcon fontSize='large' className="me-3"/>
+                                    <img></img>
+                                    <p className='text-3xl'>Log Out</p>
+                                </div>
+                            </div>
+                        </div>
+                    </Link>
+                </div>
             </div>
-
-            <div className="listbutton text-white mt-3">
-                <Link to="/admin">
-                    <div className="h-16 grid place-items-center justify-items-center hover:border-l-4 border-oranye">
-                        <div className="h-16 w-full grid place-items-center justify-items-center hover:bg-abu-gelap  ">
-                            <div className='flex'>
-                                <HomeIcon className="w-8 h-8 mr-2" />
-                                <img></img>
-                                <h2>Dashboard</h2>
-                            </div>
-                        </div>
-                    </div>
-                </Link>
-
-                <Link to="/admin/masteruser">
-                    <div className="h-16 grid place-items-center justify-items-center hover:border-l-4 border-oranye">
-                        <div className="h-16 w-full grid place-items-center justify-items-center hover:bg-abu-gelap  ">
-                            <div className='flex'>
-                                <AccountCircleIcon className="w-8 h-8 mr-2" />
-                                <img></img>
-                                <h2>Customers</h2>
-                            </div>
-                        </div>
-                    </div>
-                </Link>
-
-                <Link to="/admin/masterbarang">
-                    <div className="h-16 grid place-items-center justify-items-center hover:border-l-4 border-oranye">
-                        <div className="h-16 w-full grid place-items-center justify-items-center hover:bg-abu-gelap  ">
-                            <div className='flex'>
-                                <InventoryIcon className="w-8 h-8 mr-2" />
-                                <img></img>
-                                <h2>Master Barang</h2>
-                            </div>
-                        </div>
-                    </div>
-                </Link>
-
-                <Link to="/admin/report">
-                    <div className="h-16 grid place-items-center justify-items-center hover:border-l-4 border-oranye">
-                        <div className="h-16 w-full grid place-items-center justify-items-center hover:bg-abu-gelap  ">
-                            <div className='flex'>
-                                <SummarizeIcon className="w-8 h-8 mr-2" />
-                                <img></img>
-                                <h2>Report</h2>
-                            </div>
-                        </div>
-                    </div>
-                </Link>
-
-                <Link to="/admin/promo">
-                    <div className="h-16 grid place-items-center justify-items-center hover:border-l-4 border-oranye">
-                        <div className="h-16 w-full grid place-items-center justify-items-center hover:bg-abu-gelap  ">
-                            <div className='flex'>
-                                <DiscountIcon className="w-8 h-8 mr-2" />
-                                <img></img>
-                                <h2>Promo</h2>
-                            </div>
-                        </div>
-                    </div>
-                </Link>
-
-                <Link to="/admin/confirmation">
-                    <div className="h-16 grid place-items-center justify-items-center hover:border-l-4 border-oranye">
-                        <div className="h-16 w-full grid place-items-center justify-items-center hover:bg-abu-gelap  ">
-                            <div className='flex'>
-                                <CheckIcon className="w-8 h-8 mr-2" />
-                                <img></img>
-                                <h2>Confirm </h2>
-                            </div>
-                        </div>
-                    </div>
-                </Link>
-
-                <Link to="/admin/chat">
-                    <div className="h-16 grid place-items-center justify-items-center hover:border-l-4 border-oranye">
-                        <div className="h-16 w-full grid place-items-center justify-items-center hover:bg-abu-gelap  ">
-                            <div className='flex'>
-                                <ChatBubbleIcon className="w-8 h-8 mr-2" />
-                                <img></img>
-                                <h2>Chat</h2>
-                            </div>
-                        </div>
-                    </div>
-                </Link>
-
-                <Link to="/login">
-                    <div className="h-16 grid place-items-center justify-items-center hover:border-l-4 border-oranye">
-                        <div className="h-16 w-full grid place-items-center justify-items-center hover:bg-abu-gelap  ">
-                            <div className='flex'>
-                                <LogoutIcon className="w-8 h-8 mr-2" />
-                                <img></img>
-                                <h2>Log Out</h2>
-                            </div>
-                        </div>
-                    </div>
-                </Link>
-            </div>
-
-
         </div>
     )
 }

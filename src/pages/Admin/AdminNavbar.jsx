@@ -11,7 +11,7 @@ function Dashboard() {
         <NavbarAdmin />
         <div className="col-span-3 w-full h-screen bg-abu-gelap">
           <HeaderAdmin/>
-          <div className="kananbawah h-screen overflow-scroll">
+          <div className="h-full overflow-y-auto">
             <Outlet></Outlet>
           </div>
         </div>
