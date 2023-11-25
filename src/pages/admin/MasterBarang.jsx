@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { useForm } from "react-hook-form";
 import Joi from "joi"
 import { joiResolver } from "@hookform/resolvers/joi"
+import { useNavigate } from 'react-router-dom';
 import client from '../../services/client'
 
 // Material UI
@@ -42,11 +43,11 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: "#292929",
         color: "#ffa31a",
-        fontSize: 16,
+        fontSize: 18,
         fontWeight: "bold"
     },
     [`&.${tableCellClasses.body}`]: {
-        fontSize: 14,
+        fontSize: 16,
         color: "white"
     },
 }));
@@ -64,8 +65,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-
 function MasterBarang() {
+    const navigate = useNavigate()
     const [listItems, setListItems] = useState([])
     const [newPicture, setNewPicture] = useState()
 
@@ -113,14 +114,26 @@ function MasterBarang() {
         formData.append("category", data.category)
         formData.append("brand", data.brand)
         formData.append("picture", newPicture[0])
-        // const addingItem = client.post('/items/add', formData, {
-        //     headers: {"Authorization": "Bearer " + localStorage.getItem("user_token")},
-        //     body: "form/data"
-        // }).then((res) => {
-        //     console.log(res.data);
-        // }).catch((err) => {
-        //     console.log(err);
-        // })
+        const addingItem = client.post('/items/add', formData, {
+            headers: {"Authorization": "Bearer " + localStorage.getItem("user_token")},
+            body: "form/data"
+        }).then((res) => {
+            alert(res.data.message);
+            navigate(0)
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
+
+    const deleteItem = (id) => {
+        client.delete(`/items/delete/${id}`, {
+            headers: {"Authorization": "Bearer " + localStorage.getItem("user_token")},
+        }).then((res)=>{    
+            alert(res.data.message);
+            navigate(0)
+        }).catch((err) => {
+            console.log(err);
+        });
     }
 
     return (<>
@@ -165,7 +178,10 @@ function MasterBarang() {
                         <p className='font-bold'>Choose file</p>
                         <VisuallyHiddenInput type="file" onChange={(e)=>{setNewPicture(e.target.files)}}/>
                     </ColorButton>
-                    {newPicture && <div className='mt-1 ms-4 text-white text-lg'>{newPicture[0].name.substr(0, 10)}{newPicture[0].name.length>10 && <span>...</span>}</div>}
+                    {newPicture && 
+                        <div className='mt-1 ms-4 text-white text-lg'>
+                            {newPicture[0].name.substr(0, 10)}{newPicture[0].name.length>10 && <span>...<span className='font-bold'>{newPicture[0].name.substr(newPicture[0].name.length-4)}</span></span>}
+                        </div>}
                 </div>
                 <br />
 
@@ -198,13 +214,13 @@ function MasterBarang() {
                                 <StyledTableRow key={index}>
                                     <StyledTableCell component="th" scope="row" align='center'>{index + 1}</StyledTableCell>
                                     <StyledTableCell align="center">{row.name}</StyledTableCell>
-                                    <StyledTableCell align="center">{row.price}</StyledTableCell>
+                                    <StyledTableCell align="center">Rp {row.price.toLocaleString("id-ID")}</StyledTableCell>
                                     <StyledTableCell align="center">{row.stock}</StyledTableCell>
                                     <StyledTableCell align="center">{row.category}</StyledTableCell>
                                     <StyledTableCell align="center">{row.brand}</StyledTableCell>
                                     <StyledTableCell align="center" width={"20%"}>
-                                        <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye me-5'>Edit</button>
-                                        <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye'>Delete</button>
+                                        <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye me-5 hover:scale-110 hover:font-bold transition duration-300'>Edit</button>
+                                        <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye hover:scale-110 hover:font-bold transition duration-300' onClick={()=>{deleteItem(row._id)}}>Delete</button>
                                     </StyledTableCell>
                                 </StyledTableRow>
                             ))}

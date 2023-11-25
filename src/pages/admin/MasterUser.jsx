@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import client from '../../services/client'
+import { useNavigate } from 'react-router-dom'
 
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
@@ -15,11 +16,11 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: "#292929",
     color: "#ffa31a",
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: "bold"
   },
   [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
+    fontSize: 16,
     color: "white"
   },
 }));
@@ -38,6 +39,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 function MasterUser() {
+  const navigate = useNavigate();
   const [listUsers, setListUsers] = useState([])
 
   useEffect(() => {
@@ -49,6 +51,17 @@ function MasterUser() {
       console.log(err.response.data.message);
     })
   }, [])
+
+  const deleteUser = (email) => {
+    client.delete(`/users/delete/${email}`, {
+      headers: {"Authorization": "Bearer " + localStorage.getItem("user_token")},
+    }).then((res) => {
+      alert(res.data.message);
+      navigate(0)
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
 
   return (
     <>
@@ -67,6 +80,7 @@ function MasterUser() {
                 <StyledTableCell align="center">Email</StyledTableCell>
                 <StyledTableCell align="center">Address</StyledTableCell>
                 <StyledTableCell align="center">Phone Number</StyledTableCell>
+                <StyledTableCell align="center">Email Verified</StyledTableCell>
                 <StyledTableCell align="center">Actions</StyledTableCell>
               </TableRow>
             </TableHead>
@@ -80,9 +94,10 @@ function MasterUser() {
                   <StyledTableCell align="center">{row.email}</StyledTableCell>
                   <StyledTableCell align="center">{row.address}</StyledTableCell>
                   <StyledTableCell align="center">{row.phone_number}</StyledTableCell>
+                  <StyledTableCell align="center" width="13%"><span className={row.email_verified?"text-green-500":"text-red-500"}>{row.email_verified?"V":"X"}</span></StyledTableCell>
                   <StyledTableCell align="center" width={"20%"}>
-                    <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye me-5'>Edit</button>
-                    <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye'>Delete</button>
+                    <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye me-5 hover:scale-110 hover:font-bold transition duration-300'>Edit</button>
+                    <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye hover:scale-110 hover:font-bold transition duration-300' onClick={()=>{deleteUser(row.email)}}>Delete</button>
                   </StyledTableCell>
                 </StyledTableRow>
               ))}
