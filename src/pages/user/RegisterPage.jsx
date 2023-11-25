@@ -36,7 +36,7 @@ function RegisterPage() {
     
     const { register, handleSubmit, reset, formState: { errors } } = useForm({resolver: joiResolver(schema)})
 
-    function registered(data){
+    const registered = (data) => {
         const registering = client.post("/users/register", data).then((res)=>{
             console.log(res)
             if (res.status === 201)

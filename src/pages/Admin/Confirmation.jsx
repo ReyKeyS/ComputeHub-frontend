@@ -3,7 +3,6 @@ import Header from '../../components/Header';
 import NavbarAdmin from '../../components/NavbarAdmin';
 import HeaderAdmin from '../../components/HeaderAdmin';
 
-
 function Confirmation() {
     return (
         <>
@@ -11,7 +10,7 @@ function Confirmation() {
             <h1>Confirmation</h1>
         </div>
 
-        <div className="tabel rounded rounded-lg w-11/12 mt-4 ml-9 h-80 text-white border border-oranye bg-abu-gelap">
+        <div className="tabel rounded-lg w-11/12 mt-4 ml-9 h-80 text-white border border-oranye bg-abu-gelap">
             <div className="header flex w-max e text-2xl">
                 <div className=" w-48 ml-3 text-oranye">Pesanan Baru</div>
                 <div className=" w-32 ml-3 text-oranye">INV003</div>
