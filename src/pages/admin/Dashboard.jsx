@@ -9,7 +9,7 @@ function Dashboard() {
           <div className="judul text-white text-4xl ms-9 mt-5 ">
             <div className='flex'>
               <h1>Welcome Back, </h1>
-              <h1 className='text-oranye'> Admin</h1>
+              <h1 className='text-oranye'>&nbsp;Admin</h1>
               </div>
           </div>
           <div className="headline text-white text-xl ml-9 mt-2">

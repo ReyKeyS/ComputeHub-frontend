@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import Select from 'react-select'
 import { useForm } from "react-hook-form";
 import Joi from "joi"
 import { joiResolver } from "@hookform/resolvers/joi"
@@ -65,14 +66,60 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
+// Custom Style React-Select
+const customStyles = {
+    control: (base, { isFocused }) => ({
+        ...base,
+        borderColor: isFocused ? '#d17e00' : '#ffa31a',
+        backgroundColor: '#292929',
+    }),
+    option: (base, { isFocused }) => ({
+        ...base,
+        backgroundColor: isFocused ? '#292929' : "#1b1b1b",
+        color: 'white',
+        alignItems: 'center',
+        paddingLeft: '15px',
+    }),
+    singleValue: (base) => ({
+        ...base,
+        color: "white",
+    }),
+    container: (base) => ({
+        ...base,        
+        width: '92%',
+    }),
+    menuList: (base) => ({
+        ...base, 
+        backgroundColor: "#292929",
+    }),
+    input: (base) => ({
+        ...base,
+        color: "white",
+    })
+};
+const optionBox = [
+    {value: "Motherboard", label: "Motherboard"},
+    {value: "Processor", label: "Processor"},
+    {value: "VGA", label: "VGA"},
+    {value: "RAM", label: "RAM"},
+    {value: "PSU", label: "PSU"},
+    {value: "HDD", label: "HDD"},
+    {value: "SSD", label: "SSD"},
+    {value: "Casing", label: "Casing"},
+    {value: "Cooling", label: "Cooling"},
+    {value: "Monitor", label: "Monitor"},
+    {value: "Keyboard", label: "Keyboard"},
+    {value: "Mouse", label: "Mouse"},
+]
+
 function MasterItem() {
     const navigate = useNavigate()
     const [listItems, setListItems] = useState([])
     const [newPicture, setNewPicture] = useState()
+    const [selectedCate, setSelectedCate] = useState()
 
     useEffect(() => {
         client.get("/items").then((res) => {
-            console.log(res.data);
             setListItems(res.data)
         }).catch((err) => {
             console.log(err.response.data.message);
@@ -94,9 +141,6 @@ function MasterItem() {
             "number.base": "Stock must be number",
             "number.empty": "Stock is required",
         }),
-        category: Joi.string().required().messages({
-            "string.empty": "Category is required",
-        }),
         brand: Joi.string().required().messages({
             "string.empty": "Brand is required",
         })
@@ -111,7 +155,7 @@ function MasterItem() {
         formData.append("description", data.description)
         formData.append("price", data.price)
         formData.append("stock", data.stock)
-        formData.append("category", data.category)
+        formData.append("category", selectedCate)
         formData.append("brand", data.brand)
         formData.append("picture", newPicture[0])
         const addingItem = client.post('/items/add', formData, {
@@ -169,7 +213,22 @@ function MasterItem() {
 
                 <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">Category :</div>
                 <div className="col-span-3 text-white">                    
-                    <select className='w-[61rem] text-lg mt-3 px-3 py-2 bg-abu-gelap border border-oranye rounded option:py-2' placeholder={errors.category?errors.category.message:""} {...register('category')}>
+                    <Select 
+                        className='basic-single mt-3'
+                        classNamePrefix='select'
+                        isDisabled={false}
+                        isLoading={false}
+                        isClearable={false}
+                        isRtl={false}
+                        isSearchable={true}
+                        name="Category"
+                        options={optionBox}
+                        styles={customStyles}
+                        onChange={(e)=>{setSelectedCate(e.value)}}
+                    />
+
+                    {/* Ini select HTML biasa */}
+                    {/* <select className='w-[61rem] text-lg mt-3 px-3 py-2 bg-abu-gelap border border-oranye rounded option:py-2' placeholder={errors.category?errors.category.message:""} {...register('category')}>
                         <option className='py-2' value="Motherboard">Motherboard</option>
                         <option className='py-2' value="Processor">Processor</option>
                         <option className='py-2' value="VGA">VGA</option>   
@@ -182,8 +241,7 @@ function MasterItem() {
                         <option className='py-2' value="Monitor">Monitor</option>
                         <option className='py-2' value="Keyboard">Keyboard</option>
                         <option className='py-2' value="Mouse">Mouse</option>
-                    </select>
-                    {/* <input type="text" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-4 px-3 py-1' placeholder={errors.category?errors.category.message:""} {...register('category')}/> */}
+                    </select> */}
                 </div>
 
                 <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">Image :</div>
@@ -230,8 +288,8 @@ function MasterItem() {
                                     <StyledTableCell align="center">{row.name}</StyledTableCell>
                                     <StyledTableCell align="center">Rp {row.price.toLocaleString("id-ID")}</StyledTableCell>
                                     <StyledTableCell align="center">{row.stock}</StyledTableCell>
-                                    <StyledTableCell align="center">{row.category}</StyledTableCell>
                                     <StyledTableCell align="center">{row.brand}</StyledTableCell>
+                                    <StyledTableCell align="center">{row.category}</StyledTableCell>
                                     <StyledTableCell align="center" width={"20%"}>
                                         <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye me-5 hover:scale-110 hover:font-bold transition duration-300'>Edit</button>
                                         <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye hover:scale-110 hover:font-bold transition duration-300' onClick={()=>{deleteItem(row._id)}}>Delete</button>

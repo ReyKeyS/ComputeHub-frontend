@@ -1,34 +1,69 @@
 import React from 'react';
-import Select from 'react-select'
 import { useState, useEffect } from 'react'
+import Select from 'react-select'
 import { useForm } from "react-hook-form";
 import Joi from "joi"
 import { joiResolver } from "@hookform/resolvers/joi"
 import { useNavigate } from 'react-router-dom';
 import client from '../../services/client'
 
+// Custom Style React-Select
+const customStyles = {
+    control: (base, { isFocused }) => ({
+        ...base,
+        borderColor: isFocused ? '#d17e00' : '#ffa31a',
+        backgroundColor: '#292929',
+    }),
+    option: (base, { isFocused }) => ({
+        ...base,
+        backgroundColor: isFocused ? '#292929' : "#1b1b1b",
+        color: 'white',
+        alignItems: 'center',
+        paddingLeft: '15px',
+    }),
+    singleValue: (base) => ({
+        ...base,
+        color: "white",
+    }),
+    container: (base) => ({
+        ...base,        
+        width: '92%',
+    }),
+    menuList: (base) => ({
+        ...base, 
+        backgroundColor: "#292929",
+    }),
+    input: (base) => ({
+        ...base,
+        color: "white",
+    })
+};
+
 function AddPromo() {
     const navigate = useNavigate()
     const [listItems, setListItems] = useState([])
-    const [options, setOptions] = useState([])
+    const [optionBox, setOptionBox] = useState([])
+    const [selectedItem, setSelectedItem] = useState()
 
     useEffect(() => {
         client.get("/items").then((res) => {
-            console.log(res.data);
             setListItems(res.data);
-
-            // Combobox Item
-            setOptions([])
-            for (const i of res.data) {
-                setOptions([...options, {
-                    value: i._id,
-                    label: i.name,
-                }])
-            }
         }).catch((err) => {
-            console.log(err.response.data.message);
+            console.log(err);
         })
     }, [])
+
+    useEffect(() => {
+        console.log(listItems);
+        let newerOption = []
+        listItems.forEach(i => {
+            newerOption.push({
+                value: i._id,
+                label: i.name,
+            })
+        });
+        setOptionBox(newerOption)
+    }, [listItems]);
 
     const schema = Joi.object({
         promo_name: Joi.string().required().messages({
@@ -56,18 +91,19 @@ function AddPromo() {
             <div className="grid grid-cols-4">
                 <div className="text-white text-2xl place-items-center  mr-12 text-right">Item :</div>
                 <div className="col-span-3 text-white">
-                    {options!=null && 
+                    {optionBox && 
                         <Select 
-                            className='basic-single bg-abu-gelap'
+                            className='basic-single'
                             classNamePrefix='select'
-                            defaultValue={options[0]}
                             isDisabled={false}
                             isLoading={false}
                             isClearable={false}
                             isRtl={false}
                             isSearchable={true}
                             name="Item"
-                            options={options}
+                            options={optionBox}
+                            styles={customStyles}
+                            onChange={(e)=>{setSelectedItem(e.value)}}
                         />
                     }
                     {/* <input type="text" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-1' /> */}
