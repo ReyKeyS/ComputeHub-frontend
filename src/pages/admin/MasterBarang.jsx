@@ -168,8 +168,22 @@ function MasterBarang() {
                 </div>
 
                 <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">Category :</div>
-                <div className="col-span-3 text-white">
-                    <input type="text" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-4 px-3 py-1' placeholder={errors.category?errors.category.message:""} {...register('category')}/>
+                <div className="col-span-3 text-white">                    
+                    <select className='w-[61rem] text-lg mt-3 px-3 py-2 bg-abu-gelap border border-oranye rounded option:py-2' placeholder={errors.category?errors.category.message:""} {...register('category')}>
+                        <option className='py-2' value="Motherboard">Motherboard</option>
+                        <option className='py-2' value="Processor">Processor</option>
+                        <option className='py-2' value="VGA">VGA</option>   
+                        <option className='py-2' value="RAM">RAM</option>
+                        <option className='py-2' value="PSU">PSU</option>
+                        <option className='py-2' value="HDD">HDD</option>
+                        <option className='py-2' value="SSD">SSD</option>
+                        <option className='py-2' value="Casing">Casing</option>
+                        <option className='py-2' value="Cooling">Cooling</option>
+                        <option className='py-2' value="Monitor">Monitor</option>
+                        <option className='py-2' value="Keyboard">Keyboard</option>
+                        <option className='py-2' value="Mouse">Mouse</option>
+                    </select>
+                    {/* <input type="text" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-4 px-3 py-1' placeholder={errors.category?errors.category.message:""} {...register('category')}/> */}
                 </div>
 
                 <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">Image :</div>
@@ -183,7 +197,7 @@ function MasterBarang() {
                             {newPicture[0].name.substr(0, 10)}{newPicture[0].name.length>10 && <span>...<span className='font-bold'>{newPicture[0].name.substr(newPicture[0].name.length-4)}</span></span>}
                         </div>}
                 </div>
-                <br />
+                <br /> 
 
                 <div className="col-span-4 text-right me-24">
                     <button type='submit' className='rounded-xl bg-oranye font-bold mt-5 w-48 h-10 text-xl hover:bg-hover-oranye transition duration-300'>Add Item</button>
