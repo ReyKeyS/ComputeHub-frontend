@@ -39,8 +39,8 @@ function RegisterPage() {
     const registered = (data) => {
         const registering = client.post("/users/register", data).then((res)=>{
             console.log(res)
-            if (res.status === 201)
-                navigate("/login")
+            // if (res.status === 201)
+            //     navigate("/login")
         }).catch((err)=>{console.log(err);})
     }
     
