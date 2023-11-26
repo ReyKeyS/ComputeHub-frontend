@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import client from '../../services/client'
 import { useNavigate } from 'react-router-dom'
 
+// Material UI
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -71,39 +72,39 @@ function MasterUser() {
       
       <div className="flex justify-center">
         <div className='w-5/6'>
-        <TableContainer className='border-2 border-oranye rounded-2xl mb-36'>
-          <Table sx={{ minWidth: 700 }} aria-label="customized table">
-            <TableHead className='border-b-2 border-oranye'>
-              <TableRow>
-                <StyledTableCell align='center'>No</StyledTableCell>
-                <StyledTableCell align="center">Name</StyledTableCell>
-                <StyledTableCell align="center">Email</StyledTableCell>
-                <StyledTableCell align="center">Address</StyledTableCell>
-                <StyledTableCell align="center">Phone Number</StyledTableCell>
-                <StyledTableCell align="center">Email Verified</StyledTableCell>
-                <StyledTableCell align="center">Actions</StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {listUsers?.map((row, index) => (
-                <StyledTableRow key={index}>
-                  <StyledTableCell component="th" scope="row" align='center'>
-                    {index+1}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">{row.display_name}</StyledTableCell>
-                  <StyledTableCell align="center">{row.email}</StyledTableCell>
-                  <StyledTableCell align="center">{row.address}</StyledTableCell>
-                  <StyledTableCell align="center">{row.phone_number}</StyledTableCell>
-                  <StyledTableCell align="center" width="13%"><span className={row.email_verified?"text-green-500":"text-red-500"}>{row.email_verified?"V":"X"}</span></StyledTableCell>
-                  <StyledTableCell align="center" width={"20%"}>
-                    <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye me-5 hover:scale-110 hover:font-bold transition duration-300'>Edit</button>
-                    <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye hover:scale-110 hover:font-bold transition duration-300' onClick={()=>{deleteUser(row.email)}}>Delete</button>
-                  </StyledTableCell>
-                </StyledTableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+          <TableContainer className='border-2 border-oranye rounded-2xl mb-36'>
+            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+              <TableHead className='border-b-2 border-oranye'>
+                <TableRow>
+                  <StyledTableCell align='center'>No</StyledTableCell>
+                  <StyledTableCell align="center">Name</StyledTableCell>
+                  <StyledTableCell align="center">Email</StyledTableCell>
+                  <StyledTableCell align="center">Address</StyledTableCell>
+                  <StyledTableCell align="center">Phone Number</StyledTableCell>
+                  <StyledTableCell align="center">Email Verified</StyledTableCell>
+                  <StyledTableCell align="center">Actions</StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {listUsers?.map((row, index) => (
+                  <StyledTableRow key={index}>
+                    <StyledTableCell component="th" scope="row" align='center'>
+                      {index+1}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">{row.display_name}</StyledTableCell>
+                    <StyledTableCell align="center">{row.email}</StyledTableCell>
+                    <StyledTableCell align="center">{row.address}</StyledTableCell>
+                    <StyledTableCell align="center">{row.phone_number}</StyledTableCell>
+                    <StyledTableCell align="center" width="13%"><span className={row.email_verified?"text-green-500":"text-red-500"}>{row.email_verified?"V":"X"}</span></StyledTableCell>
+                    <StyledTableCell align="center" width={"20%"}>
+                      <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye me-5 hover:scale-110 hover:font-bold transition duration-300'>Edit</button>
+                      <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye hover:scale-110 hover:font-bold transition duration-300' onClick={()=>{deleteUser(row.email)}}>Delete</button>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
         </div>
       </div>
     </>

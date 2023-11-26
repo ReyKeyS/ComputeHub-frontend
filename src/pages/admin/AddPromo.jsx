@@ -7,6 +7,42 @@ import { joiResolver } from "@hookform/resolvers/joi"
 import { useNavigate } from 'react-router-dom';
 import client from '../../services/client'
 
+// Material UI
+import { styled } from '@mui/material/styles';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+
+// Customized Table
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: "#292929",
+      color: "#ffa31a",
+      fontSize: 18,
+      fontWeight: "bold"
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 16,
+      color: "white"
+    },
+}));
+  
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    '&:nth-of-type(odd)': {
+      backgroundColor: "#1b1b1b",
+    },
+    '&:nth-of-type(even)': {
+      backgroundColor: "#292929",
+    },
+    // hide last border
+    '&:last-child td, &:last-child th': {
+      border: 0,
+    },
+}));
+  
 // Custom Style React-Select
 const customStyles = {
     control: (base, { isFocused }) => ({
@@ -44,6 +80,7 @@ function AddPromo() {
     const [listItems, setListItems] = useState([])
     const [optionBox, setOptionBox] = useState([])
     const [selectedItem, setSelectedItem] = useState()
+    const [listDisc, setListDisc] = useState([])
 
     useEffect(() => {
         client.get("/items").then((res) => {
@@ -54,12 +91,20 @@ function AddPromo() {
     }, [])
 
     useEffect(() => {
-        console.log(listItems);
+        let discount = []
+        for (const i of listItems) {
+            if (i.discount)
+                discount.push(i)
+        }
+        setListDisc(discount)
+    }, [listItems])
+
+    useEffect(() => {
         let newerOption = []
         listItems.forEach(i => {
             newerOption.push({
                 value: i._id,
-                label: i.name,
+                label: i.name+ ' -- Rp ' + (i.price).toLocaleString("id-ID"),
             })
         });
         setOptionBox(newerOption)
@@ -72,22 +117,41 @@ function AddPromo() {
         promo_price: Joi.number().required().messages({
             "any.required": "Promo Price is required",
         }),
-        start_date: Joi.date().required().messages({
-            "any.required": "Mulai is required",
-        }),
-        end_date: Joi.date().required().messages({
-            "any.required": "{{label}} is required",
-        }),
     })
     
     const { register, handleSubmit, reset, formState: { errors } } = useForm({resolver: joiResolver(schema)})
+
+    const addPromo = (data) => {
+        client.put(`/items/promo/add/${selectedItem}`, {
+            promo_name: data.promo_name,
+            promo_price: data.promo_price
+        },{
+            headers: {"Authorization": "Bearer " + localStorage.getItem("user_token")},
+        }).then((res) => {  
+            alert(res.data.message)
+            navigate(0)
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
+
+    const deletePromo = (id) => {
+        client.delete(`/items/promo/delete/${id}`, {
+            headers: {"Authorization": "Bearer " + localStorage.getItem("user_token")},
+        }).then((res)=>{    
+            alert(res.data.message);
+            navigate(0)
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
 
     return (<>
         <div className="judul text-white text-5xl font-bold ms-10 my-7">
             <h1>Add New Promo</h1>
         </div>
         <br />
-        <form action="">
+        <form onSubmit={handleSubmit(addPromo)}>
             <div className="grid grid-cols-4">
                 <div className="text-white text-2xl place-items-center  mr-12 text-right">Item :</div>
                 <div className="col-span-3 text-white">
@@ -106,33 +170,20 @@ function AddPromo() {
                             onChange={(e)=>{setSelectedItem(e.value)}}
                         />
                     }
-                    {/* <input type="text" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-1' /> */}
                 </div>
-
-                <div className="text-white text-2xl place-items-center mt-3  mr-12 text-right">Promo Name :</div>
+                <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">Promo Name :</div>
                 <div className="col-span-3 text-white">
-                    <input type="text" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-5' />
+                    <input type="text" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-4 py-1 px-3' {...register("promo_name")}/>
                 </div>
 
                 <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">Promo Price :</div>
                 <div className="col-span-3 text-white">
-                    <input type="number" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-5' />
-                </div>
-
-                <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">Start Date :</div>
-                <div className="col-span-3 text-white">
-                    <input type="date" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-5' />
-                </div>
-
-                <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">End Date :</div>
-                <div className="col-span-3 text-white ">
-                    <input type="date" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-5' />
+                    <input type="number" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-4 py-1 px-3' {...register("promo_price")}/>
                 </div>
 
                 <div className="col-span-4 text-right me-24">
                     <button type='submit' className='rounded-xl bg-oranye font-bold mt-5 w-48 h-10 text-xl hover:bg-hover-oranye transition duration-300'>Add Promo</button>
                 </div>
-
             </div>
         </form>
 
@@ -140,57 +191,40 @@ function AddPromo() {
             <h1>List Items</h1>
         </div>
 
-        <div className="tabel rounded-lg w-11/12 mt-4 mx-auto h-fit  border border-oranye bg-abu-gelap">
-            <div className="header flex w-max text-oranye text-2xl">
-                <div className=" w-10 ml-3">No</div>
-                <div className=" w-20 ml-3">ID</div>
-                <div className=" w-32 ml-3">Name</div>
-                <div className=" w-48 ml-3">Discount</div>
-                <div className=" w-52 ml-3">Barang</div>
-                <div className=" w-80 ml-3">Duration</div>
-                <div className=" w-16 ml-3">Action</div>
-            </div>
-
-            <hr className="bg-oranye"></hr>
-            <div className="listdata flex  text-white h-16 place-items-center text-lg font-bold">
-                <div className="text-align-center w-10 ml-3">1</div>
-                <div className="text-align-center w-20 ml-3">MEGA01</div>
-                <div className="text-align-center w-32 ml-3">Mega Sale</div>
-                <div className="text-align-center w-48 ml-3">Rp 50.000</div>
-                <div className="text-align-center w-52 ml-3">GTX 3080</div>
-                <div className="text-align-center w-80 ml-3">10 Oktober 2022-10 November 2022</div>
-                <div className="text-align-center w-16 ml-3">...</div>
-                {/* kurang onclick */}
-            </div>
-            <hr className="border border-oranye w-11/12 mx-auto"></hr>
-
-            <div className="listdata flex text-white h-16 place-items-center text-lg font-bold">
-                <div className="text-align-center w-10 ml-3">2</div>
-                <div className="text-align-center w-20 ml-3">HLW01</div>
-                <div className="text-align-center w-32 ml-3">Halowen</div>
-                <div className="text-align-center w-48 ml-3">RP 5.000</div>
-                <div className="text-align-center w-52 ml-3">GTX 3090</div>
-                <div className="text-align-center w-80 ml-3">15 Oktober 2022-10 Desember 2022</div>
-                <div className="text-align-center w-16 ml-3">...</div>
-                {/* kurang onclick */}
-            </div>
-            <hr className="border border-oranye w-11/12 mx-auto"></hr>
-
-
-            <div className="listdata flex text-white h-16 place-items-center text-lg font-bold">
-                <div className="text-align-center w-10 ml-3">3</div>
-                <div className="text-align-center w-20 ml-3">DSC01</div>
-                <div className="text-align-center w-32 ml-3">Dsicount3</div>
-                <div className="text-align-center w-48 ml-3">RP 50.000</div>
-                <div className="text-align-center w-52 ml-3">GTX 1090</div>
-                <div className="text-align-center w-80 ml-3">15 January 2022-10 Desember 2022</div>
-                <div className="text-align-center w-16 ml-3">...</div>
-                {/* kurang onclick */}
-            </div>
-            <hr className="border border-oranye w-11/12 mx-auto"></hr>
-
-
+        <div className="flex justify-center">
+        <div className='w-5/6'>
+          <TableContainer className='border-2 border-oranye rounded-2xl mb-36'>
+            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+              <TableHead className='border-b-2 border-oranye'>
+                <TableRow>
+                  <StyledTableCell align='center'>No</StyledTableCell>
+                  <StyledTableCell align="center">Promo Name</StyledTableCell>
+                  <StyledTableCell align="center">Item Name</StyledTableCell>
+                  <StyledTableCell align="center">Promo Price</StyledTableCell>
+                  <StyledTableCell align="center">Real Price</StyledTableCell>
+                  <StyledTableCell align="center">Actions</StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {listDisc?.map((row, index) => (
+                  <StyledTableRow key={index}>
+                    <StyledTableCell component="th" scope="row" align='center'>
+                      {index+1}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">{row.discount.promo_name}</StyledTableCell>
+                    <StyledTableCell align="center">{row.name}</StyledTableCell>
+                    <StyledTableCell align="center"><span className='text-green-400'>Rp {(row.discount.promo_price).toLocaleString("id-ID")}</span></StyledTableCell>
+                    <StyledTableCell align="center">Rp {(row.price).toLocaleString("id-ID")}</StyledTableCell>
+                    <StyledTableCell align="center" width={"20%"}>
+                      <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye hover:scale-110 hover:font-bold transition duration-300' onClick={()=>{deletePromo(row._id)}}>Delete</button>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
         </div>
+      </div>
     </>)
 }
 
