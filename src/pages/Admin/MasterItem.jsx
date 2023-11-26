@@ -17,8 +17,28 @@ import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import { ThemeProvider, Typography } from '@mui/material';
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
+import { createTheme } from '@mui/material/styles';
 
 // Customized Button Upload
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: '#ffa31a',
+            oranye:"#ffa31a",
+            abu_abu:"#808080",
+            abu_gelap:"#292929",
+            abu_super_gelap:"#1b1b1b",
+            putih:"#ffffff"
+        },
+        secondary: {
+            main: '#f44336',
+        },
+    },
+});
+
 const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
     clipPath: 'inset(50%)',
@@ -85,11 +105,11 @@ const customStyles = {
         color: "white",
     }),
     container: (base) => ({
-        ...base,        
+        ...base,
         width: '92%',
     }),
     menuList: (base) => ({
-        ...base, 
+        ...base,
         backgroundColor: "#292929",
     }),
     input: (base) => ({
@@ -97,19 +117,33 @@ const customStyles = {
         color: "white",
     })
 };
+
+const styleBox = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 1200,
+    bgcolor: 'primary.oranye',
+    color:"primary.abu_super_gelap",
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+};
+
 const optionBox = [
-    {value: "Motherboard", label: "Motherboard"},
-    {value: "Processor", label: "Processor"},
-    {value: "VGA", label: "VGA"},
-    {value: "RAM", label: "RAM"},
-    {value: "PSU", label: "PSU"},
-    {value: "HDD", label: "HDD"},
-    {value: "SSD", label: "SSD"},
-    {value: "Casing", label: "Casing"},
-    {value: "Cooling", label: "Cooling"},
-    {value: "Monitor", label: "Monitor"},
-    {value: "Keyboard", label: "Keyboard"},
-    {value: "Mouse", label: "Mouse"},
+    { value: "Motherboard", label: "Motherboard" },
+    { value: "Processor", label: "Processor" },
+    { value: "VGA", label: "VGA" },
+    { value: "RAM", label: "RAM" },
+    { value: "PSU", label: "PSU" },
+    { value: "HDD", label: "HDD" },
+    { value: "SSD", label: "SSD" },
+    { value: "Casing", label: "Casing" },
+    { value: "Cooling", label: "Cooling" },
+    { value: "Monitor", label: "Monitor" },
+    { value: "Keyboard", label: "Keyboard" },
+    { value: "Mouse", label: "Mouse" },
 ]
 
 function MasterItem() {
@@ -117,6 +151,7 @@ function MasterItem() {
     const [listItems, setListItems] = useState([])
     const [newPicture, setNewPicture] = useState()
     const [selectedCate, setSelectedCate] = useState()
+    const [open, setOpen] = useState(false)
 
     useEffect(() => {
         client.get("/items").then((res) => {
@@ -145,8 +180,8 @@ function MasterItem() {
             "string.empty": "Brand is required",
         })
     })
-    
-    const { register, handleSubmit, reset, formState: { errors } } = useForm({resolver: joiResolver(schema)})
+
+    const { register, handleSubmit, reset, formState: { errors } } = useForm({ resolver: joiResolver(schema) })
 
     const addItem = (data) => {
         console.log(newPicture);
@@ -159,7 +194,7 @@ function MasterItem() {
         formData.append("brand", data.brand)
         formData.append("picture", newPicture[0])
         const addingItem = client.post('/items/add', formData, {
-            headers: {"Authorization": "Bearer " + localStorage.getItem("user_token")},
+            headers: { "Authorization": "Bearer " + localStorage.getItem("user_token") },
             body: "form/data"
         }).then((res) => {
             alert(res.data.message);
@@ -171,8 +206,8 @@ function MasterItem() {
 
     const deleteItem = (id) => {
         client.delete(`/items/delete/${id}`, {
-            headers: {"Authorization": "Bearer " + localStorage.getItem("user_token")},
-        }).then((res)=>{    
+            headers: { "Authorization": "Bearer " + localStorage.getItem("user_token") },
+        }).then((res) => {
             alert(res.data.message);
             navigate(0)
         }).catch((err) => {
@@ -188,32 +223,32 @@ function MasterItem() {
             <div className="grid grid-cols-4">
                 <div className="text-white text-2xl place-items-center mr-12 text-right">Name :</div>
                 <div className="col-span-3 text-white">
-                    <input type="text" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-1 px-3 py-1' placeholder={errors.name?errors.name.message:""} {...register('name')}/>
+                    <input type="text" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-1 px-3 py-1' placeholder={errors.name ? errors.name.message : ""} {...register('name')} />
                 </div>
 
                 <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">Descriptions :</div>
                 <div className="col-span-3 text-white ">
-                    <textarea className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-3 px-3 py-1' cols="30" rows="5" placeholder={errors.description?errors.description.message:""} {...register('description')}></textarea>
+                    <textarea className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-3 px-3 py-1' cols="30" rows="5" placeholder={errors.description ? errors.description.message : ""} {...register('description')}></textarea>
                 </div>
 
                 <div className="text-white text-2xl place-items-center mt-4 mr-12 text-right">Price :</div>
                 <div className="col-span-3 text-white">
-                    <input type="number" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-4 px-3 py-1' placeholder={errors.price?errors.price.message:""} {...register('price')}/>
+                    <input type="number" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-4 px-3 py-1' placeholder={errors.price ? errors.price.message : ""} {...register('price')} />
                 </div>
 
                 <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">Stock :</div>
                 <div className="col-span-3 text-white">
-                    <input type="number" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-3 px-3 py-1' placeholder={errors.stock?errors.stock.message:""} {...register('stock')}/>
+                    <input type="number" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-3 px-3 py-1' placeholder={errors.stock ? errors.stock.message : ""} {...register('stock')} />
                 </div>
 
                 <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">Brand :</div>
                 <div className="col-span-3 text-white">
-                    <input type="text" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-3 px-3 py-1' placeholder={errors.brand?errors.brand.message:""} {...register('brand')}/>
+                    <input type="text" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-3 px-3 py-1' placeholder={errors.brand ? errors.brand.message : ""} {...register('brand')} />
                 </div>
 
                 <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">Category :</div>
-                <div className="col-span-3 text-white">                    
-                    <Select 
+                <div className="col-span-3 text-white">
+                    <Select
                         className='basic-single mt-3'
                         classNamePrefix='select'
                         isDisabled={false}
@@ -224,7 +259,7 @@ function MasterItem() {
                         name="Category"
                         options={optionBox}
                         styles={customStyles}
-                        onChange={(e)=>{setSelectedCate(e.value)}}
+                        onChange={(e) => { setSelectedCate(e.value) }}
                     />
 
                     {/* Ini select HTML biasa */}
@@ -248,14 +283,14 @@ function MasterItem() {
                 <div className="col-span-3 pt-3 flex">
                     <ColorButton component="label" variant="contained" startIcon={<CloudUploadIcon />} >
                         <p className='font-bold'>Choose file</p>
-                        <VisuallyHiddenInput type="file" onChange={(e)=>{setNewPicture(e.target.files)}}/>
+                        <VisuallyHiddenInput type="file" onChange={(e) => { setNewPicture(e.target.files) }} />
                     </ColorButton>
-                    {newPicture && 
+                    {newPicture &&
                         <div className='mt-1 ms-4 text-white text-lg'>
-                            {newPicture[0].name.substr(0, 10)}{newPicture[0].name.length>10 && <span>...<span className='font-bold'>{newPicture[0].name.substr(newPicture[0].name.length-4)}</span></span>}
+                            {newPicture[0].name.substr(0, 10)}{newPicture[0].name.length > 10 && <span>...<span className='font-bold'>{newPicture[0].name.substr(newPicture[0].name.length - 4)}</span></span>}
                         </div>}
                 </div>
-                <br /> 
+                <br />
 
                 <div className="col-span-4 text-right me-24">
                     <button type='submit' className='rounded-xl bg-oranye font-bold mt-5 w-48 h-10 text-xl hover:bg-hover-oranye transition duration-300'>Add Item</button>
@@ -291,8 +326,33 @@ function MasterItem() {
                                     <StyledTableCell align="center">{row.brand}</StyledTableCell>
                                     <StyledTableCell align="center">{row.category}</StyledTableCell>
                                     <StyledTableCell align="center" width={"20%"}>
-                                        <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye me-5 hover:scale-110 hover:font-bold transition duration-300'>Edit</button>
-                                        <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye hover:scale-110 hover:font-bold transition duration-300' onClick={()=>{deleteItem(row._id)}}>Delete</button>
+                                        <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye me-5 hover:scale-110 hover:font-bold transition duration-300' onClick={() => setOpen(true)}>Edit</button>
+                                        <Modal
+                                            open={open}
+                                            onClose={() => setOpen(false)}
+                                            aria-labelledby="modal-modal-title"
+                                            aria-describedby="modal-modal-description"
+                                        >
+                                            <ThemeProvider theme={theme}>
+                                                <Box sx={styleBox}>
+                                                    <Typography id="modal-modal-title" variant="h4" component="h2">Edit</Typography>
+                                                    <Typography id="modal-modal-description" sx={{ mt: 2 }} className='flex flex-col space-y-2'>
+                                                        {/* Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                                                         */}
+                                                        <input type="text" placeholder='name' className='border border-abu-abu rounded-lg'/>
+                                                        <input type="text" placeholder='price' className='border border-abu-abu rounded-lg'/>
+                                                        <input type="text" placeholder='stock' className='border border-abu-abu rounded-lg'/>
+                                                        <input type="text" placeholder='brand' className='border border-abu-abu rounded-lg'/>
+                                                        <input type="text" placeholder='category' className='border border-abu-abu rounded-lg'/>
+                                                        <div className='flex'>
+                                                            <button className='bg-abu-gelap text-putih px-5 py-2 ml-auto rounded-lg'>Ok</button>
+                                                        </div>
+                                                    </Typography>
+                                                </Box>
+
+                                            </ThemeProvider>
+                                        </Modal>
+                                        <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye hover:scale-110 hover:font-bold transition duration-300' onClick={() => { deleteItem(row._id) }}>Delete</button>
                                     </StyledTableCell>
                                 </StyledTableRow>
                             ))}
