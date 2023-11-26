@@ -1,4 +1,5 @@
 import React from 'react'
+import { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import Joi from "joi"
@@ -9,6 +10,21 @@ import ComputerIcon from '@mui/icons-material/Computer';
 
 function LoginPage() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("user_token")){
+      client.get('/users/detail', {
+        headers: {"Authorization": "Bearer " + localStorage.getItem("user_token")},
+      }).then((res) => {
+        if (res.data.role == 0) 
+          navigate("/admin")
+        else 
+          navigate("/")
+      }).catch((err) => {
+        console.log(err);
+      })
+    }
+  }, [])
 
   const schema = Joi.object({
     email: Joi.string().email({ tlds: { allow: false } }).required().messages({ 
