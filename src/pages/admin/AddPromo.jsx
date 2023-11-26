@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React from 'react';
+import Select from 'react-select'
 import { useState, useEffect } from 'react'
 import { useForm } from "react-hook-form";
 import Joi from "joi"
@@ -9,11 +10,21 @@ import client from '../../services/client'
 function AddPromo() {
     const navigate = useNavigate()
     const [listItems, setListItems] = useState([])
+    const [options, setOptions] = useState([])
 
     useEffect(() => {
         client.get("/items").then((res) => {
             console.log(res.data);
-            setListItems(res.data)
+            setListItems(res.data);
+
+            // Combobox Item
+            setOptions([])
+            for (const i of res.data) {
+                setOptions([...options, {
+                    value: i._id,
+                    label: i.name,
+                }])
+            }
         }).catch((err) => {
             console.log(err.response.data.message);
         })
@@ -45,6 +56,20 @@ function AddPromo() {
             <div className="grid grid-cols-4">
                 <div className="text-white text-2xl place-items-center  mr-12 text-right">Item :</div>
                 <div className="col-span-3 text-white">
+                    {options!=null && 
+                        <Select 
+                            className='basic-single bg-abu-gelap'
+                            classNamePrefix='select'
+                            defaultValue={options[0]}
+                            isDisabled={false}
+                            isLoading={false}
+                            isClearable={false}
+                            isRtl={false}
+                            isSearchable={true}
+                            name="Item"
+                            options={options}
+                        />
+                    }
                     {/* <input type="text" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-1' /> */}
                 </div>
 
