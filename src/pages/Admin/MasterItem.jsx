@@ -65,7 +65,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-function MasterBarang() {
+function MasterItem() {
     const navigate = useNavigate()
     const [listItems, setListItems] = useState([])
     const [newPicture, setNewPicture] = useState()
@@ -138,7 +138,7 @@ function MasterBarang() {
 
     return (<>
         <div className="judul text-white text-5xl font-bold ms-10 my-7">
-            <h1>Master Barang</h1>
+            <h1>Master Item</h1>
         </div>
         <form onSubmit={handleSubmit(addItem)}>
             <div className="grid grid-cols-4">
@@ -147,7 +147,7 @@ function MasterBarang() {
                     <input type="text" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-1 px-3 py-1' placeholder={errors.name?errors.name.message:""} {...register('name')}/>
                 </div>
 
-                <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">Description :</div>
+                <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">Descriptions :</div>
                 <div className="col-span-3 text-white ">
                     <textarea className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-3 px-3 py-1' cols="30" rows="5" placeholder={errors.description?errors.description.message:""} {...register('description')}></textarea>
                 </div>
@@ -205,7 +205,7 @@ function MasterBarang() {
             </div>
         </form>
         <div className="judul text-white text-5xl font-bold ms-10 my-7">
-            <h1>List Product</h1>
+            <h1>List Items</h1>
         </div>
 
         <div className="flex justify-center">
@@ -246,4 +246,4 @@ function MasterBarang() {
     </>)
 }
 
-export default MasterBarang
+export default MasterItem

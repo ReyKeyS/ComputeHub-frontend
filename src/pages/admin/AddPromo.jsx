@@ -8,36 +8,62 @@ import client from '../../services/client'
 
 function AddPromo() {
     const navigate = useNavigate()
+    const [listItems, setListItems] = useState([])
 
+    useEffect(() => {
+        client.get("/items").then((res) => {
+            console.log(res.data);
+            setListItems(res.data)
+        }).catch((err) => {
+            console.log(err.response.data.message);
+        })
+    }, [])
+
+    const schema = Joi.object({
+        promo_name: Joi.string().required().messages({
+            "any.required": "Promo Name is required",
+        }),
+        promo_price: Joi.number().required().messages({
+            "any.required": "Promo Price is required",
+        }),
+        start_date: Joi.date().required().messages({
+            "any.required": "Mulai is required",
+        }),
+        end_date: Joi.date().required().messages({
+            "any.required": "{{label}} is required",
+        }),
+    })
     
+    const { register, handleSubmit, reset, formState: { errors } } = useForm({resolver: joiResolver(schema)})
+
     return (<>
         <div className="judul text-white text-5xl font-bold ms-10 my-7">
             <h1>Add New Promo</h1>
         </div>
         <br />
-        <form action="">            
+        <form action="">
             <div className="grid grid-cols-4">
-                <div className="text-white text-2xl place-items-center  mr-12 text-right">Barang :</div>
+                <div className="text-white text-2xl place-items-center  mr-12 text-right">Item :</div>
                 <div className="col-span-3 text-white">
-                    <input type="text" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-1' />
+                    {/* <input type="text" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-1' /> */}
                 </div>
 
-                <div className="text-white text-2xl place-items-center mt-3  mr-12 text-right">Nama :</div>
+                <div className="text-white text-2xl place-items-center mt-3  mr-12 text-right">Promo Name :</div>
                 <div className="col-span-3 text-white">
                     <input type="text" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-5' />
                 </div>
 
-                <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">Discount :</div>
+                <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">Promo Price :</div>
                 <div className="col-span-3 text-white">
                     <input type="number" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-5' />
                 </div>
 
-                <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">Mulai :</div>
+                <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">Start Date :</div>
                 <div className="col-span-3 text-white">
                     <input type="date" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-5' />
                 </div>
 
-                <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">Selesai :</div>
+                <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">End Date :</div>
                 <div className="col-span-3 text-white ">
                     <input type="date" className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-5' />
                 </div>
@@ -50,7 +76,7 @@ function AddPromo() {
         </form>
 
         <div className="judul text-white text-5xl font-bold ms-10 my-7">
-            <h1>List Products</h1>
+            <h1>List Items</h1>
         </div>
 
         <div className="tabel rounded-lg w-11/12 mt-4 mx-auto h-fit  border border-oranye bg-abu-gelap">

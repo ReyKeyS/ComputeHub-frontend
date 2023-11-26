@@ -51,13 +51,13 @@ function NavbarAdmin() {
                         </div>
                     </Link>
 
-                    <Link to="/admin/masterbarang">
+                    <Link to="/admin/masteritem">
                         <div className="h-24 grid place-items-center justify-items-center hover:border-l-4 hover:border-e-4 border-oranye">
                             <div className="h-24 w-full grid place-items-center justify-items-center hover:bg-abu-gelap  ">
                                 <div className='flex'>
                                     <InventoryIcon fontSize='large' className="me-3"/>
                                     <img></img>
-                                    <p className='text-3xl'>Master Barang</p>
+                                    <p className='text-3xl'>Master Item</p>
                                 </div>
                             </div>
                         </div>

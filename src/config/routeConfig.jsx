@@ -9,7 +9,7 @@ import Shop from '../pages/User/Shop'
 
 // Admin Pages
 import MasterUser from '../pages/Admin/MasterUser'
-import MasterBarang from '../pages/Admin/MasterBarang'
+import MasterItem from '../pages/Admin/MasterItem'
 import Promo from '../pages/Admin/AddPromo'
 import Report from '../pages/Admin/Report'
 import ChatAdmin from '../pages/Admin/Chat'
@@ -59,9 +59,9 @@ const router = createBrowserRouter(
               element:<MasterUser/> ,
             },
             {
-              path: "masterbarang",
+              path: "masteritem",
               // loader: getCatalog,
-              element: <MasterBarang />,
+              element: <MasterItem />,
             },
             {
               path: "report",
