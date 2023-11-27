@@ -12,25 +12,25 @@ function RegisterPage() {
 
     const schema = Joi.object({
         name: Joi.string().min(3).required().label("Display_Name").messages({
-            "any.required": "{{label}} is required",
-            "string.min": "{{#label}} must be at least 3 characters",
+            "any.required": "Name is required",
+            "string.min": "Name must be at least 3 characters",
         }),
         email: Joi.string().email({ tlds: { allow: false } }).required().label("Email").messages({ 
-            "any.required": "{{label}} is required",
-            "string.email": "{{#label}} is not a valid email"
+            "any.required": "Email is required",
+            "string.email": "Email is not a valid email"
         }),
         address: Joi.string().required().label("Address").messages({
-            "any.required": "{{label}} is required",
+            "any.required": "Address is required",
         }),
         phone_number: Joi.string().required().label("Phone_Number").messages({
-            "any.required": "{{label}} is required",
+            "any.required": "Phone Number is required",
         }),
         password: Joi.string().min(6).required().label("Password").messages({
-            "any.required": "{{label}} is required",
-            "string.min": "{{#label}} must be at least 6 characters",
+            "any.required": "Password is required",
+            "string.min": "Password must be at least 6 characters",
         }),
         confirm_password: Joi.any().equal(Joi.ref("password")).label("Konfirmasi Password").messages({ 
-            "any.only": "{{#label}} harus sama dengan password" 
+            "any.only": "Konfirmasi Password harus sama dengan password" 
         }),
     })
     
@@ -52,17 +52,21 @@ function RegisterPage() {
                     <form onSubmit={handleSubmit(registered)}>
                     <h1 className='text-center font-bold text-4xl text-oranye'>REGISTER</h1>
                     <div className='text-white text-xl mb-1'>Name</div>
-                    <input type="text" placeholder='Enter your name' {...register('name')} className='mb-3 px-3 py-2 border shadow rounded-lg w-full h-14 text-xl focus:ring-2 focus:ring-blue-500 focus:outline-none' />
+                    <input type="text" placeholder={`${errors.name ? errors?.name?.message : "Enter your name" }`}  {...register('name')} className={`mb-3 px-3 py-2 border shadow rounded-lg w-full h-14 text-xl focus:ring-2 focus:ring-blue-500 focus:outline-none ${errors.name ? "placeholder-red-500" : ""}`} />
                     <div className='text-white text-xl mb-1'>Email</div>
-                    <input type="text" placeholder='Enter your email' {...register('email')} className='mb-3 px-3 py-2 border shadow rounded-lg w-full h-14 text-xl focus:ring-2 focus:ring-blue-500 focus:outline-none' />
+                    <input type="text"  placeholder={`${errors.email ? errors?.email?.message : "Enter your Email" }`}{...register('email')} className={`mb-3 px-3 py-2 border shadow rounded-lg w-full h-14 text-xl focus:ring-2 focus:ring-blue-500 focus:outline-none ${errors.name ? "placeholder-red-500" : ""}`} />
                     <div className='text-white text-xl mb-1'>Address</div>
-                    <input type="text" placeholder='Enter your address' {...register('address')} className='mb-3 px-3 py-2 border shadow rounded-lg w-full h-14 text-xl focus:ring-2 focus:ring-blue-500 focus:outline-none' />
+                    <input type="text" placeholder={`${errors.address ? errors?.address?.message : "Enter your Address" }`} {...register('address')} className={`mb-3 px-3 py-2 border shadow rounded-lg w-full h-14 text-xl focus:ring-2 focus:ring-blue-500 focus:outline-none ${errors.name ? "placeholder-red-500" : ""}`}/>
                     <div className='text-white text-xl mb-1'>Phone Number</div>
-                    <input type="text" placeholder='Enter your phone number' {...register('phone_number')} className='mb-3 px-3 py-2 border shadow rounded-lg w-full h-14 text-xl focus:ring-2 focus:ring-blue-500 focus:outline-none' />
+                    <input type="text" placeholder={`${errors.phone_number ? errors?.phone_number?.message : "Enter your Phone Number" }`} {...register('phone_number')} className={`mb-3 px-3 py-2 border shadow rounded-lg w-full h-14 text-xl focus:ring-2 focus:ring-blue-500 focus:outline-none ${errors.name ? "placeholder-red-500" : ""}`} />
                     <div className='text-white text-xl mb-1'>Password</div>
-                    <input type="password" placeholder='Enter your password' {...register('password')} className='mb-3 px-3 py-2 border shadow rounded-lg w-full h-14 text-xl focus:ring-2 focus:ring-blue-500 focus:outline-none' />
+                    <input type="password" placeholder={`${errors.password ? errors?.password?.message : "Enter your Password" }`}  {...register('password')} className={`mb-3 px-3 py-2 border shadow rounded-lg w-full h-14 text-xl focus:ring-2 focus:ring-blue-500 focus:outline-none ${errors.name ? "placeholder-red-500" : ""}`}/>
                     <div className='text-white text-xl mb-1'>Confirm Password</div>
-                    <input type="password" placeholder='Enter your confirm password' {...register('confirm_password')} className='mb-3 px-3 py-2 border shadow rounded-lg w-full h-14 text-xl focus:ring-2 focus:ring-blue-500 focus:outline-none' />
+                    <input type="password" placeholder='Enter your confirm password' {...register('confirm_password')} className={`mb-3 px-3 py-2 border shadow rounded-lg w-full h-14 text-xl focus:ring-2 focus:ring-blue-500 focus:outline-none `} />
+                    <div className='w-4/6 h-4 flex justify-start mt-1'>
+                        <span className='text-red-500 text-xl'>{errors?.confirm_password?.message}</span>
+                    </div>
+
                     <div className="text-white text-xl text-center mt-3">Already have an account? &nbsp;<Link to="/login"><a className="font-semibold text-oranye">Login Now!</a></Link></div>
                     <div className="flex">
                         <Link to="/">
