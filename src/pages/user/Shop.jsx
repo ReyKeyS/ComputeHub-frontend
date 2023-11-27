@@ -54,12 +54,13 @@ function Shop(params) {
                 <div className="col-span-2 grid grid-cols-4">
                     {listItem && listItem.map((item) => {
                         return (
-                            <Link to='/barang'>
+                            <Link to={`/barang/${item._id}`}>
                             <div className='bg-abu-gelap w-48 h-60 rounded-xl flex flex-col border-2 '>
                                 <div className='h-2/3 flex flex-col-reverse rounded-xl bg-white bg-[url("/img/graphic_card.png")] bg-center'>
-                                    <div className='grid grid-cols-3 gap-1'>
-                                        <div className='col-start-3 font-black'>5<StarIcon sx={{ color: yellow[500] }} /></div>
-                                    </div>
+                                    <img src={import.meta.env.VITE_BACKEND_GET_PICTURE_URL+item.picture} alt="" />
+                                    {/* <div className='grid grid-cols-3 gap-1'>
+                                        <div className='col-start-3 text-white'>5<StarIcon sx={{ color: yellow[500] }} /></div>
+                                    </div> */}
                                 </div>
                                 <div className='h-1/3'>
                                     <div className='grid grid-rows-4'>
