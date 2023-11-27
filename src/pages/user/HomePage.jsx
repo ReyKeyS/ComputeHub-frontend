@@ -29,27 +29,27 @@ function HomePage() {
       </div>
       <div className="flex gap-4 snap-x mx-20">
         <div className='relative flex items-center justify-center overflow-hidden shadow-xl w-72 h-96 rounded-2xl'>
-          <div class='hover:scale-125 bg-[url("/img/Motherboard_non_tulis.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
+          <div className='hover:scale-125 bg-[url("/img/Motherboard_non_tulis.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
           <a className='absolute text-xl font-black transition-all duration-500 ease-in-out transform scale-150 text-gray-50 opacity-80'>MotherBoard</a>
         </div>
         <div className='relative flex items-center justify-center overflow-hidden shadow-xl w-72 h-96 rounded-2xl'>
-          <div class='hover:scale-125 bg-[url("/img/processor.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
+          <div className='hover:scale-125 bg-[url("/img/processor.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
           <a className='absolute text-xl font-black transition-all duration-500 ease-in-out transform scale-150 text-gray-50 opacity-80'>Processor</a>
         </div>
         <div className='relative flex items-center justify-center overflow-hidden shadow-xl w-72 h-96 rounded-2xl'>
-          <div class='hover:scale-125 bg-[url("/img/graphic_card.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
+          <div className='hover:scale-125 bg-[url("/img/graphic_card.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
           <a className='absolute text-xl font-black transition-all duration-500 ease-in-out transform scale-150 text-gray-50 opacity-80'>Graphic Card</a>
         </div>
         <div className='relative flex items-center justify-center overflow-hidden shadow-xl w-72 h-96 rounded-2xl'>
-          <div class='hover:scale-125 bg-[url("/img/ram.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
+          <div className='hover:scale-125 bg-[url("/img/ram.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
           <a className='absolute text-xl font-black transition-all duration-500 ease-in-out transform scale-150 text-gray-50 opacity-80'>RAM</a>
         </div>
         <div className='relative flex items-center justify-center overflow-hidden shadow-xl w-72 h-96 rounded-2xl'>
-          <div class='hover:scale-125 bg-[url("/img/pccase.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
+          <div className='hover:scale-125 bg-[url("/img/pccase.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
           <a className='absolute text-xl font-black transition-all duration-500 ease-in-out transform scale-150 text-gray-50 opacity-80'>PC Case</a>
         </div>
         <div className='relative flex items-center justify-center overflow-hidden shadow-xl w-72 h-96 rounded-2xl'>
-          <div class='hover:scale-125 bg-[url("/img/psu.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
+          <div className='hover:scale-125 bg-[url("/img/psu.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
           <a className='absolute text-xl font-black transition-all duration-500 ease-in-out transform scale-150 text-gray-50 opacity-80'>PSU</a>
         </div>
 
