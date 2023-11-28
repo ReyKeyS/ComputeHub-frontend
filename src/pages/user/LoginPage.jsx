@@ -40,14 +40,11 @@ function LoginPage() {
 
   function login(data){
     const login = client.post("/users/login", data).then((res)=>{
-      if (!res.data.email_verified) alert("Email hasn't been verified")
-      else{
-        localStorage.setItem("user_token", res.data.data.token)
-        if (res.data.data.role == 0){
-          navigate("/admin")
-        }else{
-          navigate("/")
-        }
+      localStorage.setItem("user_token", res.data.data.token)
+      if (res.data.data.role == 0){
+        navigate("/admin")
+      }else{
+        navigate("/")
       }
     }).catch((err)=>{
       console.log(err);

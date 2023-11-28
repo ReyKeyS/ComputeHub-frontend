@@ -50,6 +50,8 @@ function Header(){
             client.get('/users/detail', {
                 headers: {"Authorization": "Bearer " + localStorage.getItem("user_token")},
             }).then((res) => {
+                // Alert Verify Email
+                // if (!res.data.email_verified) alert("Please check and verify your email")
                 setUser(res.data)
             }).catch((err) => {
                 console.log(err);

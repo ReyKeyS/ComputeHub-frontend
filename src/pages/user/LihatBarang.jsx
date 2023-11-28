@@ -35,8 +35,10 @@ function LihatBarang() {
 
     const addToCart = () => {
         client.post("/users/carts/add", {
-            item_id: id,
-            amount: amount,
+            items: [{
+                item_id: id,
+                amount: amount,
+            }]
         },{
             headers: {"Authorization": "Bearer " + localStorage.getItem("user_token")},
         }).then((res)=>{
