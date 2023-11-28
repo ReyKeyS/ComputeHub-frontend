@@ -24,7 +24,12 @@ const ChatUser = () => {
                     <p className='text-oranye text-4xl mt-1 ms-5'>Chat Admin</p>
                 </div>
                 <div className='w-full min-h-[calc(100vh-23rem)] bg-abu-abu overflow-y-auto'>
-                    {/* Isi Chat */}
+                    <div className="chat chat-start">
+                        <div className="chat-bubble bg-oranye">It's over Anakin, <br/>I have the high ground.</div>
+                    </div>
+                    <div className="chat chat-end">
+                        <div className="chat-bubble">You underestimate my power!</div>
+                    </div>
                 </div>
                 <div className='w-full flex border-t-2 border-oranye pt-7'>
                     <input type="text" className='w-full px-7 py-3 rounded-xl text-xl text-white bg-abu-gelap' placeholder='Type here...'/>
