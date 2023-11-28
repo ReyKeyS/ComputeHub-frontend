@@ -37,11 +37,11 @@ function RegisterPage() {
     const { register, handleSubmit, reset, formState: { errors } } = useForm({resolver: joiResolver(schema)})
 
     const registered = (data) => {
-        const registering = client.post("/users/register", data).then((res)=>{
-            console.log(res)
+        client.post("/users/register", data).then((res)=>{
+            alert(res.data.message)
             if (res.status === 201)
                 navigate("/login")
-        }).catch((err)=>{console.log(err);})
+        }).catch((err)=>{alert(err.response.data.message);})
     }
     
     return (

@@ -184,24 +184,27 @@ function MasterItem() {
     const { register, handleSubmit, reset, formState: { errors } } = useForm({ resolver: joiResolver(schema) })
 
     const addItem = (data) => {
-        console.log(newPicture);
-        const formData = new FormData()
-        formData.append("name", data.name)
-        formData.append("description", data.description)
-        formData.append("price", data.price)
-        formData.append("stock", data.stock)
-        formData.append("category", selectedCate)
-        formData.append("brand", data.brand)
-        formData.append("picture", newPicture[0])
-        const addingItem = client.post('/items/add', formData, {
-            headers: { "Authorization": "Bearer " + localStorage.getItem("user_token") },
-            body: "form/data"
-        }).then((res) => {
-            alert(res.data.message);
-            navigate(0)
-        }).catch((err) => {
-            console.log(err);
-        })
+        if (newPicture){
+            const formData = new FormData()
+            formData.append("name", data.name)
+            formData.append("description", data.description)
+            formData.append("price", data.price)
+            formData.append("stock", data.stock)
+            formData.append("category", selectedCate)
+            formData.append("brand", data.brand)
+            formData.append("picture", newPicture[0])
+            const addingItem = client.post('/items/add', formData, {
+                headers: { "Authorization": "Bearer " + localStorage.getItem("user_token") },
+                body: "form/data"
+            }).then((res) => {
+                alert(res.data.message);
+                navigate(0)
+            }).catch((err) => {
+                console.log(err);
+            })
+        }else{
+            alert("Please input the item's picture!")
+        }
     }
 
     const deleteItem = (id) => {

@@ -40,11 +40,14 @@ function LoginPage() {
 
   function login(data){
     const login = client.post("/users/login", data).then((res)=>{
-      localStorage.setItem("user_token", res.data.data.token)
-      if (res.data.data.role == 0){
-        navigate("/admin")
-      }else{
-        navigate("/")
+      if (!res.data.email_verified) alert("Email hasn't been verified")
+      else{
+        localStorage.setItem("user_token", res.data.data.token)
+        if (res.data.data.role == 0){
+          navigate("/admin")
+        }else{
+          navigate("/")
+        }
       }
     }).catch((err)=>{
       console.log(err);
@@ -72,12 +75,10 @@ function LoginPage() {
             {/* <div class="text-xl text-center mt-3">Doesn't have an account? &nbsp;<a class="font-semibold text-blue-400 duration-500 hover:text-purple-600 hover:duration-500">Register Now!</a></div> */}
             <div className="text-white text-xl text-center mt-3">Doesn't have an account? &nbsp;<Link to="/register"><a className="font-semibold text-oranye">Register Now!</a></Link></div>
             <div className="flex justify-between">
-              <Link to="/">
-                {/* <button type="submit" name="home" formaction="index.php" class="my-5 text-lg font-bold mr-auto px-7 py-3 flex text-white rounded-full bg-gradient-to-r from-purple-700 to-blue-600 hover:bg-gradient-to-r hover:from-purple-900 hover:to-blue-800 active:bg-sky-600 focus:ring-4 focus:ring-purple-800"> */}
-                <button type="button" name="home" className="my-5 text-lg font-extrabold px-7 py-3 flex text-abu-super-gelap rounded-lg bg-oranye">
-                  HOME
-                </button>
-              </Link>
+              {/* <button type="submit" name="home" formaction="index.php" class="my-5 text-lg font-bold mr-auto px-7 py-3 flex text-white rounded-full bg-gradient-to-r from-purple-700 to-blue-600 hover:bg-gradient-to-r hover:from-purple-900 hover:to-blue-800 active:bg-sky-600 focus:ring-4 focus:ring-purple-800"> */}
+              <button type="button" name="home" className="my-5 text-lg font-extrabold px-7 py-3 flex text-abu-super-gelap rounded-lg bg-oranye" onClick={()=>{navigate("/")}}>
+                HOME
+              </button>
               <div className={'mt-3 h-16 text-xl text-red-500 text-center' + ((errors.email && errors.password)?' pt-1':' flex items-center')}>
                 <div>{errors.email && <span>{errors.email.message}</span>}</div>
                 <div>{errors.password && <span>{errors.password.message}</span>}</div>
