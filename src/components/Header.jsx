@@ -50,7 +50,6 @@ function Header(){
             client.get('/users/detail', {
                 headers: {"Authorization": "Bearer " + localStorage.getItem("user_token")},
             }).then((res) => {
-                console.log(res.data);
                 setUser(res.data)
             }).catch((err) => {
                 console.log(err);
@@ -61,7 +60,7 @@ function Header(){
     return(
         <nav className="grid grid-cols-7 bg-abu-super-gelap place-items-center h-[5rem]">
             <Link to="/">
-                <div className="bg-abu-super-gelap text-white rounded-lg text-3xl p-2 flex justify-center"><ComputerIcon fontSize='large'/>Compute<a className="bg-oranye rounded-lg font-bold text-abu-super-gelap px-1">HUB</a></div>
+                <div className="bg-abu-super-gelap text-white rounded-lg text-3xl p-2 flex justify-center"><ComputerIcon fontSize='large'/>&nbsp;Compute&nbsp;<span className="bg-oranye rounded-lg font-bold text-abu-super-gelap px-1">HUB</span></div>
             </Link>
             <Link to="/shop">
                 <div className="text-white text-2xl">Shop</div>
@@ -69,8 +68,10 @@ function Header(){
             <Link to='/chat'>
                 <div className="text-white text-2xl">Chat</div>
             </Link>
-            <div className="text-white text-2xl col-span-2 ml-auto"><SearchIcon fontSize='large'/></div>
-            <div className="text-white text-2xl"><ShoppingCartIcon /> Cart</div>
+            <div className="text-white text-2xl col-span-2 ms-auto"><SearchIcon fontSize='large'/></div>
+            <Link to="/cart">
+                <div className="text-white text-2xl"><ShoppingCartIcon /> Cart</div>
+            </Link>
             
             {!user && 
                 <Link to="/login">

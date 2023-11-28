@@ -18,6 +18,7 @@ import LihatBarang from '../pages/User/LihatBarang'
 import Dashboard from '../pages/Admin/Dashboard'
 import AdminNavbar from '../pages/Admin/AdminNavbar'
 import ChatUser from '../pages/User/ChatUser'
+import Cart from '../pages/User/Cart';
 
 const router = createBrowserRouter(
   [
@@ -40,6 +41,10 @@ const router = createBrowserRouter(
         {
           path: "/chat",
           element: <ChatUser />,
+        },
+        {
+          path: "/cart",
+          element: <Cart />,
         },
         {
           path: "/shop", 
