@@ -24,6 +24,16 @@ const Cart = () => {
             setUser(res.data)
             countGrandTotal()
         }).catch((err) => {console.log(err)});
+
+        // Midtrans
+        let script = document.createElement('script');
+        script.src = 'https://app.sandbox.midtrans.com/snap/snap.js';
+        script.async = true;
+        script.setAttribute('data-client-key', import.meta.env.VITE_CLIENT_KEY)
+        document.head.appendChild(script);
+        return () => {
+            document.head.removeChild(script);
+        };
     }, [])
     
     const countGrandTotal = (build) => {
@@ -43,6 +53,37 @@ const Cart = () => {
             }
         }).catch((err) => {console.log(err)});
     }
+
+    const buying = () => {
+        client.post("/users/transaction/purchase", {
+            build_service: buildService
+        }, {
+            headers: {"Authorization": "Bearer " + localStorage.getItem("user_token")}
+        }).then((res)=>{
+            // Midtrans
+            window.snap.pay(res.data.midtrans.token, {
+                onSuccess: function (result) {
+                    /* You may add your own implementation here */
+                    alert("Payment success!");
+                    console.log(result);
+                },
+                onPending: function (result) {
+                    /* You may add your own implementation here */
+                    alert("Waiting for your payment!");
+                    console.log(result);
+                },
+                onError: function (result) {
+                    /* You may add your own implementation here */
+                    alert("Payment failed!");
+                    console.log(result);
+                },
+                onClose: function () {
+                    /* You may add your own implementation here */
+                    alert('You closed the popup without finishing the payment');
+                }
+            });
+        }).catch(err=>console.log(err))
+    }    
 
     return (<>
         <Header />
@@ -71,13 +112,14 @@ const Cart = () => {
                         <p className='text-2xl text-white mt-2'>Grand Total :</p>
                         <p className='my-2 text-center text-4xl text-oranye'>Rp {grandTotal?.toLocaleString("id-ID")}</p>                        
                         <div className='flex justify-end'>
-                            <button className='text-center text-2xl font-bold w-1/3 my-2 py-2 rounded-xl bg-oranye hover:bg-hover-oranye'>Buy</button>
+                            <button className='text-center text-2xl font-bold w-1/3 my-2 py-2 rounded-xl bg-oranye hover:bg-hover-oranye' onClick={buying}>Buy</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <Footer />
+        <div id="snap-container"></div>
     </>)
 }
 
