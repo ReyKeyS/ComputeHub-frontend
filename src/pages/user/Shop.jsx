@@ -41,8 +41,8 @@ function Shop(params) {
                 <div className="w-1/2 h-96 bg-abu-gelap rounded-xl grid justify-center">
                     <span className="text-putih text-3xl font-bold text-center">Filter</span>
                     <span className="text-putih text-lg font-bold">Harga (Rp)</span>
-                    <input type="number" placeholder="Harga Minimum" className="border rounded-lg w-3/4 h-1/2" step={1000} value={minPrice} onChange={(e)=>{setMinPrice(e.target.value)}}/>
-                    <input type="number" placeholder="Harga Maximum" className="border rounded-lg mt-3 w-3/4 h-1/2" step={1000} value={maxPrice} onChange={(e)=>{setMaxPrice(e.target.value)}}/>
+                    <input type="number" placeholder="Harga Minimum" className="border rounded-lg w-3/4 h-1/2" step={1000} value={minPrice} onChange={(e)=>{if(e.target.value != "") setMinPrice(e.target.value)}}/>
+                    <input type="number" placeholder="Harga Maximum" className="border rounded-lg mt-3 w-3/4 h-1/2" step={1000} value={maxPrice} onChange={(e)=>{if(e.target.value != "") setMaxPrice(e.target.value)}}/>
                     <span className="text-putih">Rating</span>
                     <div className="flex justify-between place-items-center">
                         <input type="checkbox" className="w-5 h-5"/>

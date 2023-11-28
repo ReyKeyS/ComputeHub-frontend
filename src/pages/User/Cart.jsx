@@ -28,15 +28,15 @@ const Cart = () => {
         <Header />
         <div className='min-h-[calc(100vh-21rem)] flex justify-center'>
             <div className='w-5/6'>
-                <p className='text-4xl font-bold ps-14 py-4'>Your Cart</p>
-                <div className='flex justify-center mb-16'>
+                <p className='text-5xl font-bold ps-14 py-7'>Your Cart</p>
+                <div className='flex justify-center mb-10'>
                     {/* {user?.carts.length < 1 && 
                         <p className='text-white text-center text-5xl py-2'>Your cart is empty</p>
                     } */}
                     <div className='w-3/4 h-full'>
                         {user?.carts && user?.carts.map((c) =>{
                             return (<>
-                                <ListCart item_id={c.item_id} amount={c.amount} />
+                                <ListCart item_id={c.item_id} amount={c.amount} setGrandTotal={setGrandTotal} />
                             </>)
                         })}
                     </div>

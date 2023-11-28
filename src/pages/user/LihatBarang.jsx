@@ -11,9 +11,11 @@ import StarIcon from '@mui/icons-material/Star';
 import { yellow } from '@mui/material/colors';
 
 function LihatBarang() {
+    const navigate = useNavigate()
     const { id } = useParams();
     const [item, setItem] = useState({});
     const [listOther, setListOther] = useState([])
+    const [amount, setAmount] = useState(1)
 
     useEffect(() => {
         client.get(`/items/${id}`).then((res) => {
@@ -30,6 +32,18 @@ function LihatBarang() {
             console.log(err)
         })
     }, [])
+
+    const addToCart = () => {
+        client.post("/users/carts/add", {
+            item_id: id,
+            amount: amount,
+        },{
+            headers: {"Authorization": "Bearer " + localStorage.getItem("user_token")},
+        }).then((res)=>{
+            alert(res.data.message)
+            navigate("/cart")
+        }).catch((err)=>{console.log(err)});
+    }
 
     return (
         <>
@@ -49,9 +63,9 @@ function LihatBarang() {
                             {item?.description}
                         </div>
                         <div className="flex gap-3 justify-center">
-                            <span className="text-lg text-oranye place-self-center">Amount:</span>
-                            <input type="number" className="rounded-lg text-black px-4 py-2" />
-                            <button className="bg-oranye text-abu-super-gelap px-3 py-2 font-bold rounded-lg">Add to Cart</button>
+                            <span className="text-lg text-oranye place-self-center">Amount :</span>
+                            <input type="number" className="rounded-lg text-black px-4 py-2 w-[10rem]" min={1} max={item?.stock} value={amount} onChange={(e)=>{if(e.target.value != "") setAmount(e.target.value)}}/>
+                            <button className="bg-oranye text-abu-super-gelap px-3 py-2 font-bold rounded-lg" onClick={addToCart}>Add to Cart</button>
                         </div>
                     </div>
                 </div>
