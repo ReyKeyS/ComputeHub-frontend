@@ -55,7 +55,7 @@ function Shop(params) {
                     {listItem && listItem.map((item) => {
                         return (
                             <Link to={`/barang/${item._id}`}>
-                            <div className='bg-abu-gelap w-48 h-60 rounded-xl flex flex-col border-2 '>
+                            <div className='bg-abu-gelap w-48 h-60 rounded-xl flex flex-col border-2 mt-14'>
                                 <div className='h-2/3 flex flex-col-reverse rounded-xl bg-white bg-[url("/img/graphic_card.png")] bg-center'>
                                     <img src={import.meta.env.VITE_BACKEND_GET_PICTURE_URL+item.picture} alt="" />
                                     {/* <div className='grid grid-cols-3 gap-1'>
@@ -65,7 +65,10 @@ function Shop(params) {
                                 <div className='h-1/3'>
                                     <div className='grid grid-rows-4'>
                                         <div className='row-span-2 text-white font-bold text-xl'>{item.name}</div>
-                                        <div className='text-oranye font-bold text-lg'>Rp {item.price.toLocaleString('id-ID')}</div>
+                                        {item.discount && 
+                                            <div className='text-oranye font-bold text-lg'>Rp {item.discount.promo_price.toLocaleString('id-ID')}</div>
+                                        }
+                                        <div className={'text-oranye font-bold text-lg' + (item.discount?" line-through":"")}>Rp {item.price.toLocaleString('id-ID')}</div>
                                     </div>
                                 </div>
                             </div>

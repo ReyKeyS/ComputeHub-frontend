@@ -17,6 +17,7 @@ import Confirmation from '../pages/Admin/Confirmation'
 import LihatBarang from '../pages/User/LihatBarang'
 import Dashboard from '../pages/Admin/Dashboard'
 import AdminNavbar from '../pages/Admin/AdminNavbar'
+import ChatUser from '../pages/User/ChatUser'
 
 const router = createBrowserRouter(
   [
@@ -35,6 +36,10 @@ const router = createBrowserRouter(
         {
           path: "/register", 
           element: <RegisterPage/>,
+        },
+        {
+          path: "/chat",
+          element: <ChatUser />,
         },
         {
           path: "/shop", 

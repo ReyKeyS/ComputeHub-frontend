@@ -59,20 +59,22 @@ function Header(){
     }, [])
 
     return(
-        <nav className="grid grid-cols-7 bg-abu-super-gelap place-items-center py-3">
+        <nav className="grid grid-cols-7 bg-abu-super-gelap place-items-center h-[5rem]">
             <Link to="/">
                 <div className="bg-abu-super-gelap text-white rounded-lg text-3xl p-2 flex justify-center"><ComputerIcon fontSize='large'/>Compute<a className="bg-oranye rounded-lg font-bold text-abu-super-gelap px-1">HUB</a></div>
             </Link>
             <Link to="/shop">
                 <div className="text-white text-2xl">Shop</div>
             </Link>
-            <div className="text-white text-2xl">Chat</div>
+            <Link to='/chat'>
+                <div className="text-white text-2xl">Chat</div>
+            </Link>
             <div className="text-white text-2xl col-span-2 ml-auto"><SearchIcon fontSize='large'/></div>
             <div className="text-white text-2xl"><ShoppingCartIcon /> Cart</div>
             
             {!user && 
                 <Link to="/login">
-                    <div className="font-bold text-white text-xl">Log in</div>
+                    <div className="font-bold text-white text-2xl">Log in</div>
                 </Link>
             }
             {user && 
