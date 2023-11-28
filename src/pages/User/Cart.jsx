@@ -4,6 +4,7 @@ import client from "../../services/client"
 
 import Footer from "../../components/Footer"
 import Header from "../../components/Header"
+import ListCart from '../../components/ListCart'
 
 // Material UI
 import Checkbox from '@mui/material/Checkbox';
@@ -29,13 +30,13 @@ const Cart = () => {
             <div className='w-5/6'>
                 <p className='text-4xl font-bold ps-14 py-4'>Your Cart</p>
                 <div className='flex justify-center mb-16'>
-                    <div className='w-3/4 h-full bg-abu-super-gelap rounded-2xl px-8 py-6'>
-                        {user?.carts.length < 1 && 
-                            <p className='text-white text-center text-5xl py-2'>Your cart is empty</p>
-                        }
+                    {/* {user?.carts.length < 1 && 
+                        <p className='text-white text-center text-5xl py-2'>Your cart is empty</p>
+                    } */}
+                    <div className='w-3/4 h-full'>
                         {user?.carts && user?.carts.map((c) =>{
                             return (<>
-                                <p className='text-white'>{c.item_id}</p>
+                                <ListCart item_id={c.item_id} amount={c.amount} />
                             </>)
                         })}
                     </div>
