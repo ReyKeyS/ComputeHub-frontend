@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import Joi from "joi"
@@ -9,6 +9,10 @@ import ComputerIcon from '@mui/icons-material/Computer';
 
 function RegisterPage() {
     const navigate = useNavigate();
+
+    useEffect(()=>{
+        if (localStorage.getItem("user_token")) navigate("/");
+    }, [])
 
     const schema = Joi.object({
         name: Joi.string().min(3).required().messages({
@@ -84,12 +88,9 @@ function RegisterPage() {
 
                     <div className="text-white text-xl text-center mt-3">Already have an account? &nbsp;<Link to="/login"><a className="font-semibold text-oranye">Login Now!</a></Link></div>
                     <div className="flex">
-                        <Link to="/">
-                            {/* <button type="submit" name="home" formaction="index.php" className="my-5 text-lg font-bold mr-auto px-7 py-3 flex text-white rounded-full bg-gradient-to-r from-purple-700 to-blue-600 hover:bg-gradient-to-r hover:from-purple-900 hover:to-blue-800 active:bg-sky-600 focus:ring-4 focus:ring-purple-800"> */}
-                            <button type="button" name="home" className="my-5 text-lg font-extrabold mr-auto px-7 py-3 flex text-abu-super-gelap rounded-lg bg-oranye">
-                                HOME
-                            </button>
-                        </Link>
+                        <button type="button" name="home" className="my-5 text-lg font-extrabold px-7 py-3 flex text-abu-super-gelap rounded-lg bg-oranye" onClick={()=>{navigate("/")}}>
+                            HOME
+                        </button>
                         {/* <button type="submit" name="login" className="my-5 text-lg font-bold ml-auto px-7 py-3 text-white rounded-full bg-gradient-to-r from-purple-700 to-blue-600 hover:bg-gradient-to-r hover:from-purple-900 hover:to-blue-800 active:bg-sky-600 focus:ring-4 focus:ring-sky-200">LOGIN</button> */}
                         <button type="submit" name="register" className="my-5 text-lg font-extrabold ml-auto px-7 py-3 text-abu-super-gelap rounded-lg bg-oranye">REGISTER</button>
                     </div>

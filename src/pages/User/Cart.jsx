@@ -90,31 +90,38 @@ const Cart = () => {
         <div className='min-h-[calc(100vh-21rem)] flex justify-center'>
             <div className='w-5/6'>
                 <p className='text-5xl font-bold ps-14 py-7'>Your Cart</p>
-                <div className='flex justify-center mb-10'>
-                    {/* {user?.carts.length < 1 && 
-                        <p className='text-white text-center text-5xl py-2'>Your cart is empty</p>
-                    } */}
-                    <div className='w-3/4 h-full'>
-                        {user?.carts && user?.carts.map((c) =>{
-                            return (<>
-                                <ListCart item_id={c.item_id} amount={c.amount} countGrandTotal={countGrandTotal}/>
-                            </>)
-                        })}
-                    </div>
-                    <div className='w-1/4 ms-10 h-full bg-abu-super-gelap rounded-2xl px-7 py-5'>
-                        <div className='flex'>
-                            <Checkbox sx={{ color: "#ffa31a", '& .MuiSvgIcon-root': { fontSize: 42 }, '&.Mui-checked': { color: "#ffa31a" }}} onChange={(e)=>{setBuildService(e.target.checked); countGrandTotal(e.target.checked)}}/>
-                            <div className='ms-3'>
-                                <p className='text-white text-xl'>Build Service</p>
-                                <p className='text-oranye font-bold text-2xl'>Rp 200.000</p>
+                <div className='flex justify-center items-center mb-10 h-[calc(100vh-34rem)]'>
+                    {user?.carts.length < 1 && 
+                        <div className='text-center'>
+                            <p className='text-center text-6xl font-extrabold py-2'>Your cart is empty</p>
+                            <button className='btn bg-oranye hover:bg-hover-oranye border-0 mt-5 text-xl' onClick={()=>{navigate("/shop")}}>Go back to Shop</button>
+                        </div>
+                    }
+                    {user?.carts.length > 0 && 
+                        <>                        
+                            <div className='w-3/4 h-full'>
+                                {user?.carts && user?.carts.map((c) =>{
+                                    return (<>
+                                        <ListCart item_id={c.item_id} amount={c.amount} countGrandTotal={countGrandTotal}/>
+                                    </>)
+                                })}
                             </div>
-                        </div>
-                        <p className='text-2xl text-white mt-2'>Grand Total :</p>
-                        <p className='my-2 text-center text-4xl text-oranye'>Rp {grandTotal?.toLocaleString("id-ID")}</p>                        
-                        <div className='flex justify-end'>
-                            <button className='text-center text-2xl font-bold w-1/3 my-2 py-2 rounded-xl bg-oranye hover:bg-hover-oranye' onClick={buying}>Buy</button>
-                        </div>
-                    </div>
+                            <div className='w-1/4 ms-10 h-full bg-abu-super-gelap rounded-2xl px-7 py-5'>
+                                <div className='flex'>
+                                    <Checkbox sx={{ color: "#ffa31a", '& .MuiSvgIcon-root': { fontSize: 42 }, '&.Mui-checked': { color: "#ffa31a" }}} onChange={(e)=>{setBuildService(e.target.checked); countGrandTotal(e.target.checked)}}/>
+                                    <div className='ms-3'>
+                                        <p className='text-white text-xl'>Build Service</p>
+                                        <p className='text-oranye font-bold text-2xl'>Rp 200.000</p>
+                                    </div>
+                                </div>
+                                <p className='text-2xl text-white mt-2'>Grand Total :</p>
+                                <p className='my-2 text-center text-4xl text-oranye'>Rp {grandTotal?.toLocaleString("id-ID")}</p>                        
+                                <div className='flex justify-end'>
+                                    <button className='text-center text-2xl font-bold w-1/3 my-2 py-2 rounded-xl bg-oranye hover:bg-hover-oranye' onClick={buying}>Buy</button>
+                                </div>
+                            </div>
+                        </>
+                    }                    
                 </div>
             </div>
         </div>

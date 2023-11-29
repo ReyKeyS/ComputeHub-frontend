@@ -19,6 +19,7 @@ import Dashboard from '../pages/Admin/Dashboard'
 import AdminNavbar from '../pages/Admin/AdminNavbar'
 import ChatUser from '../pages/User/ChatUser'
 import Cart from '../pages/User/Cart';
+import TransSuccess from '../pages/User/TransSuccess';
 
 const router = createBrowserRouter(
   [
@@ -49,6 +50,10 @@ const router = createBrowserRouter(
         {
           path: "/shop", 
           element: <Shop/>,
+        },
+        {
+          path: "/success",
+          element: <TransSuccess/>,
         },
         {
           path: "/barang/:id", 
