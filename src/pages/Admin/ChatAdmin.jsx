@@ -2,51 +2,93 @@ import React, { useState, useEffect, useRef} from 'react';
 import { useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import client from "../../services/client"
-
-
-import Header from '../../components/Header';
-import NavbarAdmin from '../../components/NavbarAdmin';
-import HeaderAdmin from '../../components/HeaderAdmin';
+import { io } from 'socket.io-client'
 
 // Material UI
 import { Avatar } from '@mui/material'
-import SearchIcon from '@mui/icons-material/Search';
 import SendIcon from '@mui/icons-material/Send';
 
 function ChatAdmin() {
+    const [socket, setSocket] = useState();
     const ref = useRef(null)
     const navigate = useNavigate()
     const [user, setUser] = useState();
     const [whosChat, setWhosChat] = useState();
     const [search, setSearch] = useState("");
 
+    // Socket
+    useEffect(() => {
+        const socketing = io(import.meta.env.VITE_SOCKET_URL)
+        setSocket(socketing);
+    
+        return () => {
+            socketing.disconnect()
+        }
+    }, [user])
+    useEffect(() => {
+        if(socket == null) return
+        socket.emit("addUsersOn", user?.email)
+    
+        return () => {
+          socket.off("getUsersOn")
+        }
+    }, [socket])
+    useEffect(()=>{
+        if(socket == null) return
+        socket.on('gasRefresh', () => {
+            client.get("/users/detail", {
+                headers: { "Authorization": "Bearer " + localStorage.getItem("user_token")}
+            }).then((res)=>{
+                setUser(res.data)
+
+                const newChat = res.data.chats.find(c => c.email_sender == whosChat?.email_sender)
+                if (newChat != null) setWhosChat(newChat)
+            }).catch((err) => {console.log(err)});      
+        })
+
+        return () => {
+            socket.off('getMessage')
+        }
+    }, [socket])
+
+    // FrontEnd
     useEffect(() => {
         if (!localStorage.getItem("user_token")) navigate("/")
 
         client.get("/users/detail", {
             headers: { "Authorization": "Bearer " + localStorage.getItem("user_token")}
         }).then((res)=>{
-            console.log(res.data);
             setUser(res.data)
         }).catch((err) => {console.log(err)});
     }, [])
+    useEffect(()=>{
+        client.get("/users/detail", {
+            headers: { "Authorization": "Bearer " + localStorage.getItem("user_token")}
+        }).then((res)=>{
+            setUser(res.data)
+        }).catch((err) => {console.log(err)});
+    }, [whosChat])
 
     useEffect(() =>{
         if (ref.current)
           ref.current.scrollTop = ref.current.scrollHeight;
     }, [user])
 
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, reset } = useForm();
     
     const addChat = (data) => {
-        client.post("/users/chat/add", {
-            content: data.content,
-            email_to: whosChat.email_sender
-        },{
-            headers: { "Authorization": "Bearer " + localStorage.getItem("user_token")}
-        }).then((res) => {
-            navigate(0)
-        }).catch((err) => {console.log(err)});
+        if (data.content != ""){
+            client.post("/users/chat/add", {
+                content: data.content,
+                email_to: whosChat.email_sender
+            },{
+                headers: { "Authorization": "Bearer " + localStorage.getItem("user_token")}
+            }).then((res) => {
+                socket.emit("refreshing", {id: whosChat?.email_sender});
+                socket.emit("refreshing", {id: user?.email});
+                reset();
+            }).catch((err) => {console.log(err)});
+        }
     }
 
     return (<div className='w-full h-[calc(100vh-6rem)]'>
