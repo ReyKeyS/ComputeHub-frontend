@@ -19,11 +19,21 @@ function Confirmation() {
     }, [])
 
     const rejectTrans = (id) => {
-
+        client.put(`/users/transaction/confirm/${id}`, {status: 0}, {
+            headers: {"Authorization": "Bearer " + localStorage.getItem("user_token")}
+        }).then((res) => {
+            alert("Transaction rejected")
+            navigate(0)
+        }).catch((err) => {console.log(err)});
     }
 
     const confirmTrans = (id) => {
-        
+        client.put(`/users/transaction/confirm/${id}`, {status: 1}, {
+            headers: {"Authorization": "Bearer " + localStorage.getItem("user_token")}
+        }).then((res) => {
+            alert("Transaction confirmed")
+            navigate(0)
+        }).catch((err) => {console.log(err)});
     }
 
     return (<div className='w-full min-h-[calc(100vh-6rem)]'>
@@ -39,7 +49,6 @@ function Confirmation() {
             }
 
             {listTrans && listTrans.map((t, index) => {
-                console.log(t)
                 return (
                     <div className="rounded-xl w-full my-8 h-auto text-white border border-oranye bg-abu-gelap" key={index}>
                         <div className="flex py-2 text-3xl">
