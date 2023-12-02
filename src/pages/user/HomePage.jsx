@@ -1,5 +1,6 @@
-import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import client from '../../services/client'
 
 import Header from '../../components/Header'
 import Footer from '../../components/Footer';
@@ -14,6 +15,19 @@ import { yellow } from '@mui/material/colors';
 import AddIcon from '@mui/icons-material/Add';
 
 function HomePage() {
+  const navigate = useNavigate();
+  const [listItem, setListitem] = useState([])
+
+  useEffect(() => {
+    client.get("/items/itempromo", {
+      headers: {"Authorization": "Bearer "+localStorage.getItem("user_token")}
+    }).then((res)=>{
+      setListitem(res.data)
+    }).catch((err) => {
+      console.log(err.response.data.message);
+    })
+  }, [])
+
   return (
     <>
       <Header />
@@ -80,27 +94,33 @@ function HomePage() {
       </div>
       <div className='flex mx-20'>
         {/* BUAT KOMPONEN */}
-        <div className='bg-abu-gelap w-60 h-80 rounded-xl flex flex-col border-2 '>
-          <div className='h-2/3 flex flex-col-reverse bg-white bg-[url("/img/graphic_card.png")]'>
-            <div className='grid grid-cols-3 gap-1'>
-              <div className='bg-oranye font-bold m-1 text-abu-super-gelap text-center rounded-lg'>PROMO!</div>
-              <div className='col-start-3 font-black'>5<StarIcon sx={{ color: yellow[500] }} /></div>
+        {listItem?.map((item, index) => (
+        <div className="" key={index}>
+          <div className='bg-abu-gelap w-60 h-80 rounded-xl flex flex-col border-2 '>
+            <div className='h-2/3 flex flex-col-reverse bg-white bg-[url("/img/graphic_card.png")]'>
+              <div className='grid grid-cols-3 gap-1'>
+                <div className='bg-oranye font-bold m-1 text-abu-super-gelap text-center rounded-lg'>PROMO!</div>
+                <div className='col-start-3 font-white'>5<StarIcon sx={{ color: yellow[500] }} /></div>
+              </div>
             </div>
-          </div>
-          <div className='h-1/3 grid grid-cols-3'>
-            <div className='col-span-2 grid grid-rows-4'>
-              <div className='row-span-2 text-white font-bold text-xl'>VGA ASUS ROG</div>
-              <div className='text-oranye font-bold text-lg'>Rp 9.000.000</div>
-              <div className='text-abu-abu line-through text-sm'>Rp 12.000.000</div>
-            </div>
-            <div className='grid place-content-center'>
-              <div className='bg-oranye w-10 h-10 grid place-content-center rounded-lg'>
-                <AddIcon color='text-oranye' />
+            <div className='h-1/3 grid grid-cols-3'>
+              <div className='col-span-2 grid grid-rows-4'>
+                <div className='row-span-2 text-white font-bold text-xl'>{item.name}</div>
+                <div className='text-oranye font-bold text-lg'>Rp 9.000.000</div>
+                <div className='text-abu-abu line-through text-sm'>Rp 12.000.000</div>
+              </div>
+              <div className='grid place-content-center'>
+                <div className='bg-oranye w-10 h-10 grid place-content-center rounded-lg'>
+                  <AddIcon color='text-oranye' />
 
+                </div>
               </div>
             </div>
           </div>
+
         </div>
+        ))}
+
       </div>
       <Footer/>
       {/* <NavLink digunakan ketika ingin styling Navbar (active) /> */}
