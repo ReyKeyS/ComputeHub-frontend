@@ -136,11 +136,11 @@ function MasterItem() {
     const [listItems, setListItems] = useState([])
     const [newPicture, setNewPicture] = useState()
     const [selectedCate, setSelectedCate] = useState()
-    const [nameitems, setNameitems]=useState()
-    const [priceitems, setPriceitems]=useState()
-    const [stockitems, setStockitems]=useState()
-    const [branditems, setBranditems]=useState()
-    const [categoryitems, setCategoryitems]=useState()
+    const [nameitems, setNameitems] = useState()
+    const [priceitems, setPriceitems] = useState()
+    const [stockitems, setStockitems] = useState()
+    const [branditems, setBranditems] = useState()
+    const [categoryitems, setCategoryitems] = useState()
 
     const [open, setOpen] = useState(false)
 
@@ -208,7 +208,9 @@ function MasterItem() {
             console.log(err);
         });
     }
-
+    const updateItem = (data) => {
+        console.log(data);
+    }
     const getItem = (id) => {
         client.get(`items/${id}`).then((res) => {
             console.log(res.data);
@@ -219,7 +221,7 @@ function MasterItem() {
             setCategoryitems(res.data.category)
             // alert(res.data.message)
             // setOpen(true)
-            document.getElementById('my_modal_2')
+            document.getElementById('my_modal_2').showModal()
             // navigate(0)
         }).catch((err) => {
             console.log(err);
@@ -362,18 +364,18 @@ function MasterItem() {
                                             </ThemeProvider>
                                         </Modal> */}
                                         {/* Open the modal using document.getElementById('ID').showModal() method */}
-                                        <button className="w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye me-5 hover:scale-110 hover:font-bold transition duration-300" onClick={()=>getItem(row._id)}>open modal</button>
+                                        <button className="w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye me-5 hover:scale-110 hover:font-bold transition duration-300" onClick={() => getItem(row._id)}>open modal</button>
                                         <dialog id="my_modal_2" className="modal">
                                             <div className="modal-box bg-oranye">
                                                 <h3 className="font-bold text-lg text-abu-super-gelap">Edit</h3>
                                                 <div className='flex flex-col space-y-2'>
-                                                    <input type="text" placeholder='name' className='border border-abu-abu rounded-lg' />
-                                                    <input type="text" placeholder='price' className='border border-abu-abu rounded-lg' />
-                                                    <input type="text" placeholder='stock' className='border border-abu-abu rounded-lg' />
-                                                    <input type="text" placeholder='brand' className='border border-abu-abu rounded-lg' />
-                                                    <input type="text" placeholder='category' className='border border-abu-abu rounded-lg' />
+                                                    <input type="text" placeholder='name' className='border border-abu-abu rounded-lg' defaultValue={nameitems} />
+                                                    <input type="text" placeholder='price' className='border border-abu-abu rounded-lg' defaultValue={priceitems} />
+                                                    <input type="text" placeholder='stock' className='border border-abu-abu rounded-lg' defaultValue={stockitems} />
+                                                    <input type="text" placeholder='brand' className='border border-abu-abu rounded-lg' defaultValue={branditems} />
+                                                    <input type="text" placeholder='category' className='border border-abu-abu rounded-lg' defaultValue={categoryitems} />
                                                     <div className='flex'>
-                                                        <button className='bg-abu-gelap text-putih px-5 py-2 ml-auto rounded-lg'>Ok</button>
+                                                        <button className='bg-abu-gelap text-putih px-5 py-2 ml-auto rounded-lg' >Ok</button>
                                                     </div>
                                                 </div>
                                             </div>
