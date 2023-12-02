@@ -1,9 +1,9 @@
 import {configureStore} from "@reduxjs/toolkit"
-// import routeReducer from "./routeSlice"
+import routeReducer from "./routeSlice"
 
 const store = configureStore({
     reducer:{
-        // route: routeReducer,
+        route: routeReducer,
     },
 })
 export default store

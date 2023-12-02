@@ -203,6 +203,18 @@ function MasterItem() {
         });
     }
 
+    const getItem=(id) => {
+        client.get(`items/${id}`).then((res) => {
+            alert(res.data.message)
+            setOpen(true)
+            navigate(0)
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
+    const halo=() => {
+        setOpen(true)
+    }
     return (<>
         <div className="judul text-white text-5xl font-bold ms-10 my-7">
             <h1>Master Item</h1>
@@ -314,7 +326,7 @@ function MasterItem() {
                                     <StyledTableCell align="center">{row.brand}</StyledTableCell>
                                     <StyledTableCell align="center">{row.category}</StyledTableCell>
                                     <StyledTableCell align="center" width={"20%"}>
-                                        <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye me-5 hover:scale-110 hover:font-bold transition duration-300' onClick={() => setOpen(true)}>Edit</button>
+                                        <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye me-5 hover:scale-110 hover:font-bold transition duration-300' onClick={()=>getItem(row._id)}>Edit</button>
                                         <Modal
                                             open={open}
                                             onClose={() => setOpen(false)}
