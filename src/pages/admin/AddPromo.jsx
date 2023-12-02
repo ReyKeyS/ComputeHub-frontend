@@ -146,11 +146,10 @@ function AddPromo() {
         });
     }
 
-    return (<>
+    return (<div className='w-full h-[calc(100vh-6rem)]'>
         <div className="judul text-white text-5xl font-bold ms-10 my-7">
             <h1>Add New Promo</h1>
         </div>
-        <br />
         <form onSubmit={handleSubmit(addPromo)}>
             <div className="grid grid-cols-4">
                 <div className="text-white text-2xl place-items-center  mr-12 text-right">Item :</div>
@@ -225,7 +224,7 @@ function AddPromo() {
           </TableContainer>
         </div>
       </div>
-    </>)
+    </div>)
 }
 
 export default AddPromo

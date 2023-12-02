@@ -215,7 +215,7 @@ function MasterItem() {
     const halo=() => {
         setOpen(true)
     }
-    return (<>
+    return (<div className='w-full h-[calc(100vh-6rem)]'>
         <div className="judul text-white text-5xl font-bold ms-10 my-7">
             <h1>Master Item</h1>
         </div>
@@ -361,7 +361,7 @@ function MasterItem() {
                 </TableContainer>
             </div>
         </div>
-    </>)
+    </div>)
 }
 
 export default MasterItem

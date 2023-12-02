@@ -5,7 +5,7 @@ import Header from '../../components/Header';
 import NavbarAdmin from '../../components/NavbarAdmin';
 import HeaderAdmin from '../../components/HeaderAdmin';
 
-function Dashboard() {
+function AdminNavbar() {
   const navigate = useNavigate()
 
   useEffect(()=>{
@@ -37,4 +37,4 @@ function Dashboard() {
   )
 }
 
-export default Dashboard
+export default AdminNavbar
