@@ -60,7 +60,7 @@ function LoginPage() {
         </Link> */}
       <div className='w-screen h-screen flex flex-col justify-center bg-gradient-to-r from-white to-black'>
         <div className='w-1/2 m-auto'>
-          <div className='bg-abu-super-gelap text-white rounded-lg text-6xl p-5 w-1/2 m-auto flex justify-center'><ComputerIcon fontSize=''/><div className='mx-2'>Compute</div><a className='bg-oranye rounded-lg font-bold text-abu-super-gelap pb-1'>HUB</a></div>
+          <div className='bg-abu-super-gelap text-white rounded-lg text-6xl p-5 w-fit m-auto flex justify-center'><ComputerIcon fontSize=''/><div className='mx-2'>Compute</div><a className='bg-oranye rounded-lg font-bold text-abu-super-gelap pb-1'>HUB</a></div>
           <div className='bg-abu-super-gelap py-5 px-16 mt-10 w-full m-auto flex flex-col border rounded-3xl place-content-center'>
             {/* <h1 className='text-center font-bold text-6xl bg-gradient-to-r from-blue-500 to-red-700 bg-clip-text text-transparent'>LOGIN</h1> */}
             <form onSubmit={handleSubmit(login)}>
