@@ -305,7 +305,7 @@ function MasterItem() {
         </div>
 
         <div className="flex justify-center">
-            <div className='w-5/6'>
+            <div className='w-full mx-10'>
                 <TableContainer className='border-2 border-oranye rounded-2xl mb-36'>
                     <Table sx={{ minWidth: 700 }} aria-label="customized table">
                         <TableHead className='border-b-2 border-oranye'>
@@ -324,7 +324,7 @@ function MasterItem() {
                                 <StyledTableRow key={index}>
                                     <StyledTableCell component="th" scope="row" align='center'>{index + 1}</StyledTableCell>
                                     <StyledTableCell align="center">{row.name}</StyledTableCell>
-                                    <StyledTableCell align="center">Rp {row.price.toLocaleString("id-ID")}</StyledTableCell>
+                                    <StyledTableCell align="center" width={"12%"}>Rp {row.price.toLocaleString("id-ID")}</StyledTableCell>
                                     <StyledTableCell align="center">{row.stock}</StyledTableCell>
                                     <StyledTableCell align="center">{row.brand}</StyledTableCell>
                                     <StyledTableCell align="center">{row.category}</StyledTableCell>

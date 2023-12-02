@@ -71,7 +71,7 @@ function MasterUser() {
       </div>
       
       <div className="flex justify-center">
-        <div className='w-5/6'>
+        <div className='w-full mx-10'>
           <TableContainer className='border-2 border-oranye rounded-2xl mb-36'>
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
               <TableHead className='border-b-2 border-oranye'>
