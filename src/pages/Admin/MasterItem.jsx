@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, forwardRef } from 'react'
 import Select from 'react-select'
 import { useForm } from "react-hook-form";
 import Joi from "joi"
@@ -110,7 +110,7 @@ const styleBox = {
     transform: 'translate(-50%, -50%)',
     width: 1200,
     bgcolor: 'primary.oranye',
-    color:"primary.abu_super_gelap",
+    color: "primary.abu_super_gelap",
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
@@ -136,6 +136,12 @@ function MasterItem() {
     const [listItems, setListItems] = useState([])
     const [newPicture, setNewPicture] = useState()
     const [selectedCate, setSelectedCate] = useState()
+    const [nameitems, setNameitems]=useState()
+    const [priceitems, setPriceitems]=useState()
+    const [stockitems, setStockitems]=useState()
+    const [branditems, setBranditems]=useState()
+    const [categoryitems, setCategoryitems]=useState()
+
     const [open, setOpen] = useState(false)
 
     useEffect(() => {
@@ -169,7 +175,7 @@ function MasterItem() {
     const { register, handleSubmit, reset, formState: { errors } } = useForm({ resolver: joiResolver(schema) })
 
     const addItem = (data) => {
-        if (newPicture){
+        if (newPicture) {
             const formData = new FormData()
             formData.append("name", data.name)
             formData.append("description", data.description)
@@ -187,7 +193,7 @@ function MasterItem() {
             }).catch((err) => {
                 console.log(err);
             })
-        }else{
+        } else {
             alert("Please input the item's picture!")
         }
     }
@@ -203,18 +209,23 @@ function MasterItem() {
         });
     }
 
-    const getItem=(id) => {
+    const getItem = (id) => {
         client.get(`items/${id}`).then((res) => {
-            alert(res.data.message)
-            setOpen(true)
-            navigate(0)
+            console.log(res.data);
+            setNameitems(res.data.name)
+            setPriceitems(res.data.price)
+            setStockitems(res.data.stock)
+            setBranditems(res.data.brand)
+            setCategoryitems(res.data.category)
+            // alert(res.data.message)
+            // setOpen(true)
+            document.getElementById('my_modal_2')
+            // navigate(0)
         }).catch((err) => {
             console.log(err);
         })
     }
-    const halo=() => {
-        setOpen(true)
-    }
+
     return (<div className='w-full h-[calc(100vh-6rem)]'>
         <div className="judul text-white text-5xl font-bold ms-10 my-7">
             <h1>Master Item</h1>
@@ -326,8 +337,8 @@ function MasterItem() {
                                     <StyledTableCell align="center">{row.brand}</StyledTableCell>
                                     <StyledTableCell align="center">{row.category}</StyledTableCell>
                                     <StyledTableCell align="center" width={"20%"}>
-                                        <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye me-5 hover:scale-110 hover:font-bold transition duration-300' onClick={()=>getItem(row._id)}>Edit</button>
-                                        <Modal
+                                        {/* <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye me-5 hover:scale-110 hover:font-bold transition duration-300' onClick={()=>getItem(row._id)}>Edit</button> */}
+                                        {/* <Modal
                                             open={open}
                                             onClose={() => setOpen(false)}
                                             aria-labelledby="modal-modal-title"
@@ -337,8 +348,6 @@ function MasterItem() {
                                                 <Box sx={styleBox}>
                                                     <Typography id="modal-modal-title" variant="h4" component="h2">Edit</Typography>
                                                     <Typography id="modal-modal-description" sx={{ mt: 2 }} className='flex flex-col space-y-2'>
-                                                        {/* Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                                                         */}
                                                         <input type="text" placeholder='name' className='border border-abu-abu rounded-lg'/>
                                                         <input type="text" placeholder='price' className='border border-abu-abu rounded-lg'/>
                                                         <input type="text" placeholder='stock' className='border border-abu-abu rounded-lg'/>
@@ -351,7 +360,27 @@ function MasterItem() {
                                                 </Box>
 
                                             </ThemeProvider>
-                                        </Modal>
+                                        </Modal> */}
+                                        {/* Open the modal using document.getElementById('ID').showModal() method */}
+                                        <button className="w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye me-5 hover:scale-110 hover:font-bold transition duration-300" onClick={()=>getItem(row._id)}>open modal</button>
+                                        <dialog id="my_modal_2" className="modal">
+                                            <div className="modal-box bg-oranye">
+                                                <h3 className="font-bold text-lg text-abu-super-gelap">Edit</h3>
+                                                <div className='flex flex-col space-y-2'>
+                                                    <input type="text" placeholder='name' className='border border-abu-abu rounded-lg' />
+                                                    <input type="text" placeholder='price' className='border border-abu-abu rounded-lg' />
+                                                    <input type="text" placeholder='stock' className='border border-abu-abu rounded-lg' />
+                                                    <input type="text" placeholder='brand' className='border border-abu-abu rounded-lg' />
+                                                    <input type="text" placeholder='category' className='border border-abu-abu rounded-lg' />
+                                                    <div className='flex'>
+                                                        <button className='bg-abu-gelap text-putih px-5 py-2 ml-auto rounded-lg'>Ok</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <form method="dialog" className="modal-backdrop">
+                                                <button>close</button>
+                                            </form>
+                                        </dialog>
                                         <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye hover:scale-110 hover:font-bold transition duration-300' onClick={() => { deleteItem(row._id) }}>Delete</button>
                                     </StyledTableCell>
                                 </StyledTableRow>
