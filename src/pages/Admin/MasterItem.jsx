@@ -21,23 +21,8 @@ import { ThemeProvider, Typography } from '@mui/material';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import { createTheme } from '@mui/material/styles';
+import dashboardTheme from '../../../dashboardTheme';
 
-// Customized Button Upload
-const theme = createTheme({
-    palette: {
-        primary: {
-            main: '#ffa31a',
-            oranye:"#ffa31a",
-            abu_abu:"#808080",
-            abu_gelap:"#292929",
-            abu_super_gelap:"#1b1b1b",
-            putih:"#ffffff"
-        },
-        secondary: {
-            main: '#f44336',
-        },
-    },
-});
 
 const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
@@ -336,7 +321,7 @@ function MasterItem() {
                                             aria-labelledby="modal-modal-title"
                                             aria-describedby="modal-modal-description"
                                         >
-                                            <ThemeProvider theme={theme}>
+                                            <ThemeProvider theme={dashboardTheme}>
                                                 <Box sx={styleBox}>
                                                     <Typography id="modal-modal-title" variant="h4" component="h2">Edit</Typography>
                                                     <Typography id="modal-modal-description" sx={{ mt: 2 }} className='flex flex-col space-y-2'>
