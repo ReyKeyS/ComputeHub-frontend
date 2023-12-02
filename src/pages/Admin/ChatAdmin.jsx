@@ -109,10 +109,10 @@ function ChatAdmin() {
                                 return new Date(b.latest_time) - new Date(a.latest_time)
                             else return 0
                         }).filter((f) => f.name_sender.toLowerCase().includes(search.toLowerCase()))
-                        .map((c) => {
-                            return (<>
-                                <div className={"w-full h-28 grid place-items-center justify-items-center border-oranye hover:cursor-pointer"+(c==whosChat?" border-x-4 bg-abu-gelap":" hover:border-x-4 hover:bg-abu-gelap")} onClick={()=>{setWhosChat(c)}}>
-                                    <div className="h-28 w-full grid place-items-center justify-items-center">
+                        .map((c, index) => {
+                            return (
+                                <div className={"w-full h-28 grid place-items-center justify-items-center border-oranye hover:cursor-pointer"+(c?.email_sender==whosChat?.email_sender?" border-x-4 bg-abu-gelap":" hover:border-x-4 hover:bg-abu-gelap")} onClick={()=>{setWhosChat(c)}} key={index} >
+                                    <div className="relative h-28 w-full grid place-items-center justify-items-center">
                                         <div className='flex'>
                                             <img src={import.meta.env.VITE_BACKEND_GET_PICTURE_URL+c.profpict_sender} className="w-14 h-14 rounded-full"></img>
                                             <div className="w-[14rem] text-white ms-10">
@@ -120,9 +120,12 @@ function ChatAdmin() {
                                                 <p className='text-lg truncate'>{c.latest_chat}</p>
                                             </div>
                                         </div>
+                                        <div className='text-white absolute bottom-5 right-5'>
+                                            {new Date(c.latest_time).toLocaleTimeString("id-ID").substring(0, 5)}
+                                        </div>
                                     </div>
                                 </div>
-                            </>)
+                            )
                         })}
 
                     </div>
@@ -145,15 +148,15 @@ function ChatAdmin() {
                         </div>
                         <div ref={ref} className='w-full h-[calc(100vh-24rem)] bg-neutral-200 p-2 overflow-y-auto no-scrollbar'>
                             {whosChat?.chatting?.map((c, index) => {
-                            return (<>
-                                <div className={'chat ' + (user?.email == c.sender?" chat-end" : " chat-start")}>
+                            return (
+                                <div className={'chat ' + (user?.email == c.sender?" chat-end" : " chat-start")} key={index} >
                                     {/* <div className='chat-header'>{c.sender}</div> */}
                                     <div className={'chat-bubble bg-abu-super-gelap break-words text-2xl'+(user?.email == c.sender?"" : " bg-oranye text-black")}>
                                         <div className='px-2 py-1'>{c.content}</div>
                                     </div>
                                     <div className='chat-footer text-lg font-bold'>{new Date(c.time).toLocaleTimeString("id-ID").substring(0, 5)}</div>
                                 </div>
-                            </>)
+                            )
                         })}
                         </div>
                         <form onSubmit={handleSubmit(addChat)}>
