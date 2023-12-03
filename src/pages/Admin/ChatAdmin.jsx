@@ -92,17 +92,18 @@ function ChatAdmin() {
     }
 
     return (<div className='w-full h-[calc(100vh-6rem)]'>
-        <div className="judul text-white text-4xl ms-12 py-5">
+        <div className="judul text-white text-5xl font-bold ms-10 my-7">
             <h1>Chat</h1>
         </div>
+
         <div className="grid grid-cols-3 gap-4 ms-4">
-            <div className="h-[calc(100vh-12rem)] rounded col-span-1 border border-oranye">
+            <div className="h-[calc(100vh-13.3rem)] rounded col-span-1 border border-oranye">
                 <div className="h-[6rem] w-full flex items-center justify-center text-oranye border-b border-oranye">
                     <input className= "w-5/6 px-4 py-2 text-white text-xl bg-abu-gelap border border-oranye rounded-xl" placeholder="Search.." onChange={(e)=>{setSearch(e.target.value)}}/>
                 </div>
 
-                <div className="w-full h-[calc(100vh-18.1rem)]">
-                    <div className="w-full h-[calc(100vh-18.1rem)] bg-abu-super-gelap text-white file:overflow-y-auto no-scrollbar">
+                <div className="w-full h-[calc(100vh-19.5rem)]">
+                    <div className="w-full h-[calc(100vh-19.5rem)] bg-abu-super-gelap text-white file:overflow-y-auto no-scrollbar">
                         
                         {user?.chats?.sort((a, b)=>{
                             if (a.latest_time != null && b.latest_time != null) 
@@ -132,7 +133,7 @@ function ChatAdmin() {
                 </div>
             </div>
 
-            <div className="h-[calc(100vh-12rem)] rounded flex flex-col col-span-2 border border-oranye me-4">
+            <div className="h-[calc(100vh-13.3rem)] rounded flex flex-col col-span-2 border border-oranye me-4">
                 {!whosChat && 
                     <div className='w-full h-full flex items-center justify-center'>
                         <div className='w-1/2 text-center text-white text-6xl'>Select the Customer to Reply the Chat</div>
