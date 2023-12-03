@@ -19,12 +19,10 @@ function HomePage() {
   const [listItem, setListitem] = useState([])
 
   useEffect(() => {
-    client.get("/items/itempromo", {
-      headers: {"Authorization": "Bearer "+localStorage.getItem("user_token")}
-    }).then((res)=>{
+    client.get("/items/").then((res)=>{
       setListitem(res.data)
     }).catch((err) => {
-      console.log(err.response.data.message);
+      console.log(err);
     })
   }, [])
 
