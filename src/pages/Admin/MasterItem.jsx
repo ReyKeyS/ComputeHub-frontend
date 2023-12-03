@@ -211,25 +211,6 @@ function MasterItem() {
         });
     }
     const updateItem = (id) => {
-        console.log(id);
-        console.log(nameitems);
-        console.log(priceitems);
-        console.log(stockitems);
-        console.log(branditems);
-        console.log(categoryitems);
-        console.log(descitems);
-
-        const formData = new FormData()
-        formData.append("name", nameitems)
-        formData.append("description", descitems)
-        formData.append("price", priceitems)
-        formData.append("stock", stockitems)
-        formData.append("category", categoryitems)
-        formData.append("brand", branditems)
-
-        console.log("formData", formData);
-
-
         let isi = {
             name: nameitems,
             description: descitems,
