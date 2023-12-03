@@ -136,12 +136,12 @@ function MasterItem() {
     const [listItems, setListItems] = useState([])
     const [newPicture, setNewPicture] = useState()
     const [selectedCate, setSelectedCate] = useState()
-    const [nameitems, setNameitems] = useState()
-    const [priceitems, setPriceitems] = useState()
-    const [stockitems, setStockitems] = useState()
-    const [branditems, setBranditems] = useState()
-    const [categoryitems, setCategoryitems] = useState()
-
+    const [nameitems, setNameitems] = useState('')
+    const [priceitems, setPriceitems] = useState('')
+    const [stockitems, setStockitems] = useState('')
+    const [branditems, setBranditems] = useState('')
+    const [categoryitems, setCategoryitems] = useState('')
+    const [descitems, setDescitems] = useState('')
     const [open, setOpen] = useState(false)
 
     useEffect(() => {
@@ -184,6 +184,8 @@ function MasterItem() {
             formData.append("category", selectedCate)
             formData.append("brand", data.brand)
             formData.append("picture", newPicture[0])
+
+            console.log("formData", formData);
             const addingItem = client.post('/items/add', formData, {
                 headers: { "Authorization": "Bearer " + localStorage.getItem("user_token") },
                 body: "form/data"
@@ -208,8 +210,45 @@ function MasterItem() {
             console.log(err);
         });
     }
-    const updateItem = (data) => {
-        console.log(data);
+    const updateItem = (id) => {
+        console.log(id);
+        console.log(nameitems);
+        console.log(priceitems);
+        console.log(stockitems);
+        console.log(branditems);
+        console.log(categoryitems);
+        console.log(descitems);
+
+        const formData = new FormData()
+        formData.append("name", nameitems)
+        formData.append("description", descitems)
+        formData.append("price", priceitems)
+        formData.append("stock", stockitems)
+        formData.append("category", categoryitems)
+        formData.append("brand", branditems)
+
+        console.log("formData", formData);
+
+
+        let isi = {
+            name: nameitems,
+            description: descitems,
+            price: priceitems,
+            stock: stockitems,
+            category: categoryitems,
+            brand: branditems
+        }
+        client.put(`items/update/${id}`, isi, {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("user_token"),
+            },
+
+        }).then((res) => {
+            alert(res.data.message);
+            navigate(0)
+        }).catch((err) => {
+            console.log(err);
+        })
     }
     const getItem = (id) => {
         client.get(`items/${id}`).then((res) => {
@@ -219,6 +258,7 @@ function MasterItem() {
             setStockitems(res.data.stock)
             setBranditems(res.data.brand)
             setCategoryitems(res.data.category)
+            setDescitems(res.data.description)
             // alert(res.data.message)
             // setOpen(true)
             document.getElementById('my_modal_2').showModal()
@@ -339,48 +379,46 @@ function MasterItem() {
                                     <StyledTableCell align="center">{row.brand}</StyledTableCell>
                                     <StyledTableCell align="center">{row.category}</StyledTableCell>
                                     <StyledTableCell align="center" width={"20%"}>
-                                        {/* <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye me-5 hover:scale-110 hover:font-bold transition duration-300' onClick={()=>getItem(row._id)}>Edit</button> */}
-                                        {/* <Modal
-                                            open={open}
-                                            onClose={() => setOpen(false)}
-                                            aria-labelledby="modal-modal-title"
-                                            aria-describedby="modal-modal-description"
-                                        >
-                                            <ThemeProvider theme={dashboardTheme}>
-                                                <Box sx={styleBox}>
-                                                    <Typography id="modal-modal-title" variant="h4" component="h2">Edit</Typography>
-                                                    <Typography id="modal-modal-description" sx={{ mt: 2 }} className='flex flex-col space-y-2'>
-                                                        <input type="text" placeholder='name' className='border border-abu-abu rounded-lg'/>
-                                                        <input type="text" placeholder='price' className='border border-abu-abu rounded-lg'/>
-                                                        <input type="text" placeholder='stock' className='border border-abu-abu rounded-lg'/>
-                                                        <input type="text" placeholder='brand' className='border border-abu-abu rounded-lg'/>
-                                                        <input type="text" placeholder='category' className='border border-abu-abu rounded-lg'/>
-                                                        <div className='flex'>
-                                                            <button className='bg-abu-gelap text-putih px-5 py-2 ml-auto rounded-lg'>Ok</button>
-                                                        </div>
-                                                    </Typography>
-                                                </Box>
-
-                                            </ThemeProvider>
-                                        </Modal> */}
                                         {/* Open the modal using document.getElementById('ID').showModal() method */}
-                                        <button className="w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye me-5 hover:scale-110 hover:font-bold transition duration-300" onClick={() => getItem(row._id)}>open modal</button>
+                                        <button className="w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye me-5 hover:scale-110 hover:font-bold transition duration-300" onClick={() => getItem(row._id)}>Edit</button>
                                         <dialog id="my_modal_2" className="modal">
                                             <div className="modal-box bg-oranye">
-                                                <h3 className="font-bold text-lg text-abu-super-gelap">Edit</h3>
-                                                <div className='flex flex-col space-y-2'>
-                                                    <input type="text" placeholder='name' className='border border-abu-abu rounded-lg' defaultValue={nameitems} />
-                                                    <input type="text" placeholder='price' className='border border-abu-abu rounded-lg' defaultValue={priceitems} />
-                                                    <input type="text" placeholder='stock' className='border border-abu-abu rounded-lg' defaultValue={stockitems} />
-                                                    <input type="text" placeholder='brand' className='border border-abu-abu rounded-lg' defaultValue={branditems} />
-                                                    <input type="text" placeholder='category' className='border border-abu-abu rounded-lg' defaultValue={categoryitems} />
-                                                    <div className='flex'>
-                                                        <button className='bg-abu-gelap text-putih px-5 py-2 ml-auto rounded-lg' >Ok</button>
-                                                    </div>
+                                                <h1 className="font-bold text-3xl text-abu-super-gelap">Edit</h1>
+                                                <div className='flex flex-col space-y-2 text-abu-super-gelap'>
+                                                    <span className='text-start'>Name</span>
+                                                    <input type="text" placeholder='name' className='border border-abu-abu rounded-lg' value={nameitems} onChange={(e) => setNameitems(e.target.value)} />
+                                                    <span className='text-start'>Price</span>
+                                                    <input type="number" placeholder='price' className='border border-abu-abu rounded-lg' value={priceitems} onChange={(e) => setPriceitems(e.target.value)} />
+                                                    <span className='text-start'>Stock</span>
+                                                    <input type="number" placeholder='stock' className='border border-abu-abu rounded-lg' value={stockitems} onChange={(e) => setStockitems(e.target.value)} />
+                                                    <span className='text-start'>Brand</span>
+                                                    <input type="text" placeholder='brand' className='border border-abu-abu rounded-lg ' value={branditems} onChange={(e) => setBranditems((e.target.value).toUpperCase())} />
+                                                    <span className='text-start'>Category</span>
+                                                    <select className='rounded-lg' value={categoryitems} onChange={(e) => setCategoryitems(e.target.value)} option>
+                                                        <option value="Motherboard">Motherboard</option>
+                                                        <option value="Processor" label='Processor'>Processor</option>
+                                                        <option value="VGA">VGA</option>
+                                                        <option value="RAM">RAM</option>
+                                                        <option value="PSU">PSU</option>
+                                                        <option value="HDD">HDD</option>
+                                                        <option value="SSD">SSD</option>
+                                                        <option value="Casing">Casing</option>
+                                                        <option value="Cooling">Cooling</option>
+                                                        <option value="Monitor">Monitor</option>
+                                                        <option value="Keyboard">Keyboard</option>
+                                                        <option value="Mouse">Mouse</option>
+                                                    </select>
+                                                    <span className='text-start'>Description</span>
+                                                    <textarea name="" id="" cols="30" rows="10" value={descitems} onChange={(e) => setDescitems(e.target.value)} />
+                                                    <form method='dialog'>
+                                                        <div className='flex'>
+                                                            <button className='bg-abu-gelap text-putih px-5 py-2 ml-auto rounded-lg' onClick={() => updateItem(row._id)}>Ok</button>
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                             <form method="dialog" className="modal-backdrop">
-                                                <button>close</button>
+                                                <button className='text-white font-extrabold'>close</button>
                                             </form>
                                         </dialog>
                                         <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye hover:scale-110 hover:font-bold transition duration-300' onClick={() => { deleteItem(row._id) }}>Delete</button>
