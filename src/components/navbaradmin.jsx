@@ -33,7 +33,7 @@ function NavbarAdmin() {
                     </NavLink>
 
                     <NavLink to="/admin/masteruser" className={(state) => `h-24 flex items-center justify-center justify-items-center hover:border-x-4 hover:bg-abu-gelap border-oranye ${state.isActive ? "bg-abu-gelap border-x-4 border-oranye" : ""}`}>
-                        <HomeIcon fontSize='large' className="me-3" />
+                        <AccountCircleIcon fontSize='large' className="me-3" />
                         <p className='text-3xl'>Customers</p>
                     </NavLink>
 
