@@ -20,6 +20,7 @@ import AdminNavbar from '../pages/Admin/AdminNavbar'
 import ChatUser from '../pages/User/ChatUser'
 import Cart from '../pages/User/Cart';
 import TransSuccess from '../pages/User/TransSuccess';
+import Profile from '../pages/user/Profile';
 
 const router = createBrowserRouter(
   [
@@ -98,6 +99,10 @@ const router = createBrowserRouter(
             },
           ],
         },
+        {
+          path:"/profile",
+          element:<Profile/>
+        }
       ],
     },
   ]

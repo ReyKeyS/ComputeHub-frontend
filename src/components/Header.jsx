@@ -35,6 +35,7 @@ function Header(){
     };
     const handleClose = () => {
         setAnchorEl(null);
+        navigate("/profile")
     };
 
     const logout = () => {
