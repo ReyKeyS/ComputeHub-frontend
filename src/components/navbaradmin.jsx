@@ -62,7 +62,7 @@ function NavbarAdmin() {
                         <p className='text-3xl'>Chat</p>
                     </NavLink>
 
-                    <NavLink to="/admin/logout" className={(state) => `h-24 flex items-center justify-center justify-items-center hover:border-x-4 hover:bg-abu-gelap border-oranye ${state.isActive ? "bg-abu-gelap border-x-4 border-oranye" : ""}`}>
+                    <NavLink to="/login" onClick={()=>{localStorage.removeItem('user_token')}} className={(state) => `h-24 flex items-center justify-center justify-items-center hover:border-x-4 hover:bg-abu-gelap border-oranye ${state.isActive ? "bg-abu-gelap border-x-4 border-oranye" : ""}`}>
                         <LogoutIcon fontSize='large' className="me-3" />
                         <p className='text-3xl'>Logout</p>
                     </NavLink>
