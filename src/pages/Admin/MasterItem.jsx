@@ -367,15 +367,15 @@ function MasterItem() {
                                                 <h1 className="font-bold text-3xl text-abu-super-gelap">Edit</h1>
                                                 <div className='flex flex-col space-y-2 text-abu-super-gelap'>
                                                     <span className='text-start'>Name</span>
-                                                    <input type="text" placeholder='name' className='border border-abu-abu rounded-lg' value={nameitems} onChange={(e) => setNameitems(e.target.value)} />
+                                                    <input type="text" placeholder='name' className='px-4 py-2 border border-abu-abu rounded-lg' value={nameitems} onChange={(e) => setNameitems(e.target.value)} />
                                                     <span className='text-start'>Price</span>
-                                                    <input type="number" placeholder='price' className='border border-abu-abu rounded-lg' value={priceitems} onChange={(e) => setPriceitems(e.target.value)} />
+                                                    <input type="number" placeholder='price' className='px-4 py-2 border border-abu-abu rounded-lg' value={priceitems} onChange={(e) => setPriceitems(e.target.value)} />
                                                     <span className='text-start'>Stock</span>
-                                                    <input type="number" placeholder='stock' className='border border-abu-abu rounded-lg' value={stockitems} onChange={(e) => setStockitems(e.target.value)} />
+                                                    <input type="number" placeholder='stock' className='px-4 py-2 border border-abu-abu rounded-lg' value={stockitems} onChange={(e) => setStockitems(e.target.value)} />
                                                     <span className='text-start'>Brand</span>
-                                                    <input type="text" placeholder='brand' className='border border-abu-abu rounded-lg ' value={branditems} onChange={(e) => setBranditems((e.target.value).toUpperCase())} />
+                                                    <input type="text" placeholder='brand' className='px-4 py-2 border border-abu-abu rounded-lg ' value={branditems} onChange={(e) => setBranditems((e.target.value).toUpperCase())} />
                                                     <span className='text-start'>Category</span>
-                                                    <select className='rounded-lg' value={categoryitems} onChange={(e) => setCategoryitems(e.target.value)} option>
+                                                    <select className='rounded-lg px-4 py-2 ' value={categoryitems} onChange={(e) => setCategoryitems(e.target.value)} option>
                                                         <option value="Motherboard">Motherboard</option>
                                                         <option value="Processor" label='Processor'>Processor</option>
                                                         <option value="VGA">VGA</option>
@@ -390,7 +390,7 @@ function MasterItem() {
                                                         <option value="Mouse">Mouse</option>
                                                     </select>
                                                     <span className='text-start'>Description</span>
-                                                    <textarea name="" id="" cols="30" rows="10" value={descitems} onChange={(e) => setDescitems(e.target.value)} />
+                                                    <textarea className='px-4 py-2 rounded-lg' cols="30" rows="10" value={descitems} onChange={(e) => setDescitems(e.target.value)} />
                                                     <form method='dialog'>
                                                         <div className='flex'>
                                                             <button className='bg-abu-gelap text-putih px-5 py-2 ml-auto rounded-lg' onClick={() => updateItem(row._id)}>Ok</button>

@@ -27,7 +27,7 @@ function NavbarAdmin() {
                 </div>
 
                 <div className="listbutton text-white mt-14">
-                    <NavLink to="/admin" className={(state) => `h-24 flex items-center justify-center justify-items-center hover:border-x-4 hover:bg-abu-gelap border-oranye ${state.isActive ? "bg-abu-gelap border-x-4 border-oranye" : ""}`}>
+                    <NavLink to="/admin/" className={(state) => `h-24 flex items-center justify-center justify-items-center hover:border-x-4 hover:bg-abu-gelap border-oranye ${state.isActive ? "bg-abu-gelap border-x-4 border-oranye" : ""}`}>
                         <HomeIcon fontSize='large' className="me-3" />
                         <p className='text-3xl'>Dashboard</p>
                     </NavLink>
