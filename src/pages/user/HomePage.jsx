@@ -21,7 +21,7 @@ function HomePage() {
   useEffect(() => {
     client.get("/items/promo/fetch").then((res)=>{
       setListitem(res.data)
-      console.log(listItem)
+      // console.log(listItem)
     }).catch((err) => {
       console.log(err);
     })

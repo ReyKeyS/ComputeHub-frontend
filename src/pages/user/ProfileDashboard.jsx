@@ -1,4 +1,22 @@
+import { useEffect, useState } from "react"
+import client from "../../services/client"
+
 function ProfileDashboard() {
+    const [user, setUser]=useState()
+
+    useEffect(() => {
+        if (localStorage.getItem('user_token')) {
+            client.get('/users/detail', {
+                headers: { "Authorization": "Bearer " + localStorage.getItem("user_token") },
+            }).then((res) => {
+                setUser(res.data)
+                console.log(res.data);
+            }).catch((err) => {
+                console.log(err);
+            })
+        }
+    },[])
+
     return (
         <>
             <span className="text-6xl font-bold">Dashboard</span>
@@ -6,7 +24,7 @@ function ProfileDashboard() {
                 <div className="border border-oranye rounded-3xl h-1/2 p-8 font-black text-5xl flex flex-col">
                     <div className="flex flex-col">
                         <div>
-                            <span className="">0 </span>
+                            <span className="">{user?.carts.length} </span>
                             <span className="text-oranye">Produk</span>
                         </div>
                         <span className="text-xl">In Your Cart</span>
@@ -15,7 +33,7 @@ function ProfileDashboard() {
                 <div className="border border-oranye rounded-3xl h-1/2 p-8 font-black text-5xl grid grid-rows-2">
                     <div className="flex flex-col">
                         <div>
-                            <span className="">2 </span>
+                            <span className="">{user?.transactions.length} </span>
                             <span className="text-oranye">Produk</span>
                         </div>
                         <span className="text-xl">Ordered</span>
