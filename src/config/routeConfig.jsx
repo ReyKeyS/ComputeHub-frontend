@@ -21,6 +21,8 @@ import ChatUser from '../pages/User/ChatUser'
 import Cart from '../pages/User/Cart';
 import TransSuccess from '../pages/User/TransSuccess';
 import Profile from '../pages/user/Profile';
+import ProfileDashboard from '../pages/user/ProfileDashboard';
+import ProfileEdit from '../pages/user/ProfileEdit';
 
 const router = createBrowserRouter(
   [
@@ -101,7 +103,18 @@ const router = createBrowserRouter(
         },
         {
           path:"/profile",
-          element:<Profile/>
+          element:<Profile/>,
+          children:[
+            {
+              index:true,
+              path:"",
+              element:<ProfileDashboard/>
+            },
+            {
+              path:"edit",
+              element:<ProfileEdit/>
+            }
+          ]
         }
       ],
     },
