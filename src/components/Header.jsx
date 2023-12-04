@@ -35,8 +35,12 @@ function Header(){
     };
     const handleClose = () => {
         setAnchorEl(null);
-        navigate("/profile")
     };
+
+    const profile = () => {
+        setAnchorEl(null);
+        navigate("/profile")
+    }
 
     const logout = () => {
         setAnchorEl(null);
@@ -134,7 +138,7 @@ function Header(){
                         transformOrigin={{ horizontal: 'center', vertical: 'top' }}
                         anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
                     >
-                        <MenuItem onClick={handleClose}>
+                        <MenuItem onClick={profile}>
                         <Avatar /> Profile
                         </MenuItem>
                         <Divider />
