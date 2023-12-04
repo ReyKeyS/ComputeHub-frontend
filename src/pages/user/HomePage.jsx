@@ -19,8 +19,9 @@ function HomePage() {
   const [listItem, setListitem] = useState([])
 
   useEffect(() => {
-    client.get("/items/").then((res)=>{
+    client.get("/items/promo/fetch").then((res)=>{
       setListitem(res.data)
+      console.log(listItem)
     }).catch((err) => {
       console.log(err);
     })
