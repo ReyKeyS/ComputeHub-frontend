@@ -233,7 +233,7 @@ function MasterItem() {
     }
     const getItem = (id) => {
         client.get(`items/${id}`).then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             setNameitems(res.data.name)
             setPriceitems(res.data.price)
             setStockitems(res.data.stock)
