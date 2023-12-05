@@ -41,7 +41,7 @@ function ProfileEdit() {
                 headers: { "Authorization": "Bearer " + localStorage.getItem("user_token") },
             }).then((res) => {
                 setUser(res.data)
-                console.log(res.data);
+                // console.log(res.data);
             }).catch((err) => {
                 console.log(err);
             })
@@ -91,7 +91,7 @@ function ProfileEdit() {
                 <input type="number" placeholder="phone number" className="border border-oranye rounded-lg bg-abu-super-gelap w-full" defaultValue={user?.phone_number} {...register("phone_number")} />
                 <span className="justify-self-center">Address</span>
                 <textarea placeholder="address" rows="4" cols="50" className="border border-oranye rounded-lg bg-abu-super-gelap w-full" defaultValue={user?.address} {...register("address")} />
-                <span>Profile Picture</span>
+                <span className="justify-self-center">Profile Picture</span>
                 <div>
                     <ColorButton size="large" component="label" variant="contained" startIcon={<CloudUploadIcon />} >
                         <p className='font-bold'>Upload Picture</p>
