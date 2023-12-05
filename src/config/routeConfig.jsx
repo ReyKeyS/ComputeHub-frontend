@@ -6,6 +6,7 @@ import HomePage from '../pages/User/HomePage'
 import LoginPage from '../pages/User/LoginPage'
 import RegisterPage from '../pages/User/RegisterPage'
 import Shop from '../pages/User/Shop'
+import History from '../pages/User/History'
 
 // Admin Pages
 import MasterUser from '../pages/Admin/MasterUser'
@@ -113,6 +114,10 @@ const router = createBrowserRouter(
             {
               path:"edit",
               element:<ProfileEdit/>
+            },
+            {
+              path:"history",
+              element:<History/>
             }
           ]
         }

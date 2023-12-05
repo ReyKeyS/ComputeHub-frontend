@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLoaderData, Outlet, Link, useNavigate } from "react-router-dom";
 import client from '../../services/client'
 import Header from '../../components/Header';
-import NavbarAdmin from '../../components/NavbarAdmin';
+import NavbarAdmin from '../../components/navbaradmin';
 import HeaderAdmin from '../../components/HeaderAdmin';
 
 function AdminNavbar() {
