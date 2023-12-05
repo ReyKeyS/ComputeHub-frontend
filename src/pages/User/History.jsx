@@ -16,7 +16,7 @@ function History() {
         client.get('/users/detail', {
             headers: { "Authorization": "Bearer " + localStorage.getItem("user_token") },
         }).then((res) => {
-            setUser(res.data._id)
+            setUser(res.data)
             console.log(res.data._id);
         }).catch((err) => {
             console.log(err);
@@ -25,10 +25,9 @@ function History() {
   },[])
 
   useEffect(() => {
-    if (localStorage.getItem('user_token')) {
-        client.get('/users/transaction/history/fetch/', {
+    if (localStorage.getItem('user_token') && user) {
+        client.get(`/users/transaction/history/fetch/${user?._id}`, {
             headers: { "Authorization": "Bearer " + localStorage.getItem("user_token") },
-            params: { userId: user },
         }).then((res) => {
             setListHistory(res.data)
             console.log(res.data);
@@ -36,7 +35,7 @@ function History() {
             console.log(err);
         })
     }
-  }, [])
+  }, [user])
 
   return (
     <>
