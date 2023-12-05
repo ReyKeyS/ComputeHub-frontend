@@ -25,6 +25,7 @@ import TransSuccess from '../pages/User/TransSuccess';
 import Profile from '../pages/user/Profile';
 import ProfileDashboard from '../pages/user/ProfileDashboard';
 import ProfileEdit from '../pages/user/ProfileEdit';
+import Build from '../pages/User/Build';
 
 const router = createBrowserRouter(
   [
@@ -121,6 +122,10 @@ const router = createBrowserRouter(
               element:<History/>
             }
           ]
+        },
+        {
+          path:"build",
+          element:<Build/>
         }
       ],
     },
