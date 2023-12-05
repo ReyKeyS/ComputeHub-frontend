@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Header from '../../components/Header';
-import NavbarAdmin from '../../components/navbaradmin';
+import NavbarAdmin from '../../components/NavbarAdmin';
 import HeaderAdmin from '../../components/HeaderAdmin';
 
 function Dashboard() {
