@@ -28,7 +28,7 @@ function History() {
     if (localStorage.getItem('user_token')) {
         client.get('/users/transaction/history/fetch/', {
             headers: { "Authorization": "Bearer " + localStorage.getItem("user_token") },
-            params: { userId: user }
+            params: { userId: user },
         }).then((res) => {
             setListHistory(res.data)
             console.log(res.data);
