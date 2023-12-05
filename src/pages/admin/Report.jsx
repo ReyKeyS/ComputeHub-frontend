@@ -55,10 +55,10 @@ function Report() {
 
         <div className='text-center h-auto mx-10 mb-36'>
             {listTrans && listTrans.sort((a, b)=>{
-                if (a.payment_date != null && b.payment_date != null) 
-                    return new Date(b.payment_date) - new Date(a.payment_date)
+                if (a.trans_date != null && b.trans_date != null) 
+                    return new Date(b.trans_date) - new Date(a.trans_date)
                 else return 0
-            }).filter((f) => f.invoice.toLowerCase().includes(search.toLowerCase()) && new Date(f.payment_date).toJSON().substring(0, 10) <= maxDate && new Date(f.payment_date).toJSON().substring(0, 10) >= minDate)
+            }).filter((f) => f.invoice.toLowerCase().includes(search.toLowerCase()) && new Date(f.trans_date).toJSON().substring(0, 10) <= maxDate && new Date(f.trans_date).toJSON().substring(0, 10) >= minDate)
             .map((t, index) => {
                 if (statusTrans == -1 || statusTrans == t.status)
                     return (
@@ -67,8 +67,8 @@ function Report() {
                                 <div className={"ms-6 text-start w-[13rem]" + (t.status==2?" text-yellow-400":t.status==1?" text-green-400":" text-red-400")}>{t.status==2?"Pending":t.status==1?"Pesanan Berhasil":"Pesanan Gagal"}</div>
                                 <div className="w-64 mx-2 text-oranye">{t.invoice}</div>
                                 <div className="w-[25rem] truncate mx-2 text-start text-white">{t.user_id.display_name}</div>
-                                <div className="w-[17.5rem] mx-1 text-white">{new Date(t.payment_date).toLocaleDateString("id-ID", {year: 'numeric', month: 'long', day: 'numeric'})}</div>
-                                <div className="w-36 text-white">{new Date(t.payment_date).toLocaleDateString("id-ID", {hour: 'numeric', minute: 'numeric'}).substring(11)} WIB</div>
+                                <div className="w-[17.5rem] mx-1 text-white">{new Date(t.trans_date).toLocaleDateString("id-ID", {year: 'numeric', month: 'long', day: 'numeric'})}</div>
+                                <div className="w-36 text-white">{new Date(t.trans_date).toLocaleDateString("id-ID", {hour: 'numeric', minute: 'numeric'}).substring(11)} WIB</div>
                             </div>
 
                             <hr className="border border-oranye"></hr>
