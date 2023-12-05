@@ -37,6 +37,9 @@ function NavbarProfile(params) {
                     <AccountCircleIcon fontSize="" />
                     <span>Edit Profile</span>
                 </NavLink>
+                <NavLink className={(state) => `flex justify-center items-center h-1/4 hover:bg-abu-gelap hover:border-x-8 border-oranye space-x-3 ${state.isActive ? "bg-abu-gelap border-x-8 border-oranye" : ""}`}>
+                    <span>History</span>
+                </NavLink>
             </div>
         </div>
     )
