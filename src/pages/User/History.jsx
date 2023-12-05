@@ -7,40 +7,40 @@ import Footer from '../../components/Footer';
 
 
 function History() {
-  const navigate = useNavigate();
-  const [user, setUser] = useState()
-  const [listHistory, setListHistory] = useState([])
+    const navigate = useNavigate();
+    const [user, setUser] = useState()
+    const [listHistory, setListHistory] = useState([])
 
-  useEffect(() => {
-    if (localStorage.getItem('user_token')) {
-        client.get('/users/detail', {
-            headers: { "Authorization": "Bearer " + localStorage.getItem("user_token") },
-        }).then((res) => {
-            setUser(res.data._id)
-            console.log(res.data._id);
-        }).catch((err) => {
-            console.log(err);
-        })
-    }
-  },[])
+    useEffect(() => {
+        if (localStorage.getItem('user_token')) {
+            client.get('/users/detail', {
+                headers: { "Authorization": "Bearer " + localStorage.getItem("user_token") },
+            }).then((res) => {
+                setUser(res.data)
+                console.log(res.data);
+            }).catch((err) => {
+                console.log(err);
+            })
+        }
+    }, [])
 
-  useEffect(() => {
-    if (localStorage.getItem('user_token')) {
-        client.get('/users/transaction/history/fetch/', {
-            headers: { "Authorization": "Bearer " + localStorage.getItem("user_token") },
-            params: { userId: user }
-        }).then((res) => {
-            setListHistory(res.data)
-            console.log(res.data);
-        }).catch((err) => {
-            console.log(err);
-        })
-    }
-  }, [])
+      useEffect(() => {
+        if (localStorage.getItem('user_token') && user) {
+            console.log("masuk");
+            client.get(`/users/transaction/history/fetch/${user?._id}`, {
+                headers: { "Authorization": "Bearer " + localStorage.getItem("user_token") },
+            }).then((res) => {
+                setListHistory(res.data)
+                console.log("res.data", res.data);
+            }).catch((err) => {
+                console.log(err);
+            })
+        }
+      }, [user])
 
-  return (
-    <>
-        <span className="text-6xl font-bold">History</span> <br />
+    return (
+        <>
+            <span className="text-6xl font-bold">History</span> <br />
             <div className="h-auto">
                 {/* listHistory.map */}
                 <div className="border border-oranye rounded-3xl h-fit font-black ">
@@ -71,12 +71,12 @@ function History() {
                             <div className="text-end">
                                 <button className=" bg-oranye px-3 py-2 mr-4 mt-4 w-48 h-12 rounded-xl text-2xl mr-20 text-abu-super-gelap">Detail</button>
                             </div>
-                         </div>
+                        </div>
                     </div>
                 </div>
             </div>
-    </>
-  )
+        </>
+    )
 }
 
 export default History

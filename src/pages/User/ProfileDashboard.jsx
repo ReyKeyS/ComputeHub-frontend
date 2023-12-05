@@ -12,7 +12,7 @@ function ProfileDashboard() {
                 headers: { "Authorization": "Bearer " + localStorage.getItem("user_token") },
             }).then((res) => {
                 setUser(res.data)
-                console.log(res.data);
+                // console.log(res.data);
             }).catch((err) => {
                 console.log(err);
             })
