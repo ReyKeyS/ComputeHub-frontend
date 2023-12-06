@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 function CardBarang({item}) {
     return (
         <ThemeProvider theme={dashboardTheme}>
-            <Card sx={{ maxWidth: 345, margin: 2, border: "primary.oranye" }}>
+            <Card sx={{ width: 250, margin: 2, border: "primary.oranye" }}>
                 <CardActionArea component={Link} to={`/barang/${item._id}`}>
                     <CardMedia
                         component="img"

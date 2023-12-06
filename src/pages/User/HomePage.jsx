@@ -123,27 +123,19 @@ function HomePage() {
       </div>
       <div className="flex gap-5 snap-x mx-20 mt-10">
       </div>
-      <div className='font-black text-4xl mt-10 mx-20'>
+      <div className='font-black text-4xl mb-6 mx-20'>
         Best Deals for you
       </div>
-      <div className='flex mx-20'>
-        {/* BUAT KOMPONEN */}
+      <div className='w-full snap-x flex px-20 overflow-x-scroll no-scrollbar'>
+
         {listItem?.map((item, index) => {
-          return(
+          return(<div className='snap-center'>
             <CardBarang key={index} item={item}/>
-          )
+          </div>)
         })}
 
       </div>
       <Footer/>
-      {/* <NavLink digunakan ketika ingin styling Navbar (active) /> */}
-      {/* <NavLink
-            className={({ isActive, isPending }) =>
-                (isActive?'text-white':'text-black')} 
-            to="/"
-        >
-            Home
-        </NavLink> */}
     </>
   )
 }

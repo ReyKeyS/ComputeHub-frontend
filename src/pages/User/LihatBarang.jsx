@@ -48,6 +48,14 @@ function LihatBarang() {
         }).catch((err)=>{console.log(err)});
     }
 
+    const minAmount = () => {
+
+    }
+
+    const maxAmount = () => {
+        
+    }
+
     return (
         <>
             <Header />
@@ -68,7 +76,15 @@ function LihatBarang() {
                         </div>
                         <div className="flex gap-3 justify-center">
                             <span className="text-lg text-oranye place-self-center">Amount :</span>
-                            <input type="number" className="rounded-lg text-black px-4 py-2 w-[10rem]" min={1} max={item?.stock} value={amount} onChange={(e)=>{if(e.target.value != "") setAmount(e.target.value)}}/>
+                            <div className='w-1/6'>
+                                <p className="text-lg text-oranye text-end me-11">Amount</p>
+                                <div className='h-[3rem] flex justify-end items-center mb-1'>
+                                    <button className='w-8 h-8 bg-oranye rounded-full' onClick={minAmount}><RemoveIcon sx={{color: "black"}}/></button>
+                                    <input type="text" className="rounded-lg text-black px-4 py-1 mx-2 w-16 text-center text-lg" min={1} max={item?.stock} value={amountItem} readOnly/>
+                                    <button className='w-8 h-8 bg-oranye rounded-full' onClick={maxAmount}><AddIcon sx={{color: "black"}}/></button>
+                                </div>
+                            </div>
+                            {/* <input type="number" className="rounded-lg text-black px-4 py-2 w-[10rem]" min={1} max={item?.stock} value={amount} onChange={(e)=>{if(e.target.value != "") setAmount(e.target.value)}}/> */}
                             <button className="bg-oranye text-abu-super-gelap px-3 py-2 font-bold rounded-lg" onClick={addToCart}>Add to Cart</button>
                         </div>
                     </div>
