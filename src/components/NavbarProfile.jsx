@@ -23,7 +23,7 @@ function NavbarProfile(params) {
     },[])
 
     return (
-        <div className="grid grid-rows-2 place-items-center border border-oranye rounded-3xl bg-abu-super-gelap text-putih h-[1000px]">
+        <div className="grid grid-rows-2 place-items-center border border-oranye rounded-3xl bg-abu-super-gelap text-putih h-[49.5rem]">
             <div className="flex flex-col text-4xl text-center space-y-4">
                 <Avatar sx={{ width: 150, height: 150 }} src={import.meta.env.VITE_BACKEND_GET_PICTURE_URL+user?.profile_picture}/>
                 <span className="font-bold text-oranye">{user?.display_name}</span>
