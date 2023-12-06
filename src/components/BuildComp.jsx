@@ -56,7 +56,6 @@ const BuildComp = ({ item, grandTotal, setGrandTotal, idx, items, setItems }) =>
                     label: i.name,
                 })
             }
-            console.log(temp)
             setListItem(temp)
         }).catch(err => console.log(err));
     }, [])

@@ -41,14 +41,16 @@ function Build(){
             }
         }
 
-        client.post("/users/carts/add", {
-            items: temp
-        },{
-            headers: {"Authorization": "Bearer " + localStorage.getItem("user_token")},
-        }).then((res)=>{
-            alert(res.data.message)
-            navigate("/cart")
-        }).catch((err)=>{console.log(err)});
+        if (temp.length > 0) {
+            client.post("/users/carts/add", {
+                items: temp
+            },{
+                headers: {"Authorization": "Bearer " + localStorage.getItem("user_token")},
+            }).then((res)=>{
+                alert(res.data.message)
+                navigate("/cart")
+            }).catch((err)=>{console.log(err)});
+        }
     }
 
     return(
