@@ -57,8 +57,11 @@ const ChatUser = () => {
         client.get("/users/detail", {
             headers: { "Authorization": "Bearer " + localStorage.getItem("user_token")}
         }).then((res)=>{
-            setUser(res.data)
-            setUserChat(res.data.chats[0]);
+            if (res.data.email_verified){
+                setUser(res.data)
+                setUserChat(res.data.chats[0]);
+            }else 
+                navigate("/verifyemail")
         }).catch((err) => {console.log(err)});
     }, [])
 

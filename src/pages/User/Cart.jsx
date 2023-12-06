@@ -21,8 +21,11 @@ const Cart = () => {
         client.get("/users/detail", {
             headers: {"Authorization": "Bearer " + localStorage.getItem("user_token")},
         }).then((res)=>{
-            setUser(res.data)
-            countGrandTotal()
+            if (res.data.email_verified){
+                setUser(res.data)
+                countGrandTotal()
+            }else 
+                navigate("/verifyemail")
         }).catch((err) => {console.log(err)});
 
         // Midtrans
@@ -92,9 +95,11 @@ const Cart = () => {
                 <p className='text-5xl font-bold ps-14 py-7'>Your Cart</p>
                 <div className='flex justify-center mb-10 min-h-[calc(100vh-34rem)]'>
                     {user?.carts.length < 1 && 
-                        <div className='text-center'>
-                            <p className='text-center text-6xl font-extrabold py-2'>Your cart is empty</p>
-                            <button className='btn bg-oranye hover:bg-hover-oranye border-0 mt-5 text-xl' onClick={()=>{navigate("/shop")}}>Go back to Shop</button>
+                        <div className='flex items-center'>
+                            <div className='text-center'>
+                                <p className='text-center text-6xl font-extrabold py-2'>Your cart is empty</p>
+                                <button className='btn bg-oranye hover:bg-hover-oranye border-0 mt-5 text-xl' onClick={()=>{navigate("/shop")}}>Go back to Shop</button>
+                            </div>
                         </div>
                     }
                     {user?.carts.length > 0 && 

@@ -26,6 +26,19 @@ function Build(){
     ]
     const [items, setItems] = useState(itemsCate)
     const [compabilityProc, setCompabilityProc] = useState("");
+    const [user, setUser] = useState({})
+
+    useEffect(() =>{
+        if (localStorage.getItem('user_token')){
+            client.get('/users/detail', {
+                headers: {"Authorization": "Bearer " + localStorage.getItem("user_token")},
+            }).then((res) => {
+                setUser(res.data)
+            }).catch((err) => {
+                console.log(err);
+            })
+        }
+    }, [])
 
     const reset = () => {
         navigate(0)
@@ -77,8 +90,8 @@ function Build(){
                         </div>
                     </div>
                     <div className='flex justify-end gap-10 mt-10 font-bold'>
-                        <div><button className='w-64 py-3 bg-abu-super-gelap text-4xl rounded-xl text-oranye hover:scale-105 transition duration-300' onClick={reset}>Reset</button></div>
-                        <div><button className='w-64 py-3 bg-abu-super-gelap text-4xl rounded-xl text-oranye hover:scale-105 transition duration-300' onClick={addToCart}>Add to Cart</button></div>
+                        <div><button className='w-64 py-3 bg-abu-super-gelap text-4xl rounded-xl text-oranye hover:scale-105 transition duration-300 hover:cursor-pointer' onClick={reset}>Reset</button></div>
+                        <div><button className='w-64 py-3 bg-abu-super-gelap text-4xl rounded-xl text-oranye hover:scale-105 transition duration-300 hover:cursor-pointer' disabled={!user?.email_verified?true:!localStorage.getItem("user_token")?true:false} onClick={addToCart}>Add to Cart</button></div>
                     </div>
                 </div>
             <Footer/>
