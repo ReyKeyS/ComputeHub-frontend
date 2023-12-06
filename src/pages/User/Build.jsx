@@ -25,6 +25,7 @@ function Build(){
         {type: "Mouse", item_id: "", amount: 0},
     ]
     const [items, setItems] = useState(itemsCate)
+    const [compabilityProc, setCompabilityProc] = useState("");
 
     const reset = () => {
         navigate(0)
@@ -62,7 +63,7 @@ function Build(){
                         <div className="px-14 py-10">
                             
                             {items.map((item, index) => {
-                                return <BuildComp item={item} grandTotal={grandTotal} setGrandTotal={setGrandTotal} key={index} idx={index} items={items} setItems={setItems} />
+                                return <BuildComp key={index} item={item} grandTotal={grandTotal} setGrandTotal={setGrandTotal} idx={index} items={items} setItems={setItems} compabilityProc={compabilityProc} setCompabilityProc={setCompabilityProc} />
                             })}
                         </div>
                     </div>

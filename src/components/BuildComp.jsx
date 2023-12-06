@@ -40,7 +40,7 @@ const customStyles = {
     })
 };
 
-const BuildComp = ({ item, grandTotal, setGrandTotal, idx, items, setItems }) => {
+const BuildComp = ({ item, grandTotal, setGrandTotal, idx, items, setItems, compabilityProc, setCompabilityProc }) => {
     const { type } = item
     const [listItem, setListItem] = useState([])
     const [selectedItem, setSelectedItem] = useState({})
@@ -50,15 +50,23 @@ const BuildComp = ({ item, grandTotal, setGrandTotal, idx, items, setItems }) =>
     useEffect(() => {
         client.get(`items/category/${type}`).then((res) => {
             let temp = []
-            for (const i of res.data) {
-                temp.push({
-                    value: i,
-                    label: i.name,
-                })
+            temp.push({ value: "", label: "Select..."})
+            if (type == "Motherboard"){
+                for (const i of res.data) {
+                    if (compabilityProc != "" && i.name.toLowerCase().includes(compabilityProc))
+                        temp.push({ value: i, label: i.name })
+                    else if (compabilityProc == ""){
+                        temp.push({ value: i, label: i.name })
+                    }
+                }
+            }else{
+                for (const i of res.data) {
+                    temp.push({ value: i, label: i.name })
+                }
             }
             setListItem(temp)
         }).catch(err => console.log(err));
-    }, [])
+    }, [compabilityProc])
 
     const minQty = () => {
         if (qty-1 >= 0){
@@ -116,27 +124,49 @@ const BuildComp = ({ item, grandTotal, setGrandTotal, idx, items, setItems }) =>
                 options={listItem}
                 styles={customStyles}
                 onChange={(e) => {
-                    setSelectedItem(e.value)
-                    setQty(1)
-                    setSubtotal(e.value.price)
+                    if (e.value != ""){
+                        setSelectedItem(e.value)
+                        setQty(1)
+                        setSubtotal(e.value.price)
+    
+                        let price = e.value.price;
+                        if (e.value.discount && e.value.discount.promo_price) price = e.value.discount.promo_price
+                        setGrandTotal(grandTotal + price)
+                        
+                        items[idx] = {
+                            type: type,
+                            item_id: e.value._id,
+                            amount: 1
+                        }
+                        setItems([...items])
+    
+                        if (type == "Processor") {
+                            if ((e.value.name).toLowerCase().includes("amd")) setCompabilityProc("amd")
+                            else if ((e.value.name).toLowerCase().includes("intel")) setCompabilityProc("intel")
+                        }
+                    }else{
+                        if (selectedItem){
+                            setGrandTotal(grandTotal - subtotal);
 
-                    let price = e.value.price;
-                    if (e.value.discount && e.value.discount.promo_price) price = e.value.discount.promo_price
-                    setGrandTotal(grandTotal + price)
-                    
-                    items[idx] = {
-                        type: type,
-                        item_id: e.value._id,
-                        amount: 1
+                            setSelectedItem({})
+                            setQty(0)
+                            setSubtotal(0)
+
+                            items[idx] = {
+                                type: type,
+                                item_id: "",
+                                amount: 0
+                            }
+                            setItems([...items])
+                        }
                     }
-                    setItems([...items])
                 }}
             />
         </div>
         <div className='w-[100rem] flex justify-center py-3'>
             <div className='h-[3rem] flex justify-end items-center'>
                 <button className='w-8 h-8 bg-oranye rounded-full flex items-center justify-center' onClick={minQty}><RemoveIcon sx={{color: "black"}}/></button>
-                <input type="text" className="rounded-lg text-black px-4 py-1 mx-2 w-16 text-center text-lg" value={qty} min={0} max={selectedItem?selectedItem.stock:0} readOnly/>
+                <input type="text" className="rounded-lg text-black font-bold px-4 py-1 mx-2 w-16 text-center text-lg" value={qty} min={0} max={selectedItem?selectedItem.stock:0} readOnly/>
                 <button className='w-8 h-8 bg-oranye rounded-full flex items-center justify-center' onClick={maxQty}><AddIcon sx={{color: "black"}}/></button>
             </div>
         </div>
