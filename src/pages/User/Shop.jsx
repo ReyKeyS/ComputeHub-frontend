@@ -109,8 +109,8 @@ function Shop(params) {
             <Header />
             <div className="py-10 px-20 grid grid-cols-3">
                 <span className="font-bold text-5xl mb-8">All Product</span>
-                <span className="col-start-3 ml-auto text-abu-abu font-bold text-2xl">Sort By : Price (Up)</span>
-                <div className="w-2/3 h-fit bg-abu-gelap rounded-xl py-8 px-8">
+                {/* <span className="col-start-3 ml-auto text-abu-abu font-bold text-2xl">Sort By : Price (Up)</span> */}
+                <div className="w-2/3 h-fit bg-abu-gelap rounded-xl py-8 px-8 col-start-1">
                     <div className='text-center'>
                         <span className="text-putih text-4xl font-bold text-center">Filter</span>
                     </div>
