@@ -14,8 +14,10 @@ const Cart = () => {
     const [user, setUser] = useState()
     const [grandTotal, setGrandTotal] = useState()
     const [buildService, setBuildService] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
+        let timeout;
         if (!localStorage.getItem("user_token")) navigate("/")
         
         client.get("/users/detail", {
@@ -24,6 +26,10 @@ const Cart = () => {
             if (res.data.email_verified){
                 setUser(res.data)
                 countGrandTotal()
+
+                setTimeout(()=>{
+                    setLoading(false)
+                }, 1000)
             }else 
                 navigate("/verifyemail")
         }).catch((err) => {console.log(err)});
@@ -34,7 +40,9 @@ const Cart = () => {
         script.async = true;
         script.setAttribute('data-client-key', import.meta.env.VITE_CLIENT_KEY)
         document.head.appendChild(script);
+
         return () => {
+            clearTimeout(timeout);
             document.head.removeChild(script);
         };
     }, [])
@@ -94,7 +102,12 @@ const Cart = () => {
             <div className='w-5/6'>
                 <p className='text-5xl font-bold ps-14 py-7'>Your Cart</p>
                 <div className='flex justify-center mb-10 min-h-[calc(100vh-34rem)]'>
-                    {user?.carts.length < 1 && 
+                    {loading && 
+                        <div className='w-full h-[28rem] flex justify-center items-center'>
+                            <div className='scale-[5]'><span className="loading loading-infinity loading-lg text-oranye"></span></div>
+                        </div>
+                    }
+                    {!loading && user?.carts.length < 1 && 
                         <div className='flex items-center'>
                             <div className='text-center'>
                                 <p className='text-center text-6xl font-extrabold py-2'>Your cart is empty</p>
@@ -102,7 +115,7 @@ const Cart = () => {
                             </div>
                         </div>
                     }
-                    {user?.carts.length > 0 && 
+                    {!loading && user?.carts.length > 0 && 
                         <>                        
                             <div className='w-3/4 h-full'>
                                 {user?.carts && user?.carts.map((c) =>{

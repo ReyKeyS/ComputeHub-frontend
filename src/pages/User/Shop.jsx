@@ -79,20 +79,29 @@ function Shop(params) {
     const [search, setSearch] = useState("")
     const [minPrice, setMinPrice] = useState(0)
     const [maxPrice, setMaxPrice] = useState(999999999999999)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
+        let timeout;
         client.get("/items", {
             params: {
                 search: search,
                 harga_min: minPrice,
                 harga_max: maxPrice,
             }
-        }
-        ).then((res) => {
+        }).then((res) => {
             setListItem(res.data)
+
+            setTimeout(() => {
+                setLoading(false)
+            }, 1000);
         }).catch((err) => {
             console.log(err)
         })
+
+        return () => {
+            clearTimeout(timeout)
+        }
     }, [search, minPrice, maxPrice])
 
     return (
@@ -101,7 +110,7 @@ function Shop(params) {
             <div className="py-10 px-20 grid grid-cols-3">
                 <span className="font-bold text-5xl mb-8">All Product</span>
                 <span className="col-start-3 ml-auto text-abu-abu font-bold text-2xl">Sort By : Price (Up)</span>
-                <div className="w-1/2 h-fit bg-abu-gelap rounded-xl py-8 px-8">
+                <div className="w-2/3 h-fit bg-abu-gelap rounded-xl py-8 px-8">
                     <div className='text-center'>
                         <span className="text-putih text-4xl font-bold text-center">Filter</span>
                     </div>
@@ -142,7 +151,13 @@ function Shop(params) {
                 </div>
                 <div className="col-span-2 grid grid-cols-4">
 
-                    {listItem && listItem.map((item, index) => {
+                    {loading && 
+                        <div className='w-[68rem] h-[28rem] flex justify-center items-center'>
+                            <div className='scale-[5]'><span className="loading loading-infinity text-oranye loading-lg"></span></div>
+                        </div>
+                    }
+
+                    {!loading && listItem && listItem.map((item, index) => {
                         if ((categoryFilter == "All" || item.category == categoryFilter) && (searchFilter == "" || item.name.toLowerCase().includes(searchFilter)))
                             return (
                                 <CardBarang key={index} item={item}/>

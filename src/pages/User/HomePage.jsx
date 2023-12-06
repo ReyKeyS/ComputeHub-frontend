@@ -21,14 +21,22 @@ function HomePage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [listItem, setListitem] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    let timeout;
     client.get("/items/promo/fetch").then((res)=>{
       setListitem(res.data)
-      // console.log(listItem)
+      setTimeout(() => {
+        setLoading(false) 
+      }, 1000)
     }).catch((err) => {
       console.log(err);
     })
+
+    return () => {
+      clearTimeout(timeout)
+    }
   }, [])
 
   return (
@@ -127,8 +135,13 @@ function HomePage() {
         Best Deals for you
       </div>
       <div className='w-full snap-x flex px-20 overflow-x-scroll no-scrollbar'>
+        {loading && 
+          <div className='w-full h-[28rem] flex justify-center items-center'>
+            <div className='scale-[5]'><span className="loading loading-infinity text-oranye loading-lg"></span></div>
+          </div>
+        }
 
-        {listItem?.map((item, index) => {
+        {!loading && listItem?.map((item, index) => {
           return(<div className='snap-center'>
             <CardBarang key={index} item={item}/>
           </div>)

@@ -143,6 +143,7 @@ function MasterItem() {
     const [categoryitems, setCategoryitems] = useState('')
     const [descitems, setDescitems] = useState('')
     const [open, setOpen] = useState(false)
+    const [selectedItem, setSelectedItem] = useState({})
 
     useEffect(() => {
         client.get("/items").then((res) => {
@@ -210,7 +211,7 @@ function MasterItem() {
             console.log(err);
         });
     }
-    const updateItem = (id) => {
+    const updateItem = () => {
         let isi = {
             name: nameitems,
             description: descitems,
@@ -219,11 +220,10 @@ function MasterItem() {
             category: categoryitems,
             brand: branditems
         }
-        client.put(`items/update/${id}`, isi, {
+        client.put(`items/update/${selectedItem._id}`, isi, {
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("user_token"),
             },
-
         }).then((res) => {
             alert(res.data.message);
             navigate(0)
@@ -361,7 +361,7 @@ function MasterItem() {
                                     <StyledTableCell align="center">{row.category}</StyledTableCell>
                                     <StyledTableCell align="center" width={"20%"}>
                                         {/* Open the modal using document.getElementById('ID').showModal() method */}
-                                        <button className="w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye me-5 hover:scale-110 hover:font-bold transition duration-300" onClick={() => getItem(row._id)}>Edit</button>
+                                        <button className="w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye me-5 hover:scale-110 hover:font-bold transition duration-300" onClick={() => {getItem(row._id); setSelectedItem(row)}}>Edit</button>
                                         <dialog id="my_modal_2" className="modal">
                                             <div className="modal-box bg-oranye">
                                                 <h1 className="font-bold text-3xl text-abu-super-gelap">Edit</h1>
@@ -393,7 +393,7 @@ function MasterItem() {
                                                     <textarea className='px-4 py-2 rounded-lg' cols="30" rows="10" value={descitems} onChange={(e) => setDescitems(e.target.value)} />
                                                     <form method='dialog'>
                                                         <div className='flex'>
-                                                            <button className='bg-abu-gelap text-putih px-5 py-2 ml-auto rounded-lg' onClick={() => updateItem(row._id)}>Ok</button>
+                                                            <button className='bg-abu-gelap text-putih px-5 py-2 ml-auto rounded-lg' onClick={updateItem}>Ok</button>
                                                         </div>
                                                     </form>
                                                 </div>
