@@ -84,20 +84,20 @@ function Header(){
             <NavLink to="/shop" className={(state)=>`text-white text-2xl ${state.isActive ? "font-bold text-3xl" : ""}`}>
                 Shop
             </NavLink>
-            <NavLink to='/chat' className={(state)=>`text-white text-2xl ${state.isActive ? "font-bold text-3xl" : ""}`}>
-                Chat
-            </NavLink>
+            <div className='flex items-center'>
+                <form onSubmit={handleSubmit(searching)}>
+                    <input type="text" className='w-[14rem] rounded-xl px-4 py-2' placeholder='Search Product..' defaultValue={searchFilter} {...register("search")}/>
+                </form>
+                <div className="text-white text-2xl col-span-2 ms-2"><SearchIcon fontSize='large'/></div>
+            </div>
             <NavLink to={"/build"} className={(state)=>`text-white text-2xl ${state.isActive ? "font-bold text-3xl" : ""}`}>
                 Build
             </NavLink>
-                <div className='flex items-center'>
-                    <form onSubmit={handleSubmit(searching)}>
-                        <input type="text" className='w-[14rem] rounded-xl px-4 py-2' placeholder='Search Product..' defaultValue={searchFilter} {...register("search")}/>
-                    </form>
-                    <div className="text-white text-2xl col-span-2 ms-2"><SearchIcon fontSize='large'/></div>
-                </div>
             <NavLink to="/cart" className={(state)=>`text-white text-2xl ${state.isActive ? "font-bold text-3xl" : ""}`}>
                 Cart
+            </NavLink>
+            <NavLink to='/chat' className={(state)=>`text-white text-2xl ${state.isActive ? "font-bold text-3xl" : ""}`}>
+                Chat
             </NavLink>
             
             {!user && 
