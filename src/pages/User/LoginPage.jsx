@@ -42,7 +42,7 @@ function LoginPage() {
     const login = client.post("/users/login", data).then((res)=>{
       localStorage.setItem("user_token", res.data.data.token)
       if (res.data.data.role == 0){
-        navigate("/admin")
+        navigate("/admin/")
       }else{
         navigate("/")
       }

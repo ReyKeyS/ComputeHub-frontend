@@ -136,7 +136,7 @@ function Shop(params) {
                         <input type="number" placeholder="Harga Minimum" className="border-2 border-oranye bg-abu-gelap text-white text-lg rounded-lg my-2 w-full px-3 py-1" step={1000} min={0} max={999999999999999} value={minPrice} onChange={(e) => { if (e.target.value != "") setMinPrice(e.target.value) }} />
                         <input type="number" placeholder="Harga Maximum" className="border-2 border-oranye bg-abu-gelap text-white text-lg rounded-lg mb-2 w-full px-3 py-1" step={1000} min={0} max={999999999999999} value={maxPrice} onChange={(e) => { if (e.target.value != "") setMaxPrice(e.target.value) }} />
                     </div>
-                    <div>
+                    {/* <div>
                         <span className="text-putih">Rating</span>
                         <div className="flex justify-between place-items-center">
                             <input type="checkbox" className="w-5 h-5" />
@@ -144,7 +144,7 @@ function Shop(params) {
                                 <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
                             </Stack>
                         </div>
-                    </div>
+                    </div> */}
                     <div className='flex justify-end mt-8'>
                         <div><button className='text-xl font-bold bg-oranye hover:bg-hover-oranye px-6 py-1 rounded-xl' onClick={()=>navigate(0)}>Reset</button></div>
                     </div>

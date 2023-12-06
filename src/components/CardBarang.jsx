@@ -11,6 +11,15 @@ import { Link, useNavigate } from 'react-router-dom';
 function CardBarang({ item }) {
     const navigate = useNavigate()
 
+    const avg = (arr) => {
+        let total = 0
+        for (const i of arr) {
+            total += i.rating
+        }
+        const avg = total / arr.length
+        return avg
+    }
+
     return (
         <ThemeProvider theme={dashboardTheme}>
             <Card sx={{ width: 250, margin: 2, border: "primary.oranye" }}>
@@ -27,7 +36,7 @@ function CardBarang({ item }) {
                             {item.name}
                         </Typography>
                         <Typography gutterBottom variant='body2' color={"primary.putih"} className='mt-20'>
-                            5<StarIcon sx={{ color: yellow[500] }} />
+                            {item.ratings.length>0?parseFloat(avg(item.ratings)):0}<StarIcon sx={{ color: yellow[500] }} />
                         </Typography>
                         <Typography gutterBottom variant="body1" color="primary.oranye">
                             {item.discount &&

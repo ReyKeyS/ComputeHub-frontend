@@ -66,31 +66,28 @@ function History() {
     return (
         <>
             <span className="text-6xl font-bold">History</span> <br />
-            <div className="h-auto">
+            <div className="w-[72rem] h-[calc(100vh-14rem)] overflow-y-auto">
             {listHistory?.map((item, index) => (
                  <div className="mt-8" key={index}>
                     <div className="border border-oranye rounded-3xl h-fit font-black ">
                         <div className="grid grid-cols-3">
                             <div className="">
-                                <div className="ml-8 mb-1 mt-8 text-2xl">{item.invoice} </div>
+                                <div className="ml-8 mb-1 mt-8 text-4xl text-oranye">{item.invoice} </div>
                                 <div className="ml-8 mb-2  text-2xl">{formatTanggalWaktu(item.trans_date)} </div>
                             </div>
                             <div className="col-span-2">
                                 <div className="text-end mb-1 mt-8 mr-4 text-4xl">
-                                    {item.status === 1 && <div className='text-green-400'>Approved <CheckIcon></CheckIcon></div>}
-                                    {item.status === 2 && <div className='text-oranye'>Pending <HistoryToggleOffIcon></HistoryToggleOffIcon></div>}
-                                    {item.status !== 1 && item.status !== 2 && <div className='text-red-500'>Rejected <CloseIcon></CloseIcon></div>}
+                                    {item.status === 1 && <div className='text-green-400'>Approved <CheckIcon fontSize='large' /></div>}
+                                    {item.status === 2 && <div className='text-oranye'>Pending <HistoryToggleOffIcon fontSize='large' /></div>}
+                                    {item.status !== 1 && item.status !== 2 && <div className='text-red-500'>Rejected <CloseIcon fontSize='large' /></div>}
                                 </div>
                             </div>
                         </div>
-                        {/* {item.detail_trans?.map((detail, index) => ( */}
-                        <div className=" w-5/6 m-auto rounded-3xl mb-8 bg-abu-super-gelap h-56 grid grid-cols-4 ">
+                        <div className="w-11/12 mx-auto mt-2 rounded-3xl mb-4 bg-abu-super-gelap h-56 grid grid-cols-4 ">
                             <div className="w-40 h-40 rounded-xl m-auto">
-                                <img className="rounded-lg" 
-                                src={import.meta.env.VITE_BACKEND_GET_PICTURE_URL+item.detail_trans[0].item_id.picture} 
-                                alt="Item" />
+                                <img className="rounded-lg" src={import.meta.env.VITE_BACKEND_GET_PICTURE_URL+item.detail_trans[0].item_id.picture} />
                             </div>
-                            <div className="text-2xl text-white">
+                            <div className="w-[20rem] text-2xl text-white">
                                 <div className="ml-4 mb-2 mt-8 text-2xl">{item.detail_trans[0].name} </div>
                                 <div className="flex ">
                                     <div className="ml-4 mb-2  text-2xl">{item.detail_trans[0].qty} X </div>
@@ -98,18 +95,17 @@ function History() {
                                 </div>
                             </div>
                             <div className="col-span-2">
-                                <div className="text-end text-oranye mt-4 mr-20 text-4xl">
+                                <div className="text-end text-oranye mt-4 me-8 text-4xl">
                                     Total
                                 </div>
-                                <div className="text-end mr-20 text-4xl text-white">
+                                <div className="text-end me-8 text-4xl text-white">
                                     {formatHarga(item.detail_trans[0].qty*item.detail_trans[0].price)}
                                 </div>
                             </div>
                         </div>
-                         {/* ))} */}
                          <div className="text-end mr-8 mb-4 text-3xl">
                             Grand Total : {formatHarga(item.grand_total)} <br />
-                            <button className=" ml-4 bg-oranye px-3 py-2 mr-4 mt-4 w-48 h-12 rounded-xl text-2xl mr-20 text-abu-super-gelap"
+                            <button className=" ml-4 bg-oranye px-3 py-1 mr-4 mt-4 w-48 rounded-xl text-3xl text-abu-super-gelap hover:bg-hover-oranye transition duration-300"
                              onClick={async (e) => {navigate(`/profile/detail/${item._id}`)}}>Detail</button>
                          </div>
                     </div>
