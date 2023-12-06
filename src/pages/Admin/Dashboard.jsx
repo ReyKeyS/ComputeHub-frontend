@@ -38,7 +38,7 @@ function Dashboard() {
       <div className="headline text-white text-xl ml-9 mt-2">
         <p> Here's What happening with your store today</p>
       </div>
-      <div className="w-full snap-x flex px-20 overflow-x-scroll no-scrollbar">
+      <div className="w-full snap-x flex px-20 overflow-x-scroll no-scrollbar bg-abu-super-gelap mt-6">
         {listItem?.map((item, index) => {
           return (<div className='snap-center'>
             <CardBarang key={index} item={item} />
@@ -50,7 +50,7 @@ function Dashboard() {
       <div className="text-3xl text-white ml-9 mt-5">
         Recent Messages
       </div>
-      <div className="rounded-lg h-fit m-10 text-white border border-oranye bg-abu-gelap mb-36">
+      <div className="rounded-lg h-fit m-10 mt-5 text-white border border-oranye bg-abu-gelap mb-36">
         {user?.chats?.sort((a, b) => {
           if (a.latest_time != null && b.latest_time != null)
             return new Date(b.latest_time) - new Date(a.latest_time)
@@ -58,7 +58,7 @@ function Dashboard() {
         })
           .map((c, index) => {
             return (
-              <div className="h-28 w-full grid place-items-center justify-items-start">
+              <div className="h-28 w-full grid place-items-center justify-items-start ms-12">
                 <div className='flex'>
                   <img src={import.meta.env.VITE_BACKEND_GET_PICTURE_URL + c.profpict_sender} className="w-14 h-14 rounded-full"></img>
                   <div className="w-[14rem] text-white ms-10">
