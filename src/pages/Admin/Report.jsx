@@ -12,12 +12,25 @@ function Report() {
     const [search, setSearch] = useState("");
     const [minDate, setMinDate] = useState(new Date("2000-01-01").toJSON().substring(0, 10));
     const [maxDate, setMaxDate] = useState(new Date().toJSON().substring(0, 10))
+    const [qty, setQty] = useState(0)
+    const [income, setIncome] = useState(0)
 
     useEffect(() => {
         client.get("/users/transaction/fetch", {
             headers: {"Authorization": "Bearer " + localStorage.getItem("user_token")},
         }).then((res) => {
             setListTrans(res.data);
+            
+            let qty = 0; let income = 0;
+            console.log(res.data)
+            for (const t of res.data) {
+                income += t.grand_total
+                for (const d of t.detail_trans) {
+                    qty += d.qty
+                }
+            }
+            setQty(qty);
+            setIncome(income);
         }).catch((err) => {console.log(err)});
     }, [])
 
@@ -26,31 +39,42 @@ function Report() {
             <h1>Report</h1>
         </div>
 
-        <div className="flex gap-6 ms-10">
-            <div className="">
-                <button className='rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 w-48 py-2 text-2xl' onClick={()=>{setStatusTrans(-1)}} >All Transaction</button>
-            </div>
-            <div className="">
-                <button className='rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 w-48 py-2 text-2xl' onClick={()=>{setStatusTrans(2)}} >Pending</button>
-            </div>
-            <div className="">
-                <button className='rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 w-48 py-2 text-2xl' onClick={()=>{setStatusTrans(1)}} >Success</button>
-            </div>
-            <div className="">
-                <button className='rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 w-48 py-2 text-2xl' onClick={()=>{setStatusTrans(0)}} >Rejected</button>
-            </div>
-        </div>
-        <div className="flex mt-6 text-lg items-center ms-10">
-            <div className="text-oranye text-2xl">
-                Period : 
-            </div>
-            <input className= "ms-3 border border-oranye rounded-lg w-40 px-4 py-1 bg-white" type="date" min={'2000-01-01'} max={new Date().toJSON().substring(0, 10)} value={minDate} onChange={(e)=>{setMinDate(e.target.value)}}/> 
-            <h3 className="text-white ms-3"> - </h3>
-            <input className= "ms-3 border border-oranye rounded-lg w-40 px-4 py-1 bg-white" type="date" min={'2000-01-01'} max={new Date().toJSON().substring(0, 10)} value={maxDate} onChange={(e)=>{setMaxDate(e.target.value)}}/>
-        </div>
+        <div className='flex me-10'>
+            <div className='w-2/3'>
+                <div className="flex gap-6 ms-10">
+                    <div className="">
+                        <button className='rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 w-48 py-2 text-2xl' onClick={()=>{setStatusTrans(-1)}} >All Transaction</button>
+                    </div>
+                    <div className="">
+                        <button className='rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 w-48 py-2 text-2xl' onClick={()=>{setStatusTrans(2)}} >Pending</button>
+                    </div>
+                    <div className="">
+                        <button className='rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 w-48 py-2 text-2xl' onClick={()=>{setStatusTrans(1)}} >Success</button>
+                    </div>
+                    <div className="">
+                        <button className='rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 w-48 py-2 text-2xl' onClick={()=>{setStatusTrans(0)}} >Rejected</button>
+                    </div>
+                </div>
+                <div className="flex mt-6 text-lg items-center ms-10">
+                    <div className="text-oranye text-2xl">
+                        Period : 
+                    </div>
+                    <input className= "ms-3 border border-oranye rounded-lg w-40 px-4 py-1 bg-white" type="date" min={'2000-01-01'} max={new Date().toJSON().substring(0, 10)} value={minDate} onChange={(e)=>{setMinDate(e.target.value)}}/> 
+                    <h3 className="text-white ms-3"> - </h3>
+                    <input className= "ms-3 border border-oranye rounded-lg w-40 px-4 py-1 bg-white" type="date" min={'2000-01-01'} max={new Date().toJSON().substring(0, 10)} value={maxDate} onChange={(e)=>{setMaxDate(e.target.value)}}/>
+                </div>
 
-        <div className="h-[6rem] w-full flex px-10 items-center text-oranye border-b border-oranye">
-            <input className= "w-[27.3rem] px-5 py-2 text-white text-xl bg-abu-gelap border border-oranye rounded-xl" placeholder="Search Invoice..." onChange={(e)=>{setSearch(e.target.value)}}/>
+                <div className="h-[6rem] w-full flex px-10 items-center text-oranye border-b border-oranye">
+                    <input className= "w-[27.3rem] px-5 py-2 text-white text-xl bg-abu-gelap border border-oranye rounded-xl" placeholder="Search Invoice..." onChange={(e)=>{setSearch(e.target.value)}}/>
+                </div>
+            </div>
+            <div className='w-1/3 border-b border-oranye'>
+                <div className='text-oranye text-3xl py-3 px-6 my-5 border-2 border-oranye rounded-xl '>
+                    <p className='text-5xl mb-8'>Summary</p>
+                    <p>Total Sales Quantity :&nbsp; {qty} items</p>
+                    <p>Total Income :&nbsp; Rp {income.toLocaleString("id-ID")}</p>
+                </div>
+            </div>
         </div>
 
         <div className='text-center h-auto mx-10 mb-36'>
