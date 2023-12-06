@@ -59,7 +59,7 @@ const ChatUser = () => {
         }).then((res)=>{
             if (res.data.email_verified){
                 setUser(res.data)
-                setUserChat(res.data.chats[0]);
+                setUserChat(res.data.chats[0]);                
             }else 
                 navigate("/verifyemail")
         }).catch((err) => {console.log(err)});
@@ -96,6 +96,7 @@ const ChatUser = () => {
                     <p className='text-oranye text-4xl mt-1 ms-5'>Chat dengan Admin</p>
                 </div>
                 <div ref={ref} className='w-full h-[calc(100vh-23rem)] bg-neutral-200 p-2 overflow-y-auto no-scrollbar'>
+
                     {userChat?.chatting?.map((c, index) => {
                         return (<>
                             <div className={'chat ' + (user?.email == c.sender?" chat-end" : " chat-start")}>
@@ -107,6 +108,7 @@ const ChatUser = () => {
                             </div>
                         </>)
                     })}
+
                 </div>
                 <form onSubmit={handleSubmit(addChat)}>
                     <div className="h-[6rem] flex items-center justify-between px-10 pt-5 border-t-2 border-oranye">

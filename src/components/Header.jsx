@@ -46,7 +46,7 @@ function Header(){
 
     const profile = () => {
         setAnchorEl(null);
-        navigate("/profile")
+        navigate("/profile/")
     }
 
     const logout = () => {

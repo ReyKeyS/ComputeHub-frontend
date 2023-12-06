@@ -22,9 +22,9 @@ import AdminNavbar from '../pages/Admin/AdminNavbar'
 import ChatUser from '../pages/User/ChatUser'
 import Cart from '../pages/User/Cart';
 import TransSuccess from '../pages/User/TransSuccess';
-import Profile from '../pages/user/Profile';
-import ProfileDashboard from '../pages/user/ProfileDashboard';
-import ProfileEdit from '../pages/user/ProfileEdit';
+import Profile from '../pages/User/Profile';
+import ProfileDashboard from '../pages/User/ProfileDashboard';
+import ProfileEdit from '../pages/User/ProfileEdit';
 import Build from '../pages/User/Build';
 import EmailVerify from '../pages/User/EmailVerify';
 

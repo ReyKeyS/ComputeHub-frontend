@@ -158,7 +158,7 @@ function Shop(params) {
                     }
 
                     {!loading && listItem && listItem.map((item, index) => {
-                        if ((categoryFilter == "All" || item.category == categoryFilter) && (searchFilter == "" || item.name.toLowerCase().includes(searchFilter)))
+                        if ((categoryFilter == "All" || item.category == categoryFilter) && (searchFilter == "" || item.name.toLowerCase().includes(searchFilter.toLowerCase())))
                             return (
                                 <CardBarang key={index} item={item}/>
                             )

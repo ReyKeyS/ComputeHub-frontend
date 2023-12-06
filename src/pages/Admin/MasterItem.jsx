@@ -144,6 +144,7 @@ function MasterItem() {
     const [descitems, setDescitems] = useState('')
     const [open, setOpen] = useState(false)
     const [selectedItem, setSelectedItem] = useState({})
+    const [search, setSearch] = useState('')
 
     useEffect(() => {
         client.get("/items").then((res) => {
@@ -211,6 +212,7 @@ function MasterItem() {
             console.log(err);
         });
     }
+
     const updateItem = () => {
         let isi = {
             name: nameitems,
@@ -331,8 +333,12 @@ function MasterItem() {
                 </div>
             </div>
         </form>
-        <div className="judul text-white text-5xl font-bold ms-10 my-7">
+        <div className="text-white text-5xl font-bold mx-10 my-7">
             <h1>List Items</h1>
+            <div className='flex text-2xl items-center mt-3'>
+                <p>Search : </p>
+                <input type="text" className='w-1/2 bg-abu-gelap border border-oranye text-2xl ms-8 px-4 py-1 rounded-xl' onChange={(e)=>{setSearch(e.target.value)}}/>
+            </div>
         </div>
 
         <div className="flex justify-center">
@@ -351,7 +357,9 @@ function MasterItem() {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {listItems?.map((row, index) => (
+                            {listItems?.map((row, index) => {
+                                if (row.name.toLowerCase().includes(search.toLowerCase()))
+                                return (
                                 <StyledTableRow key={index}>
                                     <StyledTableCell component="th" scope="row" align='center'>{index + 1}</StyledTableCell>
                                     <StyledTableCell align="center">{row.name}</StyledTableCell>
@@ -405,7 +413,7 @@ function MasterItem() {
                                         <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye hover:scale-110 hover:font-bold transition duration-300' onClick={() => { deleteItem(row._id) }}>Delete</button>
                                     </StyledTableCell>
                                 </StyledTableRow>
-                            ))}
+                            )})}
                         </TableBody>
                     </Table>
                 </TableContainer>
