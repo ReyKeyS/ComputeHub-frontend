@@ -20,6 +20,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, ThemeProvider } from '@mui/material';
 import dashboardTheme from '../../../dashboardTheme';
+import CardBarang from '../../components/CardBarang';
 
 // Custom Style React-Select
 const customStyles = {
@@ -140,58 +141,10 @@ function Shop(params) {
                 </div>
                 <div className="col-span-2 grid grid-cols-4">
 
-                    {listItem && listItem.map((item) => {
+                    {listItem && listItem.map((item, index) => {
                         if (categoryFilter == "All" || item.category == categoryFilter)
                             return (
-                                // <Link to={`/barang/${item._id}`}>
-                                // <div className='bg-abu-gelap w-48 h-60 rounded-xl flex flex-col border-2 mt-14'>
-                                //     <div className='h-2/3 flex flex-col-reverse rounded-xl bg-white bg-[url("/img/graphic_card.png")] bg-center'>
-                                //         <img src={import.meta.env.VITE_BACKEND_GET_PICTURE_URL+item.picture} alt="" />
-                                //         {/* <div className='grid grid-cols-3 gap-1'>
-                                //             <div className='col-start-3 text-white'>5<StarIcon sx={{ color: yellow[500] }} /></div>
-                                //         </div> */}
-                                //     </div>
-                                //     <div className='h-1/3'>
-                                //         <div className='grid grid-rows-4'>
-                                //             <div className='row-span-2 text-white font-bold text-xl'>{item.name}</div>
-                                //             {item.discount && 
-                                //                 <div className='text-oranye font-bold text-lg'>Rp {item.discount.promo_price.toLocaleString('id-ID')}</div>
-                                //             }
-                                //             <div className={'text-oranye font-bold text-lg' + (item.discount?" line-through":"")}>Rp {item.price.toLocaleString('id-ID')}</div>
-                                //         </div>
-                                //     </div>
-                                // </div>
-                                // </Link>
-                                <ThemeProvider theme={dashboardTheme}>
-                                <Card sx={{ maxWidth: 345, margin:2, border:"primary.oranye" }}>
-                                    <CardActionArea component={Link} to={`/barang/${item._id}`}>
-                                        <CardMedia
-                                            component="img"
-                                            // height="540"
-                                            image={import.meta.env.VITE_BACKEND_GET_PICTURE_URL + item.picture}
-                                            alt=""
-                                            className='h-56 border' 
-                                        />
-                                        <CardContent className='h-48 bg-abu-gelap'>
-                                            <Typography gutterBottom variant="h5" component="div" color={"primary.putih"} className='line-clamp-2'>
-                                                {item.name}
-                                            </Typography>
-                                            <Typography gutterBottom variant='body2' color={"primary.putih"} className='mt-20'>
-                                                5<StarIcon sx={{ color: yellow[500] }} />
-                                            </Typography>
-                                            <Typography gutterBottom variant="body1" color="primary.oranye">
-                                                {item.discount &&
-                                                    <div className=' font-bold text-xl'>Rp {item.discount.promo_price.toLocaleString('id-ID')}</div>
-                                                }
-                                            </Typography>
-                                            <Typography gutterBottom variant="body1" fontWeight={700} marginTop={"auto"} >
-                                                <span className={(item.discount?" line-through text-abu-abu text-sm ":" text-putih text-xl")}>Rp {item.price.toLocaleString('id-ID')}</span>
-                                            </Typography>
-                                            
-                                        </CardContent>
-                                    </CardActionArea>
-                                </Card>
-                                </ThemeProvider>
+                                <CardBarang key={index} item={item}/>
                             )
                     })}
 
