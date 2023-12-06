@@ -28,6 +28,12 @@ function History() {
         return (<div>{tanggal} | {jam}</div>);
       }
       
+      function formatHarga(harga){
+        return harga.toLocaleString('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+        });
+      }
 
     useEffect(() => {
         if (localStorage.getItem('user_token')) {
@@ -79,19 +85,24 @@ function History() {
                         </div>
                         {item.detail_trans?.map((detail, index) => (
                         <div className=" w-5/6 m-auto rounded-3xl mb-8 bg-abu-super-gelap h-56 grid grid-cols-4 "key={index}>
-                            <div className="w-20 h-20 rounded">
-                                <img src={import.meta.env.VITE_BACKEND_GET_PICTURE_URL+detail.item_id.picture} alt="Item" />
+                            <div className="w-40 h-40 rounded-xl m-auto">
+                                <img className="rounded-lg" 
+                                src={import.meta.env.VITE_BACKEND_GET_PICTURE_URL+detail.item_id.picture} 
+                                alt="Item" />
                             </div>
-                            <div className="text-2xl">
-                                <div className="ml-8 mb-2 mt-8 text-2xl">Nama </div>
-                                <div className="ml-8 mb-2  text-2xl">Harga </div>
+                            <div className="text-2xl text-white">
+                                <div className="ml-4 mb-2 mt-8 text-2xl">{detail.name} </div>
+                                <div className="flex ">
+                                    <div className="ml-4 mb-2  text-2xl">{detail.qty} X </div>
+                                    <div className="ml-2 text-oranye text-2xl">{formatHarga(detail.price)} </div>
+                                </div>
                             </div>
                             <div className="col-span-2">
                                 <div className="text-end text-oranye mt-4 mr-20 text-4xl">
                                     Total
                                 </div>
                                 <div className="text-end mr-20 text-4xl text-white">
-                                    Rp 36.000.000
+                                    {formatHarga(detail.qty*detail.price)}
                                 </div>
                                 <div className="text-end">
                                     <button className=" bg-oranye px-3 py-2 mr-4 mt-4 w-48 h-12 rounded-xl text-2xl mr-20 text-abu-super-gelap">Detail</button>
@@ -99,6 +110,9 @@ function History() {
                             </div>
                         </div>
                          ))}
+                         <div className="text-end mr-8 mb-4 text-3xl">
+                            Grand Total : {formatHarga(item.grand_total)}
+                         </div>
                     </div>
                 </div>
             ))}
