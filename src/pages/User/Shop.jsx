@@ -92,7 +92,7 @@ function Shop(params) {
         }).then((res) => {
             setListItem(res.data)
 
-            setTimeout(() => {
+            timeout = setTimeout(() => {
                 setLoading(false)
             }, 250);
         }).catch((err) => {
@@ -152,7 +152,7 @@ function Shop(params) {
                 <div className="col-span-2 grid grid-cols-4">
 
                     {loading && 
-                        <div className='w-[68rem] h-[28rem] flex justify-center items-center'>
+                        <div className='w-[68rem] h-[28.7rem] flex justify-center items-center'>
                             <div className='scale-[5]'><span className="loading loading-infinity text-oranye loading-lg"></span></div>
                         </div>
                     }

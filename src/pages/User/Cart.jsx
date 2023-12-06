@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import client from "../../services/client"
 
 import Footer from "../../components/Footer"
@@ -11,12 +11,15 @@ import Checkbox from '@mui/material/Checkbox';
 
 const Cart = () => {
     const navigate = useNavigate()
+    const location = useLocation()
     const [user, setUser] = useState()
     const [grandTotal, setGrandTotal] = useState()
     const [buildService, setBuildService] = useState(false)
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
+        if (new URLSearchParams(location.search).get('transaction_status')) navigate(`/success?order_id=${new URLSearchParams(location.search).get('order_id')}&status_code=${new URLSearchParams(location.search).get('status_code')}&transaction_status=${new URLSearchParams(location.search).get('transaction_status')}`)
+
         let timeout;
         if (!localStorage.getItem("user_token")) navigate("/")
         
@@ -74,23 +77,16 @@ const Cart = () => {
             // Midtrans
             window.snap.pay(res.data.midtrans.token, {
                 onSuccess: function (result) {
-                    /* You may add your own implementation here */
-                    alert("Payment success!");
-                    console.log(result);
+                    // navigate(`/success?order_id=${result.order_id}&status_code=${result.status_code}&transaction_status=${result.transaction_status}`)
                 },
                 onPending: function (result) {
-                    /* You may add your own implementation here */
-                    alert("Waiting for your payment!");
-                    console.log(result);
+                    // navigate(`/success?order_id=${result.order_id}&status_code=${result.status_code}&transaction_status=${result.transaction_status}`)
                 },
                 onError: function (result) {
-                    /* You may add your own implementation here */
-                    alert("Payment failed!");
-                    console.log(result);
+                    // navigate(`/success?order_id=${result.order_id}&status_code=${result.status_code}&transaction_status=${result.transaction_status}`)
                 },
                 onClose: function () {
-                    /* You may add your own implementation here */
-                    alert('You closed the popup without finishing the payment');
+
                 }
             });
         }).catch(err=>console.log(err))

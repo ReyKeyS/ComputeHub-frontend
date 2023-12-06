@@ -24,9 +24,11 @@ function Report() {
             let qty = 0; let income = 0;
             console.log(res.data)
             for (const t of res.data) {
-                income += t.grand_total
-                for (const d of t.detail_trans) {
-                    qty += d.qty
+                if (t.status == 1){
+                    income += t.grand_total
+                    for (const d of t.detail_trans) {
+                        qty += d.qty
+                    }
                 }
             }
             setQty(qty);
@@ -70,7 +72,7 @@ function Report() {
             </div>
             <div className='w-1/3 border-b border-oranye'>
                 <div className='text-oranye text-3xl py-3 px-6 my-5 border-2 border-oranye rounded-xl '>
-                    <p className='text-5xl mb-8'>Summary</p>
+                    <p className='text-5xl font-bold mb-8'>Summary</p>
                     <p>Total Sales Quantity :&nbsp; {qty} items</p>
                     <p>Total Income :&nbsp; Rp {income.toLocaleString("id-ID")}</p>
                 </div>

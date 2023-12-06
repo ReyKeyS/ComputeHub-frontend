@@ -264,7 +264,7 @@ function MasterItem() {
 
                 <div className="text-white text-2xl place-items-center mt-3 mr-12 text-right">Descriptions :</div>
                 <div className="col-span-3 text-white ">
-                    <textarea className='bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-3 px-3 py-1' cols="30" rows="5" placeholder={errors.description ? errors.description.message : ""} {...register('description')}></textarea>
+                    <textarea className='resize-none bg-abu-gelap border border-oranye rounded w-11/12 place-items-center mt-3 px-3 py-1' cols="30" rows="5" placeholder={errors.description ? errors.description.message : ""} {...register('description')}></textarea>
                 </div>
 
                 <div className="text-white text-2xl place-items-center mt-4 mr-12 text-right">Price :</div>

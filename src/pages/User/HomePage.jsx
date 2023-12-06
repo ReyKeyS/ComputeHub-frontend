@@ -27,7 +27,7 @@ function HomePage() {
     let timeout;
     client.get("/items/promo/fetch").then((res)=>{
       setListitem(res.data)
-      setTimeout(() => {
+      timeout = setTimeout(() => {
         setLoading(false) 
       }, 250)
     }).catch((err) => {
