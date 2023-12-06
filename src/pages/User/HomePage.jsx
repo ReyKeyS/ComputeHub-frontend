@@ -46,57 +46,81 @@ function HomePage() {
       <div className='font-black text-4xl mt-10 mx-20 mb-8'>
         Category <WorkspacePremiumIcon fontSize='large' />
       </div>
-      <div className="flex gap-5 snap-x mx-20">
-        <div className='relative flex items-center justify-center overflow-hidden shadow-xl w-72 h-80 rounded-2xl hover:cursor-pointer' onClick={()=>{dispatch(setCategory("Motherboard")); navigate("/shop")}} >
-          <div className='hover:scale-125 bg-[url("/img/Motherboard_non_tulis.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
-          <a className='absolute text-xl font-black transition-all duration-500 ease-in-out transform scale-150 text-gray-50 opacity-80'>Motherboard</a>
+      <div className="w-full overflow-x-scroll flex gap-10 snap-x px-20 no-scrollbar">
+        <div className='snap-center'>
+          <div className='relative flex items-center justify-center overflow-hidden shadow-xl w-72 h-96 rounded-2xl hover:cursor-pointer' onClick={()=>{dispatch(setCategory("Motherboard")); navigate("/shop")}} >
+            <div className='hover:scale-125 bg-[url("/img/Motherboard_non_tulis.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
+            <a className='absolute text-xl font-black transition-all duration-500 ease-in-out transform scale-150 text-gray-50 opacity-80'>Motherboard</a>
+          </div>
         </div>
-        <div className='relative flex items-center justify-center overflow-hidden shadow-xl w-72 h-80 rounded-2xl hover:cursor-pointer' onClick={()=>{dispatch(setCategory("Processor")); navigate("/shop")}} >
-          <div className='hover:scale-125 bg-[url("/img/processor.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
-          <a className='absolute text-xl font-black transition-all duration-500 ease-in-out transform scale-150 text-gray-50 opacity-80'>Processor</a>
+        <div className='snap-center'>
+          <div className='relative flex items-center justify-center overflow-hidden shadow-xl w-72 h-96 rounded-2xl hover:cursor-pointer' onClick={()=>{dispatch(setCategory("Processor")); navigate("/shop")}} >
+            <div className='hover:scale-125 bg-[url("/img/processor.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
+            <a className='absolute text-xl font-black transition-all duration-500 ease-in-out transform scale-150 text-gray-50 opacity-80'>Processor</a>
+          </div>
         </div>
-        <div className='relative flex items-center justify-center overflow-hidden shadow-xl w-72 h-80 rounded-2xl hover:cursor-pointer' onClick={()=>{dispatch(setCategory("VGA")); navigate("/shop")}} >
-          <div className='hover:scale-125 bg-[url("/img/graphic_card.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
-          <a className='absolute text-xl font-black transition-all duration-500 ease-in-out transform scale-150 text-gray-50 opacity-80'>Graphic Card</a>
+        <div className='snap-center'>
+          <div className='relative flex items-center justify-center overflow-hidden shadow-xl w-72 h-96 rounded-2xl hover:cursor-pointer' onClick={()=>{dispatch(setCategory("VGA")); navigate("/shop")}} >
+            <div className='hover:scale-125 bg-[url("/img/graphic_card.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
+            <a className='absolute text-xl font-black transition-all duration-500 ease-in-out transform scale-150 text-gray-50 opacity-80'>Graphic Card</a>
+          </div>
         </div>
-        <div className='relative flex items-center justify-center overflow-hidden shadow-xl w-72 h-80 rounded-2xl hover:cursor-pointer' onClick={()=>{dispatch(setCategory("RAM")); navigate("/shop")}} >
-          <div className='hover:scale-125 bg-[url("/img/ram.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
-          <a className='absolute text-xl font-black transition-all duration-500 ease-in-out transform scale-150 text-gray-50 opacity-80'>RAM</a>
+        <div className='snap-center'>
+          <div className='relative flex items-center justify-center overflow-hidden shadow-xl w-72 h-96 rounded-2xl hover:cursor-pointer' onClick={()=>{dispatch(setCategory("RAM")); navigate("/shop")}} >
+            <div className='hover:scale-125 bg-[url("/img/ram.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
+            <a className='absolute text-xl font-black transition-all duration-500 ease-in-out transform scale-150 text-gray-50 opacity-80'>RAM</a>
+          </div>
         </div>
-        <div className='relative flex items-center justify-center overflow-hidden shadow-xl w-72 h-80 rounded-2xl hover:cursor-pointer' onClick={()=>{dispatch(setCategory("PSU")); navigate("/shop")}} >
-          <div className='hover:scale-125 bg-[url("/img/psu.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
-          <a className='absolute text-xl font-black transition-all duration-500 ease-in-out transform scale-150 text-gray-50 opacity-80'>Power Supply</a>
+        <div className='snap-center'>
+          <div className='relative flex items-center justify-center overflow-hidden shadow-xl w-72 h-96 rounded-2xl hover:cursor-pointer' onClick={()=>{dispatch(setCategory("PSU")); navigate("/shop")}} >
+            <div className='hover:scale-125 bg-[url("/img/psu.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
+            <a className='absolute text-xl font-black transition-all duration-500 ease-in-out transform scale-150 text-gray-50 opacity-80'>Power Supply</a>
+          </div>
         </div>
-        <div className='relative flex items-center justify-center overflow-hidden shadow-xl w-72 h-80 rounded-2xl hover:cursor-pointer' onClick={()=>{dispatch(setCategory("Casing")); navigate("/shop")}} >
-          <div className='hover:scale-125 bg-[url("/img/pccase.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
-          <a className='absolute text-xl font-black transition-all duration-500 ease-in-out transform scale-150 text-gray-50 opacity-80'>PC Case</a>
+        <div className='snap-center'>
+          <div className='relative flex items-center justify-center overflow-hidden shadow-xl w-72 h-96 rounded-2xl hover:cursor-pointer' onClick={()=>{dispatch(setCategory("Casing")); navigate("/shop")}} >
+            <div className='hover:scale-125 bg-[url("/img/pccase.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
+            <a className='absolute text-xl font-black transition-all duration-500 ease-in-out transform scale-150 text-gray-50 opacity-80'>PC Case</a>
+          </div>
+        </div>
+        <div className='snap-center'>
+          <div className='relative flex items-center justify-center overflow-hidden shadow-xl w-72 h-96 rounded-2xl hover:cursor-pointer' onClick={()=>{dispatch(setCategory("HDD")); navigate("/shop")}} >
+            <div className='hover:scale-125 bg-[url("/img/Motherboard_non_tulis.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
+            <a className='absolute text-xl font-black transition-all duration-500 ease-in-out transform scale-150 text-gray-50 opacity-80'>HDD</a>
+          </div>
+        </div>
+        <div className='snap-center'>
+          <div className='relative flex items-center justify-center overflow-hidden shadow-xl w-72 h-96 rounded-2xl hover:cursor-pointer' onClick={()=>{dispatch(setCategory("SSD")); navigate("/shop")}} >
+            <div className='hover:scale-125 bg-[url("/img/processor.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
+            <a className='absolute text-xl font-black transition-all duration-500 ease-in-out transform scale-150 text-gray-50 opacity-80'>SSD</a>
+          </div>
+        </div>
+        <div className='snap-center'>
+          <div className='relative flex items-center justify-center overflow-hidden shadow-xl w-72 h-96 rounded-2xl hover:cursor-pointer' onClick={()=>{dispatch(setCategory("Cooling")); navigate("/shop")}} >
+            <div className='hover:scale-125 bg-[url("/img/graphic_card.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
+            <a className='absolute text-xl font-black transition-all duration-500 ease-in-out transform scale-150 text-gray-50 opacity-80'>Cooling</a>
+          </div>
+        </div>
+        <div className='snap-center'>
+          <div className='relative flex items-center justify-center overflow-hidden shadow-xl w-72 h-96 rounded-2xl hover:cursor-pointer' onClick={()=>{dispatch(setCategory("Monitor")); navigate("/shop")}} >
+            <div className='hover:scale-125 bg-[url("/img/ram.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
+            <a className='absolute text-xl font-black transition-all duration-500 ease-in-out transform scale-150 text-gray-50 opacity-80'>Monitor</a>
+          </div>
+        </div>
+        <div className='snap-center'>
+          <div className='relative flex items-center justify-center overflow-hidden shadow-xl w-72 h-96 rounded-2xl hover:cursor-pointer' onClick={()=>{dispatch(setCategory("Keyboard")); navigate("/shop")}} >
+            <div className='hover:scale-125 bg-[url("/img/pccase.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
+            <a className='absolute text-xl font-black transition-all duration-500 ease-in-out transform scale-150 text-gray-50 opacity-80'>Keyboard</a>
+          </div>
+        </div>
+        <div className='snap-center'>
+          <div className='relative flex items-center justify-center overflow-hidden shadow-xl w-72 h-96 rounded-2xl hover:cursor-pointer' onClick={()=>{dispatch(setCategory("Mouse")); navigate("/shop")}} >
+            <div className='hover:scale-125 bg-[url("/img/psu.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
+            <a className='absolute text-xl font-black transition-all duration-500 ease-in-out transform scale-150 text-gray-50 opacity-80'>Mouse</a>
+          </div>
         </div>
       </div>
       <div className="flex gap-5 snap-x mx-20 mt-10">
-        <div className='relative flex items-center justify-center overflow-hidden shadow-xl w-72 h-80 rounded-2xl hover:cursor-pointer' onClick={()=>{dispatch(setCategory("HDD")); navigate("/shop")}} >
-          <div className='hover:scale-125 bg-[url("/img/Motherboard_non_tulis.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
-          <a className='absolute text-xl font-black transition-all duration-500 ease-in-out transform scale-150 text-gray-50 opacity-80'>HDD</a>
-        </div>
-        <div className='relative flex items-center justify-center overflow-hidden shadow-xl w-72 h-80 rounded-2xl hover:cursor-pointer' onClick={()=>{dispatch(setCategory("SSD")); navigate("/shop")}} >
-          <div className='hover:scale-125 bg-[url("/img/processor.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
-          <a className='absolute text-xl font-black transition-all duration-500 ease-in-out transform scale-150 text-gray-50 opacity-80'>SSD</a>
-        </div>
-        <div className='relative flex items-center justify-center overflow-hidden shadow-xl w-72 h-80 rounded-2xl hover:cursor-pointer' onClick={()=>{dispatch(setCategory("Cooling")); navigate("/shop")}} >
-          <div className='hover:scale-125 bg-[url("/img/graphic_card.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
-          <a className='absolute text-xl font-black transition-all duration-500 ease-in-out transform scale-150 text-gray-50 opacity-80'>Cooling</a>
-        </div>
-        <div className='relative flex items-center justify-center overflow-hidden shadow-xl w-72 h-80 rounded-2xl hover:cursor-pointer' onClick={()=>{dispatch(setCategory("Monitor")); navigate("/shop")}} >
-          <div className='hover:scale-125 bg-[url("/img/ram.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
-          <a className='absolute text-xl font-black transition-all duration-500 ease-in-out transform scale-150 text-gray-50 opacity-80'>Monitor</a>
-        </div>
-        <div className='relative flex items-center justify-center overflow-hidden shadow-xl w-72 h-80 rounded-2xl hover:cursor-pointer' onClick={()=>{dispatch(setCategory("Keyboard")); navigate("/shop")}} >
-          <div className='hover:scale-125 bg-[url("/img/pccase.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
-          <a className='absolute text-xl font-black transition-all duration-500 ease-in-out transform scale-150 text-gray-50 opacity-80'>Keyboard</a>
-        </div>
-        <div className='relative flex items-center justify-center overflow-hidden shadow-xl w-72 h-80 rounded-2xl hover:cursor-pointer' onClick={()=>{dispatch(setCategory("Mouse")); navigate("/shop")}} >
-          <div className='hover:scale-125 bg-[url("/img/psu.png")] absolute w-full h-full transition-all duration-500 ease-in-out transform bg-center bg-cover grayscale hover:grayscale-0'></div>
-          <a className='absolute text-xl font-black transition-all duration-500 ease-in-out transform scale-150 text-gray-50 opacity-80'>Mouse</a>
-        </div>
       </div>
       <div className='font-black text-4xl mt-10 mx-20'>
         Best Deals for you

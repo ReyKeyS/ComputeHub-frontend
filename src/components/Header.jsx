@@ -65,7 +65,7 @@ function Header(){
     }, [])
 
     return(
-        <nav className="grid grid-cols-8 bg-abu-super-gelap place-items-center h-[5rem]">
+        <nav className="grid grid-cols-7 bg-abu-super-gelap place-items-center h-[5rem]">
             <NavLink to="/">
                 <div className="bg-abu-super-gelap text-white rounded-lg text-3xl p-2 ms-10 flex justify-center"><ComputerIcon fontSize='large'/>&nbsp;Compute&nbsp;<span className="bg-oranye rounded-lg font-bold text-abu-super-gelap px-1">HUB</span></div>
             </NavLink>
@@ -78,7 +78,10 @@ function Header(){
             <NavLink to={"/build"} className={(state)=>`text-white text-2xl ${state.isActive ? "font-bold text-3xl" : ""}`}>
                 Build
             </NavLink>
-            <div className="text-white text-2xl col-span-2 ms-auto"><SearchIcon fontSize='large'/></div>
+                <div className='flex items-center'>
+                    <input type="text" className='w-[14rem] rounded-xl px-4 py-2' placeholder='Search Product..'/>
+                    <div className="text-white text-2xl col-span-2 ms-2"><SearchIcon fontSize='large'/></div>
+                </div>
             <NavLink to="/cart" className={(state)=>`text-white text-2xl ${state.isActive ? "font-bold text-3xl" : ""}`}>
                 Cart
             </NavLink>
