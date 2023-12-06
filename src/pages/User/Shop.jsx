@@ -88,7 +88,6 @@ function Shop(params) {
         }
         ).then((res) => {
             setListItem(res.data)
-            console.log("res.data", res.data);
         }).catch((err) => {
             console.log(err)
         })
@@ -173,7 +172,7 @@ function Shop(params) {
                                             alt=""
                                             className='h-56 border' 
                                         />
-                                        <CardContent className='h-44 bg-abu-gelap'>
+                                        <CardContent className='h-48 bg-abu-gelap'>
                                             <Typography gutterBottom variant="h5" component="div" color={"primary.putih"} className='line-clamp-2'>
                                                 {item.name}
                                             </Typography>
@@ -182,11 +181,11 @@ function Shop(params) {
                                             </Typography>
                                             <Typography gutterBottom variant="body1" color="primary.oranye">
                                                 {item.discount &&
-                                                    <div className=' font-bold text-lg'>Rp {item.discount.promo_price.toLocaleString('id-ID')}</div>
+                                                    <div className=' font-bold text-xl'>Rp {item.discount.promo_price.toLocaleString('id-ID')}</div>
                                                 }
                                             </Typography>
-                                            <Typography gutterBottom variant="body1" fontWeight={700} marginTop={"auto"} className={(item.discount?" line-through text-abu-abu":" text-putih text-2xl")}>
-                                                Rp {item.price.toLocaleString('id-ID')}
+                                            <Typography gutterBottom variant="body1" fontWeight={700} marginTop={"auto"} >
+                                                <span className={(item.discount?" line-through text-abu-abu text-sm ":" text-putih text-xl")}>Rp {item.price.toLocaleString('id-ID')}</span>
                                             </Typography>
                                             
                                         </CardContent>

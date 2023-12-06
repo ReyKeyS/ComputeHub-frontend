@@ -20,6 +20,7 @@ function LihatBarang() {
     useEffect(() => {
         client.get(`/items/${id}`).then((res) => {
             setItem(res.data)
+            console.log(res.data);
         }).catch((err) => {
             console.log(err)
         })
@@ -58,7 +59,8 @@ function LihatBarang() {
                     <img src={import.meta.env.VITE_BACKEND_GET_PICTURE_URL+item.picture} width="50%" />
                     <div className="flex flex-col text-putih">
                         <span className="text-6xl font-extrabold">{item?.name}</span>
-                        <span className="text-5xl font-extrabold text-oranye">Rp {item?.price?.toLocaleString("id-ID")}</span>
+                        {item.discount &&  <span className='text-5xl font-extrabold text-oranye'>Rp {item.discount.promo_price.toLocaleString('id-ID')}</span>}
+                        <span className={(item.discount?" line-through text-abu-abu text-2xl ":" text-5xl font-extrabold text-oranye")}>Rp {item?.price?.toLocaleString("id-ID")}</span>
                         <span className="text-2xl font-extrabold">Category: {item?.category}</span>
                         <span className="text-2xl font-extrabold">Stok : {item?.stock}</span>
                         <div className='w-full h-full mt-2 mb-8'>
