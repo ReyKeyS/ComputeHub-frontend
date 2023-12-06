@@ -18,7 +18,8 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+import { CardActionArea, ThemeProvider } from '@mui/material';
+import dashboardTheme from '../../../dashboardTheme';
 
 // Custom Style React-Select
 const customStyles = {
@@ -87,6 +88,7 @@ function Shop(params) {
         }
         ).then((res) => {
             setListItem(res.data)
+            console.log("res.data", res.data);
         }).catch((err) => {
             console.log(err)
         })
@@ -161,29 +163,36 @@ function Shop(params) {
                                 //     </div>
                                 // </div>
                                 // </Link>
-                                <Card sx={{ maxWidth: 345 }}>
-                                    <CardActionArea>
+                                <ThemeProvider theme={dashboardTheme}>
+                                <Card sx={{ maxWidth: 345, margin:2, border:"primary.oranye" }}>
+                                    <CardActionArea component={Link} to={`/barang/${item._id}`}>
                                         <CardMedia
                                             component="img"
-                                            height="140"
+                                            // height="540"
                                             image={import.meta.env.VITE_BACKEND_GET_PICTURE_URL + item.picture}
                                             alt=""
+                                            className='h-56 border' 
                                         />
-                                        <CardContent>
-                                            <Typography gutterBottom variant="h5" component="div">
+                                        <CardContent className='h-44 bg-abu-gelap'>
+                                            <Typography gutterBottom variant="h5" component="div" color={"primary.putih"} className='line-clamp-2'>
                                                 {item.name}
                                             </Typography>
-                                            <Typography variant="body1" color="text.secondary">
+                                            <Typography gutterBottom variant='body2' color={"primary.putih"} className='mt-20'>
+                                                5<StarIcon sx={{ color: yellow[500] }} />
+                                            </Typography>
+                                            <Typography gutterBottom variant="body1" color="primary.oranye">
                                                 {item.discount &&
-                                                    <div className='text-oranye font-bold text-lg'>Rp {item.discount.promo_price.toLocaleString('id-ID')}</div>
+                                                    <div className=' font-bold text-lg'>Rp {item.discount.promo_price.toLocaleString('id-ID')}</div>
                                                 }
                                             </Typography>
-                                            <Typography variant="body2" color="text.secondary" className={(item.discount?" line-through":"")}>
+                                            <Typography gutterBottom variant="body1" fontWeight={700} marginTop={"auto"} className={(item.discount?" line-through text-abu-abu":" text-putih text-2xl")}>
                                                 Rp {item.price.toLocaleString('id-ID')}
                                             </Typography>
+                                            
                                         </CardContent>
                                     </CardActionArea>
                                 </Card>
+                                </ThemeProvider>
                             )
                     })}
 
