@@ -83,18 +83,18 @@ function History() {
                                 </div>
                             </div>
                         </div>
-                        {item.detail_trans?.map((detail, index) => (
-                        <div className=" w-5/6 m-auto rounded-3xl mb-8 bg-abu-super-gelap h-56 grid grid-cols-4 "key={index}>
+                        {/* {item.detail_trans?.map((detail, index) => ( */}
+                        <div className=" w-5/6 m-auto rounded-3xl mb-8 bg-abu-super-gelap h-56 grid grid-cols-4 ">
                             <div className="w-40 h-40 rounded-xl m-auto">
                                 <img className="rounded-lg" 
-                                src={import.meta.env.VITE_BACKEND_GET_PICTURE_URL+detail.item_id.picture} 
+                                src={import.meta.env.VITE_BACKEND_GET_PICTURE_URL+item.detail_trans[0].item_id.picture} 
                                 alt="Item" />
                             </div>
                             <div className="text-2xl text-white">
-                                <div className="ml-4 mb-2 mt-8 text-2xl">{detail.name} </div>
+                                <div className="ml-4 mb-2 mt-8 text-2xl">{item.detail_trans[0].name} </div>
                                 <div className="flex ">
-                                    <div className="ml-4 mb-2  text-2xl">{detail.qty} X </div>
-                                    <div className="ml-2 text-oranye text-2xl">{formatHarga(detail.price)} </div>
+                                    <div className="ml-4 mb-2  text-2xl">{item.detail_trans[0].qty} X </div>
+                                    <div className="ml-2 text-oranye text-2xl">{formatHarga(item.detail_trans[0].price)} </div>
                                 </div>
                             </div>
                             <div className="col-span-2">
@@ -102,16 +102,15 @@ function History() {
                                     Total
                                 </div>
                                 <div className="text-end mr-20 text-4xl text-white">
-                                    {formatHarga(detail.qty*detail.price)}
-                                </div>
-                                <div className="text-end">
-                                    <button className=" bg-oranye px-3 py-2 mr-4 mt-4 w-48 h-12 rounded-xl text-2xl mr-20 text-abu-super-gelap">Detail</button>
+                                    {formatHarga(item.detail_trans[0].qty*item.detail_trans[0].price)}
                                 </div>
                             </div>
                         </div>
-                         ))}
+                         {/* ))} */}
                          <div className="text-end mr-8 mb-4 text-3xl">
-                            Grand Total : {formatHarga(item.grand_total)}
+                            Grand Total : {formatHarga(item.grand_total)} <br />
+                            <button className=" ml-4 bg-oranye px-3 py-2 mr-4 mt-4 w-48 h-12 rounded-xl text-2xl mr-20 text-abu-super-gelap"
+                             onClick={async (e) => {navigate(`/profile/detail/${item._id}`)}}>Detail</button>
                          </div>
                     </div>
                 </div>

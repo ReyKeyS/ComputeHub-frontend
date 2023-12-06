@@ -7,6 +7,7 @@ import LoginPage from '../pages/User/LoginPage'
 import RegisterPage from '../pages/User/RegisterPage'
 import Shop from '../pages/User/Shop'
 import History from '../pages/User/History'
+import DetailHistory from '../pages/User/DetailHistory'
 
 // Admin Pages
 import MasterUser from '../pages/Admin/MasterUser'
@@ -117,6 +118,10 @@ const router = createBrowserRouter(
             {
               path:"history",
               element:<History/>
+            },
+            {
+              path:"detail/:trans_id",
+              element:<DetailHistory/>
             }
           ]
         },
