@@ -26,6 +26,7 @@ import Profile from '../pages/user/Profile';
 import ProfileDashboard from '../pages/user/ProfileDashboard';
 import ProfileEdit from '../pages/user/ProfileEdit';
 import Build from '../pages/User/Build';
+import EmailVerify from '../pages/User/EmailVerify';
 
 const router = createBrowserRouter(
   [
@@ -56,10 +57,6 @@ const router = createBrowserRouter(
         {
           path: "/shop", 
           element: <Shop/>,
-        },
-        {
-          path: "/success",
-          element: <TransSuccess/>,
         },
         {
           path: "/barang/:id", 
@@ -126,6 +123,14 @@ const router = createBrowserRouter(
         {
           path:"build",
           element:<Build/>
+        },
+        {
+          path: "/success",
+          element: <TransSuccess/>,
+        },
+        {
+          path: "/verifyemail",
+          element: <EmailVerify />
         }
       ],
     },
