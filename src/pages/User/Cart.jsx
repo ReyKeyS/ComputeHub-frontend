@@ -90,7 +90,7 @@ const Cart = () => {
         <div className='min-h-[calc(100vh-21rem)] flex justify-center'>
             <div className='w-5/6'>
                 <p className='text-5xl font-bold ps-14 py-7'>Your Cart</p>
-                <div className='flex justify-center items-center mb-10 h-[calc(100vh-34rem)]'>
+                <div className='flex justify-center mb-10 min-h-[calc(100vh-34rem)]'>
                     {user?.carts.length < 1 && 
                         <div className='text-center'>
                             <p className='text-center text-6xl font-extrabold py-2'>Your cart is empty</p>
