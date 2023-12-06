@@ -45,26 +45,28 @@ function Build(){
     }
 
     const addToCart = () => {
-        let temp = []
-        for (const i of items) {
-            if (i.item_id != ""){
-                temp.push({
-                    item_id: i.item_id,
-                    amount: i.amount,
-                })
+        if (user?.email_verified){
+            let temp = []
+            for (const i of items) {
+                if (i.item_id != ""){
+                    temp.push({
+                        item_id: i.item_id,
+                        amount: i.amount,
+                    })
+                }
             }
-        }
-
-        if (temp.length > 0) {
-            client.post("/users/carts/add", {
-                items: temp
-            },{
-                headers: {"Authorization": "Bearer " + localStorage.getItem("user_token")},
-            }).then((res)=>{
-                alert(res.data.message)
-                navigate("/cart")
-            }).catch((err)=>{console.log(err)});
-        }
+    
+            if (temp.length > 0) {
+                client.post("/users/carts/add", {
+                    items: temp
+                },{
+                    headers: {"Authorization": "Bearer " + localStorage.getItem("user_token")},
+                }).then((res)=>{
+                    alert(res.data.message)
+                    navigate("/cart")
+                }).catch((err)=>{console.log(err)});
+            }
+        }else navigate("/verifyemail")
     }
 
     return(
@@ -91,7 +93,7 @@ function Build(){
                     </div>
                     <div className='flex justify-end gap-10 mt-10 font-bold'>
                         <div><button className='w-64 py-3 bg-abu-super-gelap text-4xl rounded-xl text-oranye hover:scale-105 transition duration-300 hover:cursor-pointer' onClick={reset}>Reset</button></div>
-                        <div><button className='w-64 py-3 bg-abu-super-gelap text-4xl rounded-xl text-oranye hover:scale-105 transition duration-300 hover:cursor-pointer' disabled={!user?.email_verified?true:!localStorage.getItem("user_token")?true:false} onClick={addToCart}>Add to Cart</button></div>
+                        <div><button className='w-64 py-3 bg-abu-super-gelap text-4xl rounded-xl text-oranye hover:scale-105 transition duration-300 hover:cursor-pointer' disabled={!localStorage.getItem("user_token")?true:false} onClick={addToCart}>Add to Cart</button></div>
                     </div>
                 </div>
             <Footer/>
