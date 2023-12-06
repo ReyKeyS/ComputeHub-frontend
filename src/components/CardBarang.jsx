@@ -6,13 +6,15 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, ThemeProvider } from '@mui/material';
 import dashboardTheme from '../../dashboardTheme';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-function CardBarang({item}) {
+function CardBarang({ item }) {
+    const navigate = useNavigate()
+
     return (
         <ThemeProvider theme={dashboardTheme}>
             <Card sx={{ width: 250, margin: 2, border: "primary.oranye" }}>
-                <CardActionArea component={Link} to={`/barang/${item._id}`}>
+                <CardActionArea component={Link} to={`/barang/${item._id}`} >
                     <CardMedia
                         component="img"
                         // height="540"
