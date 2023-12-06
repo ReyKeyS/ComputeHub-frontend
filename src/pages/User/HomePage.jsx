@@ -29,7 +29,7 @@ function HomePage() {
       setListitem(res.data)
       setTimeout(() => {
         setLoading(false) 
-      }, 1000)
+      }, 250)
     }).catch((err) => {
       console.log(err);
     })

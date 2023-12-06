@@ -94,7 +94,7 @@ function Shop(params) {
 
             setTimeout(() => {
                 setLoading(false)
-            }, 1000);
+            }, 250);
         }).catch((err) => {
             console.log(err)
         })
