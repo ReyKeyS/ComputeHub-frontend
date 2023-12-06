@@ -127,10 +127,11 @@ const BuildComp = ({ item, grandTotal, setGrandTotal, idx, items, setItems, comp
                     if (e.value != ""){
                         setSelectedItem(e.value)
                         setQty(1)
-                        setSubtotal(e.value.price)
-    
+                        
                         let price = e.value.price;
                         if (e.value.discount && e.value.discount.promo_price) price = e.value.discount.promo_price
+
+                        setSubtotal(price)
                         setGrandTotal(grandTotal + price)
                         
                         items[idx] = {
