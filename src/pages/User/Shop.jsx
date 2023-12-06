@@ -71,6 +71,7 @@ const optionBox = [
 ]
 
 function Shop(params) {
+    const searchFilter = useSelector((state) => state.filter.search)
     const categoryFilter = useSelector((state) => state.filter.category)
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -136,13 +137,13 @@ function Shop(params) {
                         </div>
                     </div>
                     <div className='flex justify-end mt-8'>
-                        <div><button className='text-xl font-bold bg-oranye hover:bg-hover-oranye px-6 py-1 rounded-xl'>Reset</button></div>
+                        <div><button className='text-xl font-bold bg-oranye hover:bg-hover-oranye px-6 py-1 rounded-xl' onClick={()=>navigate(0)}>Reset</button></div>
                     </div>
                 </div>
                 <div className="col-span-2 grid grid-cols-4">
 
                     {listItem && listItem.map((item, index) => {
-                        if (categoryFilter == "All" || item.category == categoryFilter)
+                        if ((categoryFilter == "All" || item.category == categoryFilter) && (searchFilter == "" || item.name.toLowerCase().includes(searchFilter)))
                             return (
                                 <CardBarang key={index} item={item}/>
                             )

@@ -1,7 +1,10 @@
     import React, { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom'
-import client from '../services/client'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form'
+import client from '../services/client'
+import { setSearch } from '../app/filterSlice';
 
 // Material UI
 import SearchIcon from '@mui/icons-material/Search';
@@ -23,10 +26,14 @@ import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 
 function Header(){
+    const searchFilter = useSelector((state) => state.filter.search)
+    const dispatch = useDispatch()
     const navigate = useNavigate()
     const [user, setUser] = useState()
     const [profpict, setProfpict] = useState();
     
+    const { register, reset, handleSubmit } = useForm({});
+
     // Avatar Handler
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -64,6 +71,11 @@ function Header(){
         }
     }, [])
 
+    const searching = (data) => {
+        dispatch(setSearch(data.search))
+        navigate("/shop")
+    }
+
     return(
         <nav className="grid grid-cols-7 bg-abu-super-gelap place-items-center h-[5rem]">
             <NavLink to="/">
@@ -79,7 +91,9 @@ function Header(){
                 Build
             </NavLink>
                 <div className='flex items-center'>
-                    <input type="text" className='w-[14rem] rounded-xl px-4 py-2' placeholder='Search Product..'/>
+                    <form onSubmit={handleSubmit(searching)}>
+                        <input type="text" className='w-[14rem] rounded-xl px-4 py-2' placeholder='Search Product..' defaultValue={searchFilter} {...register("search")}/>
+                    </form>
                     <div className="text-white text-2xl col-span-2 ms-2"><SearchIcon fontSize='large'/></div>
                 </div>
             <NavLink to="/cart" className={(state)=>`text-white text-2xl ${state.isActive ? "font-bold text-3xl" : ""}`}>
