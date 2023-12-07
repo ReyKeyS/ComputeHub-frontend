@@ -49,7 +49,7 @@ function RegisterPage() {
     }
     
     return (
-        <div className='w-full h-fit flex flex-col justify-center bg-gradient-to-r from-white to-black py-5'>
+        <div className='w-full min-h-screen flex flex-col justify-center bg-gradient-to-r from-white to-black py-5'>
             <div className='w-1/2 m-auto'>
             <div className='bg-abu-super-gelap text-white rounded-lg text-6xl p-5 w-fit m-auto flex justify-center'><ComputerIcon fontSize=''/><div className='mx-2'>Compute</div><a className='bg-oranye px-1 rounded-lg font-bold text-abu-super-gelap pb-1'>HUB</a></div>
                 <div className='bg-abu-super-gelap py-5 px-16 mt-2 w-full m-auto flex flex-col border rounded-3xl place-content-center'>
