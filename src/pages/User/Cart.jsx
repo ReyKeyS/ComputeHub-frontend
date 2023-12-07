@@ -77,13 +77,13 @@ const Cart = () => {
             // Midtrans
             window.snap.pay(res.data.midtrans.token, {
                 onSuccess: function (result) {
-                    // navigate(`/success?order_id=${result.order_id}&status_code=${result.status_code}&transaction_status=${result.transaction_status}`)
+                    navigate(`/success?order_id=${result.order_id}&status_code=${result.status_code}&transaction_status=${result.transaction_status}`)
                 },
                 onPending: function (result) {
-                    // navigate(`/success?order_id=${result.order_id}&status_code=${result.status_code}&transaction_status=${result.transaction_status}`)
+                    navigate(`/success?order_id=${result.order_id}&status_code=${result.status_code}&transaction_status=${result.transaction_status}`)
                 },
                 onError: function (result) {
-                    // navigate(`/success?order_id=${result.order_id}&status_code=${result.status_code}&transaction_status=${result.transaction_status}`)
+                    navigate(`/success?order_id=${result.order_id}&status_code=${result.status_code}&transaction_status=${result.transaction_status}`)
                 },
                 onClose: function () {
 
