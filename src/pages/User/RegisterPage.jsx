@@ -49,42 +49,54 @@ function RegisterPage() {
     }
     
     return (
-        <div className='w-screen h-fit flex flex-col justify-center bg-gradient-to-r from-white to-black'>
+        <div className='w-full h-fit flex flex-col justify-center bg-gradient-to-r from-white to-black py-5'>
             <div className='w-1/2 m-auto'>
             <div className='bg-abu-super-gelap text-white rounded-lg text-6xl p-5 w-fit m-auto flex justify-center'><ComputerIcon fontSize=''/><div className='mx-2'>Compute</div><a className='bg-oranye px-1 rounded-lg font-bold text-abu-super-gelap pb-1'>HUB</a></div>
                 <div className='bg-abu-super-gelap py-5 px-16 mt-2 w-full m-auto flex flex-col border rounded-3xl place-content-center'>
                     <form onSubmit={handleSubmit(registered)}>
                     <h1 className='text-center font-bold text-4xl text-oranye'>REGISTER</h1>
                     <div className='text-white text-xl mb-1'>Name</div>
-                    <input type="text" placeholder= "Enter your name"   {...register('name')} className={`mb-3 px-3 py-2 border shadow rounded-lg w-full h-14 text-xl focus:ring-2 focus:ring-blue-500 focus:outline-none `} />
-                    <div className='w-4/6 h-4 flex justify-start mt-1'>
-                        <span className='text-red-500 text-xl'>{errors?.name?.message}</span>
-                    </div><br />
+                    <input type="text" placeholder= "Enter your name"   {...register('name')} className={`px-3 py-2 border shadow rounded-lg w-full h-14 text-xl focus:ring-2 focus:ring-blue-500 focus:outline-none `} />
+                    {errors?.name && 
+                        <div className='w-4/6 flex justify-start items-center my-1'>
+                            <span className='text-red-500 text-xl ms-3'>{errors?.name?.message}</span>
+                        </div>
+                    }
                     <div className='text-white text-xl mb-1'>Email</div>
-                    <input type="text"  placeholder="Enter your Email" {...register('email')} className={`mb-3 px-3 py-2 border shadow rounded-lg w-full h-14 text-xl focus:ring-2 focus:ring-blue-500 focus:outline-none `} />
-                    <div className='w-4/6 h-4 flex justify-start mt-1'>
-                        <span className='text-red-500 text-xl'>{errors?.email?.message}</span>
-                    </div><br />
+                    <input type="text"  placeholder="Enter your Email" {...register('email')} className={`px-3 py-2 border shadow rounded-lg w-full h-14 text-xl focus:ring-2 focus:ring-blue-500 focus:outline-none `} />
+                    {errors?.email && 
+                        <div className='w-4/6 flex justify-start items-center my-1'>
+                            <span className='text-red-500 text-xl ms-3'>{errors?.email?.message}</span>
+                        </div>
+                    }
                     <div className='text-white text-xl mb-1'>Address</div>
-                    <input type="text" placeholder= "Enter your Address"{...register('address')} className={`mb-3 px-3 py-2 border shadow rounded-lg w-full h-14 text-xl focus:ring-2 focus:ring-blue-500 focus:outline-none `}/>
-                    <div className='w-4/6 h-4 flex justify-start mt-1'>
-                        <span className='text-red-500 text-xl'>{errors?.address?.message}</span>
-                    </div><br />
+                    <input type="text" placeholder= "Enter your Address"{...register('address')} className={`px-3 py-2 border shadow rounded-lg w-full h-14 text-xl focus:ring-2 focus:ring-blue-500 focus:outline-none `}/>
+                    {errors?.address && 
+                        <div className='w-4/6 flex justify-start items-center my-1'>
+                            <span className='text-red-500 text-xl ms-3'>{errors?.address?.message}</span>
+                        </div>
+                    }
                     <div className='text-white text-xl mb-1'>Phone Number</div>
-                    <input type="text" placeholder= "Enter your Phone Number" {...register('phone_number')} className={`mb-3 px-3 py-2 border shadow rounded-lg w-full h-14 text-xl focus:ring-2 focus:ring-blue-500 focus:outline-none `} />
-                    <div className='w-4/6 h-4 flex justify-start mt-1'>
-                        <span className='text-red-500 text-xl'>{errors?.phone_number?.message}</span>
-                    </div><br />
+                    <input type="text" placeholder= "Enter your Phone Number" {...register('phone_number')} className={`px-3 py-2 border shadow rounded-lg w-full h-14 text-xl focus:ring-2 focus:ring-blue-500 focus:outline-none `} />
+                    {errors?.phone_number && 
+                        <div className='w-4/6 flex justify-start items-center my-1'>
+                            <span className='text-red-500 text-xl ms-3'>{errors?.phone_number?.message}</span>
+                        </div>
+                    }
                     <div className='text-white text-xl mb-1'>Password</div>
-                    <input type="password" placeholder="Enter your Password" {...register('password')} className={`mb-3 px-3 py-2 border shadow rounded-lg w-full h-14 text-xl focus:ring-2 focus:ring-blue-500 focus:outline-none `}/>
-                    <div className='w-4/6 h-4 flex justify-start mt-1'>
-                        <span className='text-red-500 text-xl'>{errors?.password?.message}</span>
-                    </div><br />
+                    <input type="password" placeholder="Enter your Password" {...register('password')} className={`px-3 py-2 border shadow rounded-lg w-full h-14 text-xl focus:ring-2 focus:ring-blue-500 focus:outline-none `}/>
+                    {errors?.password && 
+                        <div className='w-4/6 flex justify-start items-center my-1'>
+                            <span className='text-red-500 text-xl ms-3'>{errors?.password?.message}</span>
+                        </div>
+                    }
                     <div className='text-white text-xl mb-1'>Confirm Password</div>
-                    <input type="password" placeholder='Enter your confirm password' {...register('confirm_password')} className={`mb-3 px-3 py-2 border shadow rounded-lg w-full h-14 text-xl focus:ring-2 focus:ring-blue-500 focus:outline-none `} />
-                    <div className='w-4/6 h-4 flex justify-start mt-1'>
-                        <span className='text-red-500 text-xl'>{errors?.confirm_password?.message}</span>
-                    </div><br />
+                    <input type="password" placeholder='Enter your confirm password' {...register('confirm_password')} className={`px-3 py-2 border shadow rounded-lg w-full h-14 text-xl focus:ring-2 focus:ring-blue-500 focus:outline-none `} />
+                    {errors?.confirm_password && 
+                        <div className='w-4/6 flex justify-start items-center my-1'>
+                            <span className='text-red-500 text-xl ms-3'>{errors?.confirm_password?.message}</span>
+                        </div>
+                    }
 
                     <div className="text-white text-xl text-center mt-3">Already have an account? &nbsp;<Link to="/login"><a className="font-semibold text-oranye">Login Now!</a></Link></div>
                     <div className="flex">
