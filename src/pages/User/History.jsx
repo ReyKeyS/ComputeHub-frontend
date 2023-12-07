@@ -74,28 +74,33 @@ function History() {
         <>
             <span className="text-6xl font-bold">History</span> <br />
 
-            <button className=" ml-4 bg-oranye px-3 py-1 mr-4 mt-4 w-48 rounded-xl text-3xl text-abu-super-gelap hover:bg-hover-oranye transition duration-300"
-            onClick={async (e) => {setStatus(1)}}>Approved</button>
+            <div className='w-[72rem] mb-2'>
+                <button className={"ml-4 bg-oranye px-7 py-1 mr-4 mt-4 rounded-xl text-3xl text-abu-super-gelap hover:bg-hover-oranye transition duration-300"+(status==-1?" bg-hover-oranye font-bold":"")}
+                onClick={async (e) => {setStatus(-1)}}>All Transaction</button>
 
-            <button className=" ml-4 bg-oranye px-3 py-1 mr-4 mt-4 w-48 rounded-xl text-3xl text-abu-super-gelap hover:bg-hover-oranye transition duration-300"
-            onClick={async (e) => {setStatus(0)}}>Rejected</button>
+                <button className={"ml-4 bg-oranye px-7 py-1 mr-4 mt-4 rounded-xl text-3xl text-abu-super-gelap hover:bg-hover-oranye transition duration-300"+(status==1?" bg-hover-oranye font-bold":"")}
+                onClick={async (e) => {setStatus(1)}}>Approved</button>
 
-            <button className=" ml-4 bg-oranye px-3 py-1 mr-4 mt-4 w-48 rounded-xl text-3xl text-abu-super-gelap hover:bg-hover-oranye transition duration-300"
-            onClick={async (e) => {setStatus(2)}}>Pending</button>
+                <button className={"ml-4 bg-oranye px-7 py-1 mr-4 mt-4 rounded-xl text-3xl text-abu-super-gelap hover:bg-hover-oranye transition duration-300"+(status==0?" bg-hover-oranye font-bold":"")}
+                onClick={async (e) => {setStatus(0)}}>Rejected</button>
 
-            <button className=" ml-4 bg-oranye px-3 py-1 mr-4 mt-4 w-48 rounded-xl text-3xl text-abu-super-gelap hover:bg-hover-oranye transition duration-300"
-            onClick={async (e) => {setStatus(3)}}>Canceled</button>
+                <button className={"ml-4 bg-oranye px-7 py-1 mr-4 mt-4 rounded-xl text-3xl text-abu-super-gelap hover:bg-hover-oranye transition duration-300"+(status==2?" bg-hover-oranye font-bold":"")}
+                onClick={async (e) => {setStatus(2)}}>Pending</button>
 
-            <input className= "ms-3 mt-5 text-dark border border-oranye rounded-lg w-40 px-4 py-1 bg-white" type="date" min={'2000-01-01'} max={new Date().toJSON().substring(0, 10)} value={minDate} onChange={(e)=>{setMinDate(e.target.value)}}/> 
+                <button className={"ml-4 bg-oranye px-7 py-1 mr-4 mt-4 rounded-xl text-3xl text-abu-super-gelap hover:bg-hover-oranye transition duration-300"+(status==3?" bg-hover-oranye font-bold":"")}
+                onClick={async (e) => {setStatus(3)}}>Canceled</button>
 
-            <div className="w-[72rem] h-[calc(100vh-14rem)] overflow-y-auto">
+                {/* <input className= "ms-3 mt-5 text-black border border-oranye rounded-lg w-40 px-4 py-1 " type="date" min={'2000-01-01'} max={new Date().toJSON().substring(0, 10)} value={minDate} onChange={(e)=>{setMinDate(e.target.value)}}/>  */}
+            </div>
+
+            <div className="w-[72rem] h-[calc(100vh-18.1rem)] overflow-y-auto border-b border-oranye">
             {listHistory && listHistory.sort((a, b)=>{
                     if (a.trans_date != null && b.trans_date != null) 
                         return new Date(b.trans_date) - new Date(a.trans_date)
                     else return 0  
                 }).filter((f) => new Date(f.trans_date).toJSON().substring(0, 10) <= maxDate 
                 && new Date(f.trans_date).toJSON().substring(0, 10) >= minDate).map((item, index) => {
-                if (status === item.status){
+                if (status == -1 || status === item.status){
                     return (<div className="mt-8" key={index}>
                         <div className="border border-oranye rounded-3xl h-fit font-black ">
                             <div className="grid grid-cols-3">

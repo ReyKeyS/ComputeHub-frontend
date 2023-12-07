@@ -45,19 +45,19 @@ function Report() {
             <div className='w-2/3'>
                 <div className="flex gap-6 ms-10">
                     <div className="">
-                        <button className='rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 px-5 py-2 text-2xl' onClick={()=>{setStatusTrans(-1)}} >All Transaction</button>
+                        <button className={'rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 px-5 py-2 text-2xl'+(statusTrans==-1?" bg-hover-oranye font-bold":"")} onClick={()=>{setStatusTrans(-1)}} >All Transaction</button>
                     </div>
                     <div className="">
-                        <button className='rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 px-5 py-2 text-2xl' onClick={()=>{setStatusTrans(2)}} >Pending</button>
+                        <button className={'rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 px-5 py-2 text-2xl'+(statusTrans==2?" bg-hover-oranye font-bold":"")} onClick={()=>{setStatusTrans(2)}} >Pending</button>
                     </div>
                     <div className="">
-                        <button className='rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 px-5 py-2 text-2xl' onClick={()=>{setStatusTrans(1)}} >Success</button>
+                        <button className={'rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 px-5 py-2 text-2xl'+(statusTrans==1?" bg-hover-oranye font-bold":"")} onClick={()=>{setStatusTrans(1)}} >Success</button>
                     </div>
                     <div className="">
-                        <button className='rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 px-5 py-2 text-2xl' onClick={()=>{setStatusTrans(0)}} >Rejected</button>
+                        <button className={'rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 px-5 py-2 text-2xl'+(statusTrans==0?" bg-hover-oranye font-bold":"")} onClick={()=>{setStatusTrans(0)}} >Rejected</button>
                     </div>
                     <div className="">
-                        <button className='rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 px-5 py-2 text-2xl' onClick={()=>{setStatusTrans(3)}} >Canceled</button>
+                        <button className={'rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 px-5 py-2 text-2xl'+(statusTrans==3?" bg-hover-oranye font-bold":"")} onClick={()=>{setStatusTrans(3)}} >Canceled</button>
                     </div>
                 </div>
                 <div className="flex mt-6 text-lg items-center ms-10">
