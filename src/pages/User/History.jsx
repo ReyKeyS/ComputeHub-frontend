@@ -80,10 +80,13 @@ function History() {
             <button className=" ml-4 bg-oranye px-3 py-1 mr-4 mt-4 w-48 rounded-xl text-3xl text-abu-super-gelap hover:bg-hover-oranye transition duration-300"
             onClick={async (e) => {setStatus(0)}}>Rejected</button>
 
-<button className=" ml-4 bg-oranye px-3 py-1 mr-4 mt-4 w-48 rounded-xl text-3xl text-abu-super-gelap hover:bg-hover-oranye transition duration-300"
+            <button className=" ml-4 bg-oranye px-3 py-1 mr-4 mt-4 w-48 rounded-xl text-3xl text-abu-super-gelap hover:bg-hover-oranye transition duration-300"
             onClick={async (e) => {setStatus(2)}}>Pending</button>
 
-            <input className= "ms-3 text-dark border border-oranye rounded-lg w-40 px-4 py-1 bg-white" type="date" min={'2000-01-01'} max={new Date().toJSON().substring(0, 10)} value={minDate} onChange={(e)=>{setMinDate(e.target.value)}}/> 
+            <button className=" ml-4 bg-oranye px-3 py-1 mr-4 mt-4 w-48 rounded-xl text-3xl text-abu-super-gelap hover:bg-hover-oranye transition duration-300"
+            onClick={async (e) => {setStatus(3)}}>Canceled</button>
+
+            <input className= "ms-3 mt-5 text-dark border border-oranye rounded-lg w-40 px-4 py-1 bg-white" type="date" min={'2000-01-01'} max={new Date().toJSON().substring(0, 10)} value={minDate} onChange={(e)=>{setMinDate(e.target.value)}}/> 
 
             <div className="w-[72rem] h-[calc(100vh-14rem)] overflow-y-auto">
             {listHistory && listHistory.sort((a, b)=>{
@@ -104,7 +107,8 @@ function History() {
                                     <div className="text-end mb-1 mt-8 mr-4 text-4xl">
                                         {item.status === 1 && <div className='text-green-400'>Approved <CheckIcon fontSize='large' /></div>}
                                         {item.status === 2 && <div className='text-oranye'>Pending <HistoryToggleOffIcon fontSize='large' /></div>}
-                                        {item.status !== 1 && item.status !== 2 && <div className='text-red-500'>Rejected <CloseIcon fontSize='large' /></div>}
+                                        {item.status === 3 && <div className='text-red-500'>Canceled <CloseIcon fontSize='large' /></div>}
+                                        {item.status === 0 && <div className='text-red-500'>Rejected <CloseIcon fontSize='large' /></div>}
                                     </div>
                                 </div>
                             </div>
