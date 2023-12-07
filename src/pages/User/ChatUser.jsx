@@ -54,15 +54,16 @@ const ChatUser = () => {
     useEffect(() => {
         if (!localStorage.getItem("user_token")) navigate("/")
 
-        client.get("/users/detail", {
+        client.post(`/users/chat/read`, {}, {
             headers: { "Authorization": "Bearer " + localStorage.getItem("user_token")}
         }).then((res)=>{
             if (res.data.email_verified){
                 setUser(res.data)
-                setUserChat(res.data.chats[0]);                
+                setUserChat(res.data.chats[0]);
             }else 
                 navigate("/verifyemail")
         }).catch((err) => {console.log(err)});
+
     }, [])
 
     useEffect(() =>{

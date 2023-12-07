@@ -60,14 +60,14 @@ function Dashboard() {
             return (
               <div className="h-28 w-full grid place-items-center justify-items-start ms-12">
                 <div className='flex'>
-                  <img src={import.meta.env.VITE_BACKEND_GET_PICTURE_URL + c.profpict_sender} className="w-14 h-14 rounded-full"></img>
+                  <img src={import.meta.env.VITE_BACKEND_GET_PICTURE_URL + c.id_sender.profile_picture} className="w-14 h-14 rounded-full"></img>
                   <div className="w-[14rem] text-white ms-10">
-                    <h2 className="text-2xl font-bold truncate">{c.name_sender}</h2>
+                    <h2 className="text-2xl font-bold truncate">{c.id_sender.display_name}</h2>
                     <p className='text-lg truncate'>{c.latest_chat}</p>
                   </div>
                   <div className='flex justify-end items-center'>
                     <div>
-                      <div className={'ms-10 w-5 h-5 rounded-full'+(c.is_read?" bg-green-400":" bg-red-400")}></div>
+                      <div className={'ms-10 w-5 h-5 rounded-full'+(c.is_read?" ":" bg-red-400")}></div>
                       <div className='text-end mt-3'>{new Date(c.latest_time).toLocaleTimeString("id-ID").substring(0, 5)}</div>
                     </div>
                   </div>
