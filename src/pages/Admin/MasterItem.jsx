@@ -24,6 +24,9 @@ import { createTheme } from '@mui/material/styles';
 import dashboardTheme from '../../../dashboardTheme';
 
 
+
+
+
 const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
     clipPath: 'inset(50%)',
@@ -145,6 +148,7 @@ function MasterItem() {
     const [open, setOpen] = useState(false)
     const [selectedItem, setSelectedItem] = useState({})
     const [search, setSearch] = useState('')
+    const [sortOrder, setSortOrder] = useState("asc"); // "asc" or "desc"
 
     useEffect(() => {
         client.get("/items").then((res) => {
@@ -343,6 +347,10 @@ function MasterItem() {
 
         <div className="flex justify-center">
             <div className='w-full mx-10'>
+            {/* <button className="w-20 h-20 bg-oranye rounded" onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}>
+                Sort {sortOrder === "asc" ? "Descending" : "Ascending"}
+            </button> */}
+
                 <TableContainer className='border-2 border-oranye rounded-2xl mb-36'>
                     <Table sx={{ minWidth: 700 }} aria-label="customized table">
                         <TableHead className='border-b-2 border-oranye'>
@@ -357,9 +365,15 @@ function MasterItem() {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {listItems?.map((row, index) => {
+                        {listItems
+                            ?.sort((a, b) => {
+                                const sortOrderFactor = sortOrder === "asc" ? 1 : -1;
+                                return sortOrderFactor * a.name.localeCompare(b.name);
+                            })
+                            .map((row, index) => {
                                 if (row.name.toLowerCase().includes(search.toLowerCase()))
                                 return (
+                                    // ... (existing code for rendering table rows)
                                 <StyledTableRow key={index}>
                                     <StyledTableCell component="th" scope="row" align='center'>{index + 1}</StyledTableCell>
                                     <StyledTableCell align="center">{row.name}</StyledTableCell>

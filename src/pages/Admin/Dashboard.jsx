@@ -65,6 +65,12 @@ function Dashboard() {
                     <h2 className="text-2xl font-bold truncate">{c.name_sender}</h2>
                     <p className='text-lg truncate'>{c.latest_chat}</p>
                   </div>
+                  <div className='flex justify-end items-center'>
+                    <div>
+                      <div className={'ms-10 w-5 h-5 rounded-full'+(c.is_read?" bg-green-400":" bg-red-400")}></div>
+                      <div className='text-end mt-3'>{new Date(c.latest_time).toLocaleTimeString("id-ID").substring(0, 5)}</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             )
