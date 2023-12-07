@@ -40,8 +40,8 @@ function ChatAdmin() {
                 headers: { "Authorization": "Bearer " + localStorage.getItem("user_token")}
             }).then((res)=>{
                 setUser(res.data)
-
-                const newChat = res.data.chats.find(c => c.email_sender == whosChat?.email_sender)
+                
+                const newChat = res.data.chats.find(c => c.id_sender._id.toString() == whosChat?.id_sender._id.toString())
                 if (newChat != null) setWhosChat(newChat)
             }).catch((err) => {console.log(err)});      
         })
@@ -76,15 +76,24 @@ function ChatAdmin() {
 
     const { register, handleSubmit, reset } = useForm();
     
+    const readChat = (c) => {
+        client.post("/users/chat/read", {}, {
+            headers: { "Authorization": "Bearer " + localStorage.getItem("user_token")}
+        }).then((res)=>{
+            console.log(res)
+            setWhosChat(c);
+        }).catch((err) => {console.log(err)});
+    }
+
     const addChat = (data) => {
         if (data.content != ""){
             client.post("/users/chat/add", {
                 content: data.content,
-                email_to: whosChat.email_sender
+                email_to: whosChat.id_sender.email
             },{
                 headers: { "Authorization": "Bearer " + localStorage.getItem("user_token")}
             }).then((res) => {
-                socket.emit("refreshing", {id: whosChat?.email_sender});
+                socket.emit("refreshing", {id: whosChat?.id_sender.email});
                 socket.emit("refreshing", {id: user?.email});
                 reset();
             }).catch((err) => {console.log(err)});
@@ -109,20 +118,21 @@ function ChatAdmin() {
                             if (a.latest_time != null && b.latest_time != null) 
                                 return new Date(b.latest_time) - new Date(a.latest_time)
                             else return 0
-                        }).filter((f) => f.name_sender.toLowerCase().includes(search.toLowerCase()))
+                        }).filter((f) => f.id_sender.display_name.toLowerCase().includes(search.toLowerCase()))
                         .map((c, index) => {
                             return (
-                                <div className={"w-full h-28 grid place-items-center justify-items-center border-oranye hover:cursor-pointer"+(c?.email_sender==whosChat?.email_sender?" border-x-4 bg-abu-gelap":" hover:border-x-4 hover:bg-abu-gelap")} onClick={()=>{setWhosChat(c)}} key={index} >
+                                <div className={"w-full h-28 grid place-items-center justify-items-center border-oranye hover:cursor-pointer"+(c?.id_sender._id==whosChat?.id_sender._id?" border-x-4 bg-abu-gelap":" hover:border-x-4 hover:bg-abu-gelap")} onClick={()=>{readChat(c)}} key={index} >
                                     <div className="relative h-28 w-full grid place-items-center justify-items-center">
                                         <div className='flex'>
-                                            <img src={import.meta.env.VITE_BACKEND_GET_PICTURE_URL+c.profpict_sender} className="w-14 h-14 rounded-full"></img>
+                                            <img src={import.meta.env.VITE_BACKEND_GET_PICTURE_URL+c.id_sender.profile_picture} className="w-14 h-14 rounded-full"></img>
                                             <div className="w-[14rem] text-white ms-10">
-                                                <h2 className="text-2xl font-bold truncate">{c.name_sender}</h2>
+                                                <h2 className="text-2xl font-bold truncate">{c.id_sender.display_name}</h2>
                                                 <p className='text-lg truncate'>{c.latest_chat}</p>
                                             </div>
                                         </div>
                                         <div className='text-white absolute bottom-5 right-5'>
-                                            {new Date(c.latest_time).toLocaleTimeString("id-ID").substring(0, 5)}
+                                            <div className={'ms-5 mb-5 w-5 h-5 rounded-full'+(c.is_read?" ":" bg-red-400")}></div>
+                                            <div>{new Date(c.latest_time).toLocaleTimeString("id-ID").substring(0, 5)}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -143,8 +153,8 @@ function ChatAdmin() {
                     <>
                         <div className='h-[6rem] bg-abu-gelap border-b-2 border-oranye shadow-2xl w-full text-white text-4xl flex '>
                             <div className='flex ml-4 items-center px-3'>
-                                <Avatar src={import.meta.env.VITE_BACKEND_GET_PICTURE_URL+whosChat?.profpict_sender} />
-                                <span className='font-bold ms-6'>{whosChat?.name_sender}</span>
+                                <Avatar src={import.meta.env.VITE_BACKEND_GET_PICTURE_URL+whosChat?.id_sender.profile_picture} />
+                                <span className='font-bold ms-6'>{whosChat?.id_sender.display_name}</span>
                             </div>
                         </div>
                         <div ref={ref} className='w-full h-[calc(100vh-24rem)] bg-neutral-200 p-2 overflow-y-auto no-scrollbar'>

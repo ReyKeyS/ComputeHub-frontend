@@ -29,7 +29,7 @@ function Header(){
     const searchFilter = useSelector((state) => state.filter.search)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const [user, setUser] = useState()
+    const [user, setUser] = useState({})
     const [profpict, setProfpict] = useState();
     
     const { register, reset, handleSubmit } = useForm({});
@@ -102,7 +102,13 @@ function Header(){
                 Cart
             </NavLink>
             <NavLink to='/chat' className={(state)=>`text-white text-2xl ${state.isActive ? "font-bold text-3xl" : ""}`}>
-                Chat
+                {!user && <p>Chat</p>}
+                {user && user?.chats?.length == 0 ? <p>Chat</p> : user?.chats?.length > 0 && user?.chats[0].is_read ? <p>Chat</p> :
+                    <div className="indicator">
+                        <div className="indicator-item badge badge-xs badge-error mt-2 z-0 opacity-80"></div> 
+                        <div className="z-10">Chat</div>
+                    </div>
+                }
             </NavLink>
             
             {!user && 
