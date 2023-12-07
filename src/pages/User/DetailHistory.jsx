@@ -83,6 +83,15 @@ function DetailHistory() {
         }).catch((err)=>{console.log(err);})
     }
 
+    const cancelTrans = () => {
+        client.put(`/users/transaction/cancel/${listItemHistory._id}`, {}, {
+            headers: {"Authorization": "Bearer " + localStorage.getItem("user_token")}
+        }).then((res)=>{
+            alert(res.data.message)
+            navigate(0)
+        }).error(err => console.log(err));
+    }
+
     return (
         <>
             <span className="text-6xl font-bold">Detail Transaction</span> <br />
@@ -98,7 +107,8 @@ function DetailHistory() {
                                 <div className="text-end mb-1 mt-8 mr-4 text-4xl">
                                     {listItemHistory.status === 1 && <div className='text-green-400'>Approved <CheckIcon fontSize='large' /></div>}
                                     {listItemHistory.status === 2 && <div className='text-oranye'>Pending <HistoryToggleOffIcon fontSize='large' /></div>}
-                                    {listItemHistory.status !== 1 && listItemHistory.status !== 2 && <div className='text-red-500'>Rejected <CloseIcon fontSize='large' /></div>}
+                                    {listItemHistory.status === 3 && <div className='text-red-500'>Canceled <CloseIcon fontSize='large' /></div>}
+                                    {listItemHistory.status === 0 && <div className='text-red-500'>Rejected <CloseIcon fontSize='large' /></div>}
                                 </div>
                             </div>
                         </div>
@@ -170,7 +180,10 @@ function DetailHistory() {
                                 </div>
                             </div>
                             <div className="flex justify-end gap-8 mb-10">
-                                {/* <button className="bg-red-500 hover:bg-red-600 transition duration-300 text-white px-3 py-2 mt-4 w-48 h-12 rounded-xl text-2xl" onClick={(e)=>{navigate(`/profile/history/`)}}>Cancel</button> */}
+                                {
+                                    listItemHistory.status == 2 && 
+                                    <button className="bg-red-500 hover:bg-red-600 transition duration-300 text-white px-3 py-2 mt-4 w-48 h-12 rounded-xl text-2xl" onClick={cancelTrans}>Cancel</button>
+                                }
                                 <button className="bg-oranye hover:bg-hover-oranye transition duration-300 px-3 py-2 mt-4 w-48 h-12 rounded-xl text-2xl text-abu-super-gelap" onClick={(e)=>{navigate('/profile/history/')}}>Back to History</button>
                             </div>
                         </div>

@@ -45,16 +45,19 @@ function Report() {
             <div className='w-2/3'>
                 <div className="flex gap-6 ms-10">
                     <div className="">
-                        <button className='rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 w-48 py-2 text-2xl' onClick={()=>{setStatusTrans(-1)}} >All Transaction</button>
+                        <button className='rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 px-5 py-2 text-2xl' onClick={()=>{setStatusTrans(-1)}} >All Transaction</button>
                     </div>
                     <div className="">
-                        <button className='rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 w-48 py-2 text-2xl' onClick={()=>{setStatusTrans(2)}} >Pending</button>
+                        <button className='rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 px-5 py-2 text-2xl' onClick={()=>{setStatusTrans(2)}} >Pending</button>
                     </div>
                     <div className="">
-                        <button className='rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 w-48 py-2 text-2xl' onClick={()=>{setStatusTrans(1)}} >Success</button>
+                        <button className='rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 px-5 py-2 text-2xl' onClick={()=>{setStatusTrans(1)}} >Success</button>
                     </div>
                     <div className="">
-                        <button className='rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 w-48 py-2 text-2xl' onClick={()=>{setStatusTrans(0)}} >Rejected</button>
+                        <button className='rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 px-5 py-2 text-2xl' onClick={()=>{setStatusTrans(0)}} >Rejected</button>
+                    </div>
+                    <div className="">
+                        <button className='rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 px-5 py-2 text-2xl' onClick={()=>{setStatusTrans(3)}} >Canceled</button>
                     </div>
                 </div>
                 <div className="flex mt-6 text-lg items-center ms-10">
@@ -90,7 +93,7 @@ function Report() {
                     return (
                         <div className="rounded-xl w-full my-8 h-auto text-white border border-oranye bg-abu-gelap" key={index}>
                             <div className="flex py-2 text-3xl">
-                                <div className={"ms-6 text-start w-[13rem]" + (t.status==2?" text-yellow-400":t.status==1?" text-green-400":" text-red-400")}>{t.status==2?"Pending":t.status==1?"Pesanan Berhasil":"Pesanan Gagal"}</div>
+                                <div className={"ms-6 text-start w-[16rem]" + (t.status==2?" text-yellow-400":t.status==1?" text-green-400":" text-red-400")}>{t.status==2?"Pending":t.status==1?"Pesanan Berhasil":t.status==3?"Pesanan Dibatalkan":"Pesanan Gagal"}</div>
                                 <div className="w-64 mx-2 text-oranye">{t.invoice}</div>
                                 <div className="w-[25rem] truncate mx-2 text-start text-white">{t.user_id.display_name}</div>
                                 <div className="w-[17.5rem] mx-1 text-white">{new Date(t.trans_date).toLocaleDateString("id-ID", {year: 'numeric', month: 'long', day: 'numeric'})}</div>
