@@ -112,7 +112,7 @@ function Header(){
             </NavLink>
             
             {!user && 
-                <NavLink to="/login">
+                <NavLink to="/login" id='login'>
                     <div className="font-bold text-white text-2xl">Log in</div>
                 </NavLink>
             }
