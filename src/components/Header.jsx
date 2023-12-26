@@ -87,8 +87,8 @@ function Header(){
             </NavLink>
             {/* <div className='flex items-center'> */}
                 <form onSubmit={handleSubmit(searching)} className='flex items-center col-span-2 w-full'>
-                    <input type="text" className='w-full rounded-xl px-4 py-2' placeholder='Search Product..' defaultValue={searchFilter} {...register("search")}/>
-                    <button className="text-white text-2xl col-span-2 ms-2"><SearchIcon fontSize='large'/></button>
+                    <input type="text" name='searchItem' id='searchItem' className='w-full rounded-xl px-4 py-2' placeholder='Search Product..' defaultValue={searchFilter} {...register("search")}/>
+                    <button name='searchButton' id='searchButton' className="text-white text-2xl col-span-2 ms-2"><SearchIcon fontSize='large'/></button>
                 </form>
             {/* </div> */}
             {/* <div className='flex items-center'>

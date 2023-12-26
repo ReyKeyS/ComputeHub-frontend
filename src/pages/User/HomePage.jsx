@@ -52,7 +52,7 @@ function HomePage() {
           Scroll Down
         </span>
       </div>
-      <div className='font-black text-4xl mt-10 mx-20 mb-8'>
+      <div id='category' className='font-black text-4xl mt-10 mx-20 mb-8'>
         Category <WorkspacePremiumIcon fontSize='large' />
       </div>
       <div className="w-full overflow-x-scroll flex gap-10 snap-x px-20 no-scrollbar">
@@ -131,7 +131,7 @@ function HomePage() {
       </div>
       <div className="flex gap-5 snap-x mx-20 mt-10">
       </div>
-      <div className='font-black text-4xl mb-6 mx-20'>
+      <div id='best_deal' className='font-black text-4xl mb-6 mx-20'>
         Best Deals for you
       </div>
       <div className='w-full snap-x flex px-20 overflow-x-scroll no-scrollbar'>
