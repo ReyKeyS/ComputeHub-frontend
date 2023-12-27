@@ -96,7 +96,7 @@ function LihatBarang() {
                                     <button className='w-8 h-8 bg-oranye rounded-full' onClick={maxAmount}><AddIcon sx={{color: "black"}}/></button>
                                 </div>
                             </div>
-                            <button className="bg-oranye text-abu-super-gelap ms-10 px-4 py-2 text-xl font-bold rounded-lg" disabled={localStorage.getItem("user_token")?false:true} onClick={addToCart}>Add to Cart</button>
+                            <button name='addcart' id='addcart' className="bg-oranye text-abu-super-gelap ms-10 px-4 py-2 text-xl font-bold rounded-lg" disabled={localStorage.getItem("user_token")?false:true} onClick={addToCart}>Add to Cart</button>
                         </div>
                     </div>
                 </div>

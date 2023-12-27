@@ -8,7 +8,7 @@ import { CardActionArea, ThemeProvider } from '@mui/material';
 import dashboardTheme from '../../dashboardTheme';
 import { Link, useNavigate } from 'react-router-dom';
 
-function CardBarang({ item }) {
+function CardBarang({ item, index }) {
     const navigate = useNavigate()
 
     const avg = (arr) => {
@@ -23,7 +23,7 @@ function CardBarang({ item }) {
     return (
         <ThemeProvider theme={dashboardTheme}>
             <Card sx={{ width: 250, margin: 2, border: "primary.oranye" }}>
-                <CardActionArea component={Link} to={`/barang/${item._id}`} >
+                <CardActionArea component={Link} to={`/barang/${item._id}`} id={index}>
                     <CardMedia
                         component="img"
                         // height="540"

@@ -143,7 +143,7 @@ function HomePage() {
 
         {!loading && listItem?.map((item, index) => {
           return(<div className='snap-center'>
-            <CardBarang key={index} item={item}/>
+            <CardBarang key={index} item={item} index={index}/>
           </div>)
         })}
 

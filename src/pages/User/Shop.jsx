@@ -133,8 +133,8 @@ function Shop(params) {
                     </div>
                     <div className='w-full'>
                         <span className="text-putih text-xl font-bold my-2">Harga (Rp)</span>
-                        <input type="number" placeholder="Harga Minimum" className="border-2 border-oranye bg-abu-gelap text-white text-lg rounded-lg my-2 w-full px-3 py-1" step={1000} min={0} max={999999999999999} value={minPrice} onChange={(e) => { if (e.target.value != "") setMinPrice(e.target.value) }} />
-                        <input type="number" placeholder="Harga Maximum" className="border-2 border-oranye bg-abu-gelap text-white text-lg rounded-lg mb-2 w-full px-3 py-1" step={1000} min={0} max={999999999999999} value={maxPrice} onChange={(e) => { if (e.target.value != "") setMaxPrice(e.target.value) }} />
+                        <input type="number" name='min' id='min' placeholder="Harga Minimum" className="border-2 border-oranye bg-abu-gelap text-white text-lg rounded-lg my-2 w-full px-3 py-1" step={1000} min={0} max={999999999999999} value={minPrice} onChange={(e) => { if (e.target.value != "") setMinPrice(e.target.value) }} />
+                        <input type="number" name='max' id='max' placeholder="Harga Maximum" className="border-2 border-oranye bg-abu-gelap text-white text-lg rounded-lg mb-2 w-full px-3 py-1" step={1000} min={0} max={999999999999999} value={maxPrice} onChange={(e) => { if (e.target.value != "") setMaxPrice(e.target.value) }} />
                     </div>
                     {/* <div>
                         <span className="text-putih">Rating</span>
@@ -160,7 +160,7 @@ function Shop(params) {
                     {!loading && listItem && listItem.map((item, index) => {
                         if ((categoryFilter == "All" || item.category == categoryFilter) && (searchFilter == "" || item.name.toLowerCase().includes(searchFilter.toLowerCase())))
                             return (
-                                <CardBarang key={index} item={item}/>
+                                <CardBarang key={index} item={item} index={index}/>
                             )
                     })}
 

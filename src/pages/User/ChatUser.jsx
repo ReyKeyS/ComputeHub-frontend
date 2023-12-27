@@ -100,7 +100,7 @@ const ChatUser = () => {
 
                     {userChat?.chatting?.map((c, index) => {
                         return (<>
-                            <div className={'chat ' + (user?.email == c.sender?" chat-end" : " chat-start")}>
+                            <div className={'chat' + (user?.email == c.sender?" chat-end" : " chat-start")}>
                                 {/* <div className='chat-header'>{c.sender}</div> */}
                                 <div className={'chat-bubble bg-abu-super-gelap break-words text-2xl'+(user?.email == c.sender?"" : " bg-oranye text-black")}>
                                     <div className='px-2 py-1'>{c.content}</div>
@@ -113,8 +113,8 @@ const ChatUser = () => {
                 </div>
                 <form onSubmit={handleSubmit(addChat)}>
                     <div className="h-[6rem] flex items-center justify-between px-10 pt-5 border-t-2 border-oranye">
-                        <input autoFocus className="text-white text-xl px-7 py-3 bg-abu-gelap border border-oranye w-full rounded-s-xl" placeholder='Type Here..' {...register("content")}/>
-                        <button type='submit' className='text-white text-lg border-y border-e bg-abu-gelap hover:bg-oranye transition duration-300 border-oranye px-4 py-3 rounded-e-xl'><SendIcon /></button>
+                        <input id='textChat' autoFocus className="text-white text-xl px-7 py-3 bg-abu-gelap border border-oranye w-full rounded-s-xl" placeholder='Type Here..' {...register("content")}/>
+                        <button name='sendChat' id='sendChat' type='submit' className='text-white text-lg border-y border-e bg-abu-gelap hover:bg-oranye transition duration-300 border-oranye px-4 py-3 rounded-e-xl'><SendIcon /></button>
                     </div>
                 </form>
             </div>
