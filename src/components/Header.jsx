@@ -119,6 +119,7 @@ function Header(){
             {user && 
                 <>
                     <IconButton
+                        id='user'
                         onClick={handleClick}
                         size="small"
                         aria-controls={open ? 'account-menu' : undefined}
@@ -169,11 +170,11 @@ function Header(){
                         transformOrigin={{ horizontal: 'center', vertical: 'top' }}
                         anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
                     >
-                        <MenuItem onClick={profile}>
+                        <MenuItem id='userProfile' onClick={profile}>
                         <Avatar /> Profile
                         </MenuItem>
                         <Divider />
-                        <MenuItem onClick={logout}>
+                        <MenuItem id='userLogout' onClick={logout}>
                             <ListItemIcon>
                                 <Logout fontSize="small" sx={{color: "white"}}/>
                             </ListItemIcon>

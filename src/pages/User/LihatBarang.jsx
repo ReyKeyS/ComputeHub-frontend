@@ -91,9 +91,9 @@ function LihatBarang() {
                             <div><span className="text-lg text-oranye">Amount :</span></div>
                             <div className='w-1/4'>
                                 <div className='h-[3rem] flex justify-end items-center'>
-                                    <button className='w-8 h-8 bg-oranye rounded-full' onClick={minAmount}><RemoveIcon sx={{color: "black"}}/></button>
+                                    <button name='-' id='-' className='w-8 h-8 bg-oranye rounded-full' onClick={minAmount}><RemoveIcon sx={{color: "black"}}/></button>
                                     <input type="text" className="rounded-lg text-black px-4 py-1 mx-2 w-16 text-center text-lg" min={1} max={item?.stock} value={amount} readOnly/>
-                                    <button className='w-8 h-8 bg-oranye rounded-full' onClick={maxAmount}><AddIcon sx={{color: "black"}}/></button>
+                                    <button name='+' id='+' className='w-8 h-8 bg-oranye rounded-full' onClick={maxAmount}><AddIcon sx={{color: "black"}}/></button>
                                 </div>
                             </div>
                             <button name='addcart' id='addcart' className="bg-oranye text-abu-super-gelap ms-10 px-4 py-2 text-xl font-bold rounded-lg" disabled={localStorage.getItem("user_token")?false:true} onClick={addToCart}>Add to Cart</button>

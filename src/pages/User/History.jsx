@@ -75,19 +75,19 @@ function History() {
             <span className="text-6xl font-bold">History</span> <br />
 
             <div className='w-[72rem] mb-2'>
-                <button className={"ml-4 bg-oranye px-7 py-1 mr-4 mt-4 rounded-xl text-3xl text-abu-super-gelap hover:bg-hover-oranye transition duration-300"+(status==-1?" bg-hover-oranye font-bold":"")}
+                <button name='All Transaction' id='All Transaction' className={"ml-4 bg-oranye px-7 py-1 mr-4 mt-4 rounded-xl text-3xl text-abu-super-gelap hover:bg-hover-oranye transition duration-300"+(status==-1?" bg-hover-oranye font-bold":"")}
                 onClick={async (e) => {setStatus(-1)}}>All Transaction</button>
 
-                <button className={"ml-4 bg-oranye px-7 py-1 mr-4 mt-4 rounded-xl text-3xl text-abu-super-gelap hover:bg-hover-oranye transition duration-300"+(status==1?" bg-hover-oranye font-bold":"")}
+                <button name='Approved' id='Approved' className={"ml-4 bg-oranye px-7 py-1 mr-4 mt-4 rounded-xl text-3xl text-abu-super-gelap hover:bg-hover-oranye transition duration-300"+(status==1?" bg-hover-oranye font-bold":"")}
                 onClick={async (e) => {setStatus(1)}}>Approved</button>
 
-                <button className={"ml-4 bg-oranye px-7 py-1 mr-4 mt-4 rounded-xl text-3xl text-abu-super-gelap hover:bg-hover-oranye transition duration-300"+(status==0?" bg-hover-oranye font-bold":"")}
+                <button name='Rejected' id='Rejected' className={"ml-4 bg-oranye px-7 py-1 mr-4 mt-4 rounded-xl text-3xl text-abu-super-gelap hover:bg-hover-oranye transition duration-300"+(status==0?" bg-hover-oranye font-bold":"")}
                 onClick={async (e) => {setStatus(0)}}>Rejected</button>
 
-                <button className={"ml-4 bg-oranye px-7 py-1 mr-4 mt-4 rounded-xl text-3xl text-abu-super-gelap hover:bg-hover-oranye transition duration-300"+(status==2?" bg-hover-oranye font-bold":"")}
+                <button name='Pending' id='Pending' className={"ml-4 bg-oranye px-7 py-1 mr-4 mt-4 rounded-xl text-3xl text-abu-super-gelap hover:bg-hover-oranye transition duration-300"+(status==2?" bg-hover-oranye font-bold":"")}
                 onClick={async (e) => {setStatus(2)}}>Pending</button>
 
-                <button className={"ml-4 bg-oranye px-7 py-1 mr-4 mt-4 rounded-xl text-3xl text-abu-super-gelap hover:bg-hover-oranye transition duration-300"+(status==3?" bg-hover-oranye font-bold":"")}
+                <button name='Canceled' id='Canceled' className={"ml-4 bg-oranye px-7 py-1 mr-4 mt-4 rounded-xl text-3xl text-abu-super-gelap hover:bg-hover-oranye transition duration-300"+(status==3?" bg-hover-oranye font-bold":"")}
                 onClick={async (e) => {setStatus(3)}}>Canceled</button>
 
                 {/* <input className= "ms-3 mt-5 text-black border border-oranye rounded-lg w-40 px-4 py-1 " type="date" min={'2000-01-01'} max={new Date().toJSON().substring(0, 10)} value={minDate} onChange={(e)=>{setMinDate(e.target.value)}}/>  */}
