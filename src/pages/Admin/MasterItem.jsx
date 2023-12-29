@@ -381,9 +381,9 @@ function MasterItem() {
                                     <StyledTableCell align="center">{row.stock}</StyledTableCell>
                                     <StyledTableCell align="center">{row.brand}</StyledTableCell>
                                     <StyledTableCell align="center">{row.category}</StyledTableCell>
-                                    <StyledTableCell align="center" width={"20%"}>
+                                    <StyledTableCell align="center" width={"20%"} id={`actions${index}`}>
                                         {/* Open the modal using document.getElementById('ID').showModal() method */}
-                                        <button className="w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye me-5 hover:scale-110 hover:font-bold transition duration-300" onClick={() => {getItem(row._id); setSelectedItem(row)}}>Edit</button>
+                                        <button name={`edit${index}`} id={`edit${index}`} className="w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye me-5 hover:scale-110 hover:font-bold transition duration-300" onClick={() => {getItem(row._id); setSelectedItem(row)}}>Edit</button>
                                         <dialog id="my_modal_2" className="modal">
                                             <div className="modal-box bg-oranye">
                                                 <h1 className="font-bold text-3xl text-abu-super-gelap">Edit</h1>
@@ -393,7 +393,7 @@ function MasterItem() {
                                                     <span className='text-start'>Price</span>
                                                     <input type="number" placeholder='price' className='px-4 py-2 border border-abu-abu rounded-lg' value={priceitems} onChange={(e) => setPriceitems(e.target.value)} />
                                                     <span className='text-start'>Stock</span>
-                                                    <input type="number" placeholder='stock' className='px-4 py-2 border border-abu-abu rounded-lg' value={stockitems} onChange={(e) => setStockitems(e.target.value)} />
+                                                    <input type="number" name='stock' id='stock' placeholder='stock' className='px-4 py-2 border border-abu-abu rounded-lg' value={stockitems} onChange={(e) => setStockitems(e.target.value)} />
                                                     <span className='text-start'>Brand</span>
                                                     <input type="text" placeholder='brand' className='px-4 py-2 border border-abu-abu rounded-lg ' value={branditems} onChange={(e) => setBranditems((e.target.value).toUpperCase())} />
                                                     <span className='text-start'>Category</span>
@@ -415,7 +415,7 @@ function MasterItem() {
                                                     <textarea className='px-4 py-2 rounded-lg' cols="30" rows="10" value={descitems} onChange={(e) => setDescitems(e.target.value)} />
                                                     <form method='dialog'>
                                                         <div className='flex'>
-                                                            <button className='bg-abu-gelap text-putih px-5 py-2 ml-auto rounded-lg' onClick={updateItem}>Ok</button>
+                                                            <button name='ok' id='ok' className='bg-abu-gelap text-putih px-5 py-2 ml-auto rounded-lg' onClick={updateItem}>Ok</button>
                                                         </div>
                                                     </form>
                                                 </div>
