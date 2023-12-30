@@ -64,9 +64,9 @@ function Report() {
                     <div className="text-oranye text-2xl">
                         Period : 
                     </div>
-                    <input className= "ms-3 border border-oranye rounded-lg w-40 px-4 py-1 bg-white" type="date" min={'2000-01-01'} max={new Date().toJSON().substring(0, 10)} value={minDate} onChange={(e)=>{setMinDate(e.target.value)}}/> 
+                    <input name='dateStart' id='dateStart' className= "ms-3 border border-oranye rounded-lg w-40 px-4 py-1 bg-white" type="date" min={'2000-01-01'} max={new Date().toJSON().substring(0, 10)} value={minDate} onChange={(e)=>{setMinDate(e.target.value)}}/> 
                     <h3 className="text-white ms-3"> - </h3>
-                    <input className= "ms-3 border border-oranye rounded-lg w-40 px-4 py-1 bg-white" type="date" min={'2000-01-01'} max={new Date().toJSON().substring(0, 10)} value={maxDate} onChange={(e)=>{setMaxDate(e.target.value)}}/>
+                    <input name='dateEnd' id='dateEnd' className= "ms-3 border border-oranye rounded-lg w-40 px-4 py-1 bg-white" type="date" min={'2000-01-01'} max={new Date().toJSON().substring(0, 10)} value={maxDate} onChange={(e)=>{setMaxDate(e.target.value)}}/>
                 </div>
 
                 <div className="h-[6rem] w-full flex px-10 items-center text-oranye border-b border-oranye">
