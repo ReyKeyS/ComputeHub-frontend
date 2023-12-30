@@ -113,6 +113,7 @@ const BuildComp = ({ item, grandTotal, setGrandTotal, idx, items, setItems, comp
         </div>
         <div className='ps-10 py-4'>
             <Select
+                id={type}
                 className='basic-single text-lg'
                 classNamePrefix='select'
                 isDisabled={false}

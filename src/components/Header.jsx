@@ -82,7 +82,7 @@ function Header(){
             <NavLink to="/shop" id='shop' className={(state)=>`text-white text-2xl ${state.isActive ? "font-bold text-3xl" : ""}`}>
                 Shop
             </NavLink>
-            <NavLink to={"/build"} className={(state)=>`text-white text-2xl ${state.isActive ? "font-bold text-3xl" : ""}`}>
+            <NavLink to={"/build"} id='build' className={(state)=>`text-white text-2xl ${state.isActive ? "font-bold text-3xl" : ""}`}>
                 Build
             </NavLink>
             {/* <div className='flex items-center'> */}

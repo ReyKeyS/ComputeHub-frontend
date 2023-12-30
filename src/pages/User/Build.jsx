@@ -93,7 +93,7 @@ function Build(){
                     </div>
                     <div className='flex justify-end gap-10 mt-10 font-bold'>
                         <div><button className='w-64 py-3 bg-abu-super-gelap text-4xl rounded-xl text-oranye hover:scale-105 transition duration-300 hover:cursor-pointer' onClick={reset}>Reset</button></div>
-                        <div><button className='w-64 py-3 bg-abu-super-gelap text-4xl rounded-xl text-oranye hover:scale-105 transition duration-300 hover:cursor-pointer' disabled={!localStorage.getItem("user_token")?true:false} onClick={addToCart}>Add to Cart</button></div>
+                        <div><button className='w-64 py-3 bg-abu-super-gelap text-4xl rounded-xl text-oranye hover:scale-105 transition duration-300 hover:cursor-pointer' disabled={!localStorage.getItem("user_token")?true:false} onClick={addToCart} id='addCart'>Add to Cart</button></div>
                     </div>
                 </div>
             <Footer/>
