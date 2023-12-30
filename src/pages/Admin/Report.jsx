@@ -45,19 +45,19 @@ function Report() {
             <div className='w-2/3'>
                 <div className="flex gap-6 ms-10">
                     <div className="">
-                        <button className={'rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 px-5 py-2 text-2xl'+(statusTrans==-1?" bg-hover-oranye font-bold":"")} onClick={()=>{setStatusTrans(-1)}} >All Transaction</button>
+                        <button name='All Transaction' id='All Transaction' className={'rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 px-5 py-2 text-2xl'+(statusTrans==-1?" bg-hover-oranye font-bold":"")} onClick={()=>{setStatusTrans(-1)}} >All Transaction</button>
                     </div>
                     <div className="">
-                        <button className={'rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 px-5 py-2 text-2xl'+(statusTrans==2?" bg-hover-oranye font-bold":"")} onClick={()=>{setStatusTrans(2)}} >Pending</button>
+                        <button name='Pending' id='Pending' className={'rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 px-5 py-2 text-2xl'+(statusTrans==2?" bg-hover-oranye font-bold":"")} onClick={()=>{setStatusTrans(2)}} >Pending</button>
                     </div>
                     <div className="">
-                        <button className={'rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 px-5 py-2 text-2xl'+(statusTrans==1?" bg-hover-oranye font-bold":"")} onClick={()=>{setStatusTrans(1)}} >Success</button>
+                        <button name='Success' id='Success' className={'rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 px-5 py-2 text-2xl'+(statusTrans==1?" bg-hover-oranye font-bold":"")} onClick={()=>{setStatusTrans(1)}} >Success</button>
                     </div>
                     <div className="">
-                        <button className={'rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 px-5 py-2 text-2xl'+(statusTrans==0?" bg-hover-oranye font-bold":"")} onClick={()=>{setStatusTrans(0)}} >Rejected</button>
+                        <button name='Rejected' id='Rejected' className={'rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 px-5 py-2 text-2xl'+(statusTrans==0?" bg-hover-oranye font-bold":"")} onClick={()=>{setStatusTrans(0)}} >Rejected</button>
                     </div>
                     <div className="">
-                        <button className={'rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 px-5 py-2 text-2xl'+(statusTrans==3?" bg-hover-oranye font-bold":"")} onClick={()=>{setStatusTrans(3)}} >Canceled</button>
+                        <button name='Canceled' id='Canceled' className={'rounded-lg bg-oranye hover:bg-hover-oranye transition duration-300 text-black mt-5 px-5 py-2 text-2xl'+(statusTrans==3?" bg-hover-oranye font-bold":"")} onClick={()=>{setStatusTrans(3)}} >Canceled</button>
                     </div>
                 </div>
                 <div className="flex mt-6 text-lg items-center ms-10">
@@ -70,7 +70,7 @@ function Report() {
                 </div>
 
                 <div className="h-[6rem] w-full flex px-10 items-center text-oranye border-b border-oranye">
-                    <input className= "w-[27.3rem] px-5 py-2 text-white text-xl bg-abu-gelap border border-oranye rounded-xl" placeholder="Search Invoice..." onChange={(e)=>{setSearch(e.target.value)}}/>
+                    <input name='searchinv' id='searchinv' className= "w-[27.3rem] px-5 py-2 text-white text-xl bg-abu-gelap border border-oranye rounded-xl" placeholder="Search Invoice..." onChange={(e)=>{setSearch(e.target.value)}}/>
                 </div>
             </div>
             <div className='w-1/3 border-b border-oranye'>
