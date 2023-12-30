@@ -139,20 +139,20 @@ function MasterUser() {
                   <StyledTableCell align="center" width="13%"><span className={row.email_verified ? "text-green-500" : "text-red-500"}>{row.email_verified ? "V" : "X"}</span></StyledTableCell>
                   <StyledTableCell align="center" width={"20%"}>
                     {/* Open the modal using document.getElementById('ID').showModal() method */}
-                    <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye me-5 hover:scale-110 hover:font-bold transition duration-300' onClick={() => getUser(row.email)}>Edit</button>
+                    <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye me-5 hover:scale-110 hover:font-bold transition duration-300' onClick={() => getUser(row.email)} id='edit-user'>Edit</button>
                     <dialog id="my_modal_2" className="modal">
                       <div className="modal-box bg-oranye text-abu-super-gelap">
                         <h3 className="font-bold text-lg">Edit</h3>
                         {/* <p className="py-4">Press ESC key or click outside to close</p> */}
                         <div className='flex flex-col space-y-2'>
                           <span className='text-start'>Name</span>
-                          <input type="text" placeholder='name' className='px-4 py-2 border border-abu-abu rounded-lg' value={nameUser} onChange={(e) => setNameUser(e.target.value)} />
+                          <input id='edit_name' type="text" placeholder='name' className='px-4 py-2 border border-abu-abu rounded-lg' value={nameUser} onChange={(e) => setNameUser(e.target.value)} />
                           <span className='text-start'>Address</span>
-                          <input type="text" placeholder='address' className='px-4 py-2 border border-abu-abu rounded-lg' value={addressUser} onChange={(e) => setAddressUser(e.target.value)} />
+                          <input id='edit_address' type="text" placeholder='address' className='px-4 py-2 border border-abu-abu rounded-lg' value={addressUser} onChange={(e) => setAddressUser(e.target.value)} />
                           <span className='text-start'>Phone Number</span>
-                          <input type="number" placeholder='phone number' className='px-4 py-2 border border-abu-abu rounded-lg' value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
+                          <input id='edit_phone' type="number" placeholder='phone number' className='px-4 py-2 border border-abu-abu rounded-lg' value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
                           <form method='dialog' className='flex'>
-                            <button className='bg-abu-gelap text-putih px-5 py-2 ml-auto rounded-lg' onClick={()=>updateUser(row.email)}>Ok</button>
+                            <button id='edit_ok' className='bg-abu-gelap text-putih px-5 py-2 ml-auto rounded-lg' onClick={()=>updateUser(row.email)}>Ok</button>
                           </form>
                         </div>
                       </div>
@@ -160,7 +160,7 @@ function MasterUser() {
                         <button>close</button>
                       </form>
                     </dialog>
-                    <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye hover:scale-110 hover:font-bold transition duration-300' onClick={() => { deleteUser(row.email) }}>Delete</button>
+                    <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye hover:scale-110 hover:font-bold transition duration-300' onClick={() => { deleteUser(row.email) }} id='delete-user'>Delete</button>
                   </StyledTableCell>
                 </StyledTableRow>
               ))}

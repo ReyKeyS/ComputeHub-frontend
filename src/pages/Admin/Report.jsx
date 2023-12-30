@@ -93,10 +93,10 @@ function Report() {
                     return (
                         <div className="rounded-xl w-full my-8 h-auto text-white border border-oranye bg-abu-gelap" key={index}>
                             <div className="flex py-2 text-3xl">
-                                <div className={"ms-6 text-start w-[16rem]" + (t.status==2?" text-yellow-400":t.status==1?" text-green-400":" text-red-400")}>{t.status==2?"Pending":t.status==1?"Pesanan Berhasil":t.status==3?"Pesanan Dibatalkan":"Pesanan Gagal"}</div>
-                                <div className="w-64 mx-2 text-oranye">{t.invoice}</div>
+                                <div id='status-transaction' className={"ms-6 text-start w-[16rem]" + (t.status==2?" text-yellow-400":t.status==1?" text-green-400":" text-red-400")}>{t.status==2?"Pending":t.status==1?"Pesanan Berhasil":t.status==3?"Pesanan Dibatalkan":"Pesanan Gagal"}</div>
+                                <div id='invoice-transaction' className="w-64 mx-2 text-oranye">{t.invoice}</div>
                                 <div className="w-[25rem] truncate mx-2 text-start text-white">{t.user_id.display_name}</div>
-                                <div className="w-[17.5rem] mx-1 text-white">{new Date(t.trans_date).toLocaleDateString("id-ID", {year: 'numeric', month: 'long', day: 'numeric'})}</div>
+                                <div id='date-transaction' className="w-[17.5rem] mx-1 text-white">{new Date(t.trans_date).toLocaleDateString("id-ID", {year: 'numeric', month: 'long', day: 'numeric'})}</div>
                                 <div className="w-36 text-white">{new Date(t.trans_date).toLocaleDateString("id-ID", {hour: 'numeric', minute: 'numeric'}).substring(11)} WIB</div>
                             </div>
 
