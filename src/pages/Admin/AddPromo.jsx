@@ -207,7 +207,7 @@ function AddPromo() {
               </TableHead>
               <TableBody>
                 {listDisc?.map((row, index) => (
-                  <StyledTableRow key={index}>
+                  <StyledTableRow key={index} id={`${row.discount.promo_name}`}>
                     <StyledTableCell component="th" scope="row" align='center'>
                       {index+1}
                     </StyledTableCell>
