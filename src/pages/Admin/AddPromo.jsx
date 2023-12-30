@@ -156,6 +156,7 @@ function AddPromo() {
                 <div className="col-span-3 text-white">
                     {optionBox && 
                         <Select 
+                            id='filter-promo'
                             className='basic-single'
                             classNamePrefix='select'
                             isDisabled={false}

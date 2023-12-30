@@ -108,7 +108,7 @@ function ChatAdmin() {
         <div className="grid grid-cols-3 gap-4 ms-4">
             <div className="h-[calc(100vh-13.3rem)] rounded col-span-1 border border-oranye">
                 <div className="h-[6rem] w-full flex items-center justify-center text-oranye border-b border-oranye">
-                    <input className= "w-5/6 px-4 py-2 text-white text-xl bg-abu-gelap border border-oranye rounded-xl" placeholder="Search.." onChange={(e)=>{setSearch(e.target.value)}}/>
+                    <input name='searchUser' id='searchUser' className= "w-5/6 px-4 py-2 text-white text-xl bg-abu-gelap border border-oranye rounded-xl" placeholder="Search.." onChange={(e)=>{setSearch(e.target.value)}}/>
                 </div>
 
                 <div className="w-full h-[calc(100vh-19.5rem)]">
