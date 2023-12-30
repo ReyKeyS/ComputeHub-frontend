@@ -378,7 +378,7 @@ function MasterItem() {
                                     <StyledTableCell component="th" scope="row" align='center'>{index + 1}</StyledTableCell>
                                     <StyledTableCell align="center">{row.name}</StyledTableCell>
                                     <StyledTableCell align="center" width={"12%"}>Rp {row.price.toLocaleString("id-ID")}</StyledTableCell>
-                                    <StyledTableCell align="center">{row.stock}</StyledTableCell>
+                                    <StyledTableCell align="center" id='stock-item'>{row.stock}</StyledTableCell>
                                     <StyledTableCell align="center">{row.brand}</StyledTableCell>
                                     <StyledTableCell align="center">{row.category}</StyledTableCell>
                                     <StyledTableCell align="center" width={"20%"} id={`actions${index}`}>
@@ -424,7 +424,7 @@ function MasterItem() {
                                                 <button className='text-white font-extrabold'>close</button>
                                             </form>
                                         </dialog>
-                                        <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye hover:scale-110 hover:font-bold transition duration-300' onClick={() => { deleteItem(row._id) }}>Delete</button>
+                                        <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye hover:scale-110 hover:font-bold transition duration-300' onClick={() => { deleteItem(row._id) }} id='delete-item'>Delete</button>
                                     </StyledTableCell>
                                 </StyledTableRow>
                             )})}
