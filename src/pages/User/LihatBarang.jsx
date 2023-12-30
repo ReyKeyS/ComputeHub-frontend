@@ -83,7 +83,7 @@ function LihatBarang() {
                         {item.discount &&  <span className='text-5xl font-extrabold text-oranye'>Rp {item.discount.promo_price.toLocaleString('id-ID')}</span>}
                         <span className={(item.discount?" line-through text-abu-abu text-2xl ":" text-5xl font-extrabold text-oranye")}>Rp {item?.price?.toLocaleString("id-ID")}</span>
                         <span className="text-2xl font-extrabold">Category: {item?.category}</span>
-                        <span className="text-2xl font-extrabold">Stok : {item?.stock}</span>
+                        <span className="text-2xl font-extrabold" id='info-stok'>Stok : {item?.stock}</span>
                         <div className='w-full h-full mt-2 mb-8 text-lg'>
                             {item?.description}
                         </div>
