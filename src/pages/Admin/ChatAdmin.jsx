@@ -121,7 +121,7 @@ function ChatAdmin() {
                         }).filter((f) => f.id_sender.display_name.toLowerCase().includes(search.toLowerCase()))
                         .map((c, index) => {
                             return (
-                                <div className={"w-full h-28 grid place-items-center justify-items-center border-oranye hover:cursor-pointer"+(c?.id_sender._id==whosChat?.id_sender._id?" border-x-4 bg-abu-gelap":" hover:border-x-4 hover:bg-abu-gelap")} onClick={()=>{readChat(c)}} key={index} >
+                                <div id={`user${index}`} className={"w-full h-28 grid place-items-center justify-items-center border-oranye hover:cursor-pointer"+(c?.id_sender._id==whosChat?.id_sender._id?" border-x-4 bg-abu-gelap":" hover:border-x-4 hover:bg-abu-gelap")} onClick={()=>{readChat(c)}} key={index} >
                                     <div className="relative h-28 w-full grid place-items-center justify-items-center">
                                         <div className='flex'>
                                             <img src={import.meta.env.VITE_BACKEND_GET_PICTURE_URL+c.id_sender.profile_picture} className="w-14 h-14 rounded-full"></img>
@@ -172,8 +172,8 @@ function ChatAdmin() {
                         </div>
                         <form onSubmit={handleSubmit(addChat)}>
                             <div className="h-[6rem] flex items-center justify-between px-10 border-t border-oranye">
-                                <input className="text-white text-xl px-4 py-2 bg-abu-gelap border border-oranye w-full rounded-s-xl" placeholder='Type Here..' {...register('content')} />
-                                <button type='submit' className='text-white text-lg border-y border-e bg-abu-gelap hover:bg-oranye transition duration-300 border-oranye px-4 py-2 rounded-e-xl'><SendIcon /></button>
+                                <input name='textChat' id='textChat' className="text-white text-xl px-4 py-2 bg-abu-gelap border border-oranye w-full rounded-s-xl" placeholder='Type Here..' {...register('content')} />
+                                <button name='sendChat' id='sendChat' type='submit' className='text-white text-lg border-y border-e bg-abu-gelap hover:bg-oranye transition duration-300 border-oranye px-4 py-2 rounded-e-xl'><SendIcon /></button>
                             </div>
                         </form>
                     </>
