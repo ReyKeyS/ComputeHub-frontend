@@ -182,7 +182,7 @@ function DetailHistory() {
                             <div className="flex justify-end gap-8 mb-10">
                                 {
                                     listItemHistory.status == 2 && 
-                                    <button className="bg-red-500 hover:bg-red-600 transition duration-300 text-white px-3 py-2 mt-4 w-48 h-12 rounded-xl text-2xl" onClick={cancelTrans}>Cancel</button>
+                                    <button id='cancel' className="bg-red-500 hover:bg-red-600 transition duration-300 text-white px-3 py-2 mt-4 w-48 h-12 rounded-xl text-2xl" onClick={cancelTrans}>Cancel</button>
                                 }
                                 <button className="bg-oranye hover:bg-hover-oranye transition duration-300 px-3 py-2 mt-4 w-48 h-12 rounded-xl text-2xl text-abu-super-gelap" onClick={(e)=>{navigate('/profile/history/')}}>Back to History</button>
                             </div>

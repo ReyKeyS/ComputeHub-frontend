@@ -101,7 +101,7 @@ function History() {
                 }).filter((f) => new Date(f.trans_date).toJSON().substring(0, 10) <= maxDate 
                 && new Date(f.trans_date).toJSON().substring(0, 10) >= minDate).map((item, index) => {
                 if (status == -1 || status === item.status){
-                    return (<div className="mt-8" key={index}>
+                    return (<div className="mt-8" key={index} id='list-history'>
                         <div className="border border-oranye rounded-3xl h-fit font-black ">
                             <div className="grid grid-cols-3">
                                 <div className="">
@@ -139,7 +139,7 @@ function History() {
                             </div>
                              <div className="text-end mr-8 mb-4 text-3xl">
                                 Grand Total : {formatHarga(item.grand_total)} <br />
-                                <button className=" ml-4 bg-oranye px-3 py-1 mr-4 mt-4 w-48 rounded-xl text-3xl text-abu-super-gelap hover:bg-hover-oranye transition duration-300"
+                                <button id='detail-history' className=" ml-4 bg-oranye px-3 py-1 mr-4 mt-4 w-48 rounded-xl text-3xl text-abu-super-gelap hover:bg-hover-oranye transition duration-300"
                                  onClick={async (e) => {navigate(`/profile/detail/${item._id}`)}}>Detail</button>
                              </div>
                         </div>
