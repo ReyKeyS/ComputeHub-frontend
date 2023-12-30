@@ -131,7 +131,7 @@ const Cart = () => {
                                 <p className='text-2xl text-white mt-2'>Grand Total :</p>
                                 <p className='my-2 text-center text-4xl text-oranye'>Rp {grandTotal?.toLocaleString("id-ID")}</p>                        
                                 <div className='flex justify-end'>
-                                    <button className='text-center text-2xl font-bold w-1/3 my-2 py-2 rounded-xl bg-oranye hover:bg-hover-oranye' onClick={buying}>Buy</button>
+                                    <button className='text-center text-2xl font-bold w-1/3 my-2 py-2 rounded-xl bg-oranye hover:bg-hover-oranye' onClick={buying} id='buy'>Buy</button>
                                 </div>
                             </div>
                         </>
