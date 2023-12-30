@@ -48,7 +48,11 @@ function Confirmation() {
                 </div>
             }
 
-            {listTrans && listTrans.map((t, index) => {
+            {listTrans && listTrans.sort((a, b)=>{
+                if (a.trans_date != null && b.trans_date != null) 
+                    return new Date(b.trans_date) - new Date(a.trans_date)
+                else return 0
+            }).map((t, index) => {
                 return (
                     <div className="rounded-xl w-full my-8 h-auto text-white border border-oranye bg-abu-gelap" key={index}>
                         <div className="flex py-2 text-3xl">
@@ -84,10 +88,10 @@ function Confirmation() {
                             </div>
                             <div className="flex items-center justify-end gap-12 w-2/5 font-bold text-2xl">
                                 <div>
-                                    <button className='rounded-xl bg-oranye hover:bg-hover-oranye transition duration-300 text-black w-48 h-10' onClick={()=>rejectTrans(t._id)}>Reject</button>
+                                    <button className='rounded-xl bg-oranye hover:bg-hover-oranye transition duration-300 text-black w-48 h-10' onClick={()=>rejectTrans(t._id)} id='reject-trans'>Reject</button>
                                 </div>
                                 <div>
-                                    <button className='rounded-xl bg-oranye hover:bg-hover-oranye transition duration-300 text-black w-48 h-10' onClick={()=>confirmTrans(t._id)}>Confirm</button>
+                                    <button className='rounded-xl bg-oranye hover:bg-hover-oranye transition duration-300 text-black w-48 h-10' onClick={()=>confirmTrans(t._id)} id='confirm-trans'>Confirm</button>
                                 </div>
                             </div>
                         </div>
