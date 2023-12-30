@@ -182,7 +182,7 @@ function AddPromo() {
                 </div>
 
                 <div className="col-span-4 text-right me-24">
-                    <button type='submit' className='rounded-xl bg-oranye font-bold mt-5 w-48 h-10 text-xl hover:bg-hover-oranye transition duration-300'>Add Promo</button>
+                    <button name='addpromo' id='addpromo' type='submit' className='rounded-xl bg-oranye font-bold mt-5 w-48 h-10 text-xl hover:bg-hover-oranye transition duration-300'>Add Promo</button>
                 </div>
             </div>
         </form>
