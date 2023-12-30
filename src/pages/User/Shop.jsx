@@ -117,6 +117,7 @@ function Shop(params) {
                     <div className='my-3'>
                         <span className="text-putih text-xl font-bold my-2">Category</span>
                         <Select
+                            id='filter-category'
                             className='basic-single mt-1'
                             classNamePrefix='select'
                             isDisabled={false}

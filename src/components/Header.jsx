@@ -79,7 +79,7 @@ function Header(){
             <NavLink to="/" id='logo'>
                 <div className="bg-abu-super-gelap text-white rounded-lg text-2xl p-2 ms-10 flex justify-center"><ComputerIcon fontSize='large'/>&nbsp;Compute&nbsp;<span className="bg-oranye rounded-lg font-bold text-abu-super-gelap px-1">HUB</span></div>
             </NavLink>
-            <NavLink to="/shop" className={(state)=>`text-white text-2xl ${state.isActive ? "font-bold text-3xl" : ""}`}>
+            <NavLink to="/shop" id='shop' className={(state)=>`text-white text-2xl ${state.isActive ? "font-bold text-3xl" : ""}`}>
                 Shop
             </NavLink>
             <NavLink to={"/build"} className={(state)=>`text-white text-2xl ${state.isActive ? "font-bold text-3xl" : ""}`}>
