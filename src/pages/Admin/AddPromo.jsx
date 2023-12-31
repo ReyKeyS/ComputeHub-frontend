@@ -211,12 +211,12 @@ function AddPromo() {
                     <StyledTableCell component="th" scope="row" align='center'>
                       {index+1}
                     </StyledTableCell>
-                    <StyledTableCell align="center">{row.discount.promo_name}</StyledTableCell>
+                    <StyledTableCell id='promo-name' align="center">{row.discount.promo_name}</StyledTableCell>
                     <StyledTableCell align="center">{row.name}</StyledTableCell>
                     <StyledTableCell align="center"><span className='text-green-400'>Rp {(row.discount.promo_price).toLocaleString("id-ID")}</span></StyledTableCell>
                     <StyledTableCell align="center">Rp {(row.price).toLocaleString("id-ID")}</StyledTableCell>
                     <StyledTableCell align="center" width={"20%"}>
-                      <button className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye hover:scale-110 hover:font-bold transition duration-300' onClick={()=>{deletePromo(row._id)}}>Delete</button>
+                      <button id='promo-delete' className='w-20 px-4 py-2 rounded-xl bg-neutral-950 text-oranye hover:scale-110 hover:font-bold transition duration-300' onClick={()=>{deletePromo(row._id)}}>Delete</button>
                     </StyledTableCell>
                   </StyledTableRow>
                 ))}
