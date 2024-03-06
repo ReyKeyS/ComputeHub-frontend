@@ -26,7 +26,7 @@ import CardBarang from '../../components/CardBarang';
 const customStyles = {
     control: (base, { isFocused }) => ({
         ...base,
-        borderColor: isFocused ? '#d17e00' : '#ffa31a',
+        borderColor: isFocused ? '#d17e00' : '#1a90ff',
         backgroundColor: '#292929',
     }),
     option: (base, { isFocused }) => ({
