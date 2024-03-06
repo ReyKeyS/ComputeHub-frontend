@@ -5,8 +5,8 @@ export default {
   theme: {
     extend: {
       colors:{
-        'oranye':"#ffa31a",
-        'hover-oranye':"#d17e00",
+        'oranye':"#1a90ff",
+        'hover-oranye':"#0065d1",
         "abu-abu":"#808080",
         "abu-gelap":"#292929",
         "abu-super-gelap":"#1b1b1b",
